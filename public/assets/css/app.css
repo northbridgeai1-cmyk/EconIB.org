@@ -147,3 +147,16 @@
 
 .note-good-ish { border-left-color: var(--good); }
 .note-good-ish b { color: var(--good); }
+
+/* ------------------------------------------------- show/hide password control */
+.pw-wrap { position: relative; display: block; }
+.pw-wrap input { padding-right: 68px; }
+.pw-toggle {
+  position: absolute; top: 50%; right: var(--s-2); transform: translateY(-50%);
+  font: inherit; font-size: var(--t-sm); font-weight: 500;
+  background: transparent; border: 1px solid var(--rule); border-radius: var(--r-sm);
+  color: var(--muted); padding: 2px var(--s-2); min-height: 26px; cursor: pointer;
+}
+.pw-toggle:hover { color: var(--ink); border-color: var(--muted); }
+.pw-toggle[aria-pressed="true"] { color: var(--accent); border-color: var(--accent); }
+@media (pointer: coarse) { .pw-toggle { min-height: 34px; } }

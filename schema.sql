@@ -35,6 +35,18 @@ CREATE TABLE IF NOT EXISTS sessions (
 CREATE INDEX IF NOT EXISTS idx_sessions_user ON sessions(user_id);
 CREATE INDEX IF NOT EXISTS idx_sessions_expiry ON sessions(expires_at);
 
+-- Password reset tokens. Only a hash is stored, so a leaked database cannot be
+-- used to reset anyone's password. Single use, and short-lived.
+CREATE TABLE IF NOT EXISTS password_resets (
+  token_hash TEXT PRIMARY KEY,
+  user_id    TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  created_at TEXT NOT NULL,
+  expires_at TEXT NOT NULL,
+  used_at    TEXT
+);
+CREATE INDEX IF NOT EXISTS idx_resets_user ON password_resets(user_id);
+CREATE INDEX IF NOT EXISTS idx_resets_expiry ON password_resets(expires_at);
+
 -- Three commentaries per user, addressed by slot so the portfolio is always
 -- an ordered set of at most three.
 CREATE TABLE IF NOT EXISTS commentaries (

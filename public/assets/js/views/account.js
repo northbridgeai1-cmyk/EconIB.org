@@ -1,4 +1,4 @@
-import { mount, esc, toast } from "../lib/dom.js";
+import { mount, esc, toast, wirePasswordToggles } from "../lib/dom.js";
 import { api, ApiError } from "../lib/api.js";
 import { state, loadUser } from "../lib/store.js";
 import { paintUserChip } from "../app.js";
@@ -55,6 +55,23 @@ export default async function account({ view }) {
           <button class="btn btn-primary" type="submit" id="save">Save changes</button>
         </form>
 
+        <section class="card mt-4">
+          <h2>Change your password</h2>
+          <form id="password-form">
+            <div class="field">
+              <label for="currentPassword">Current password</label>
+              <input id="currentPassword" name="currentPassword" type="password" autocomplete="current-password" required>
+            </div>
+            <div class="field">
+              <label for="newPassword">New password</label>
+              <input id="newPassword" name="newPassword" type="password" autocomplete="new-password" required>
+              <p class="field-hint">At least 10 characters. Use Show to check it before saving.</p>
+            </div>
+            <button class="btn" type="submit" id="password-save">Change password</button>
+            <p class="field-hint">Your other devices will be signed out. This one stays signed in.</p>
+          </form>
+        </section>
+
         <section class="card mt-4" id="ai-card">
           ${renderAi(ai)}
         </section>
@@ -93,6 +110,27 @@ export default async function account({ view }) {
     } finally {
       button.disabled = false;
       button.textContent = "Save changes";
+    }
+  });
+
+  wirePasswordToggles(view);
+
+  view.querySelector("#password-form").addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const values = Object.fromEntries(new FormData(form).entries());
+    const button = view.querySelector("#password-save");
+    button.disabled = true;
+    button.textContent = "Changing…";
+    try {
+      const res = await api.changePassword(values);
+      form.reset();
+      toast(res.message, "good");
+    } catch (err) {
+      toast(err instanceof ApiError ? err.message : "Could not change your password.", "error");
+    } finally {
+      button.disabled = false;
+      button.textContent = "Change password";
     }
   });
 

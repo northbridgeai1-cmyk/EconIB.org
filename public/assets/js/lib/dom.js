@@ -87,3 +87,43 @@ export function toast(message, kind = "info") {
   host.append(node);
   setTimeout(() => node.remove(), 5000);
 }
+
+/**
+ * Add a Show/Hide control to every password box inside `root`.
+ *
+ * Being unable to see what you typed is how a typo at signup becomes an account
+ * you can never log into. The field starts hidden and the control is a real
+ * button, so it is reachable by keyboard and announced to screen readers.
+ */
+export function wirePasswordToggles(root) {
+  for (const input of root.querySelectorAll('input[type="password"]')) {
+    if (input.dataset.toggled === "1") continue;
+    input.dataset.toggled = "1";
+
+    const wrap = el("div", { class: "pw-wrap" });
+    input.parentNode.insertBefore(wrap, input);
+    wrap.append(input);
+
+    const button = el("button", {
+      type: "button",
+      class: "pw-toggle",
+      "aria-pressed": "false",
+      "aria-label": "Show password",
+      text: "Show",
+    });
+
+    button.addEventListener("click", () => {
+      const showing = input.type === "text";
+      input.type = showing ? "password" : "text";
+      button.textContent = showing ? "Show" : "Hide";
+      button.setAttribute("aria-pressed", String(!showing));
+      button.setAttribute("aria-label", showing ? "Show password" : "Hide password");
+      // Keep the caret where it was; toggling type resets it in some browsers.
+      const end = input.value.length;
+      input.focus();
+      try { input.setSelectionRange(end, end); } catch { /* not all types support it */ }
+    });
+
+    wrap.append(button);
+  }
+}

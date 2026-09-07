@@ -63,6 +63,10 @@ export const api = {
   login: (b) => request("/auth/login", { method: "POST", body: b }),
   logout: () => request("/auth/logout", { method: "POST" }),
   me: () => request("/auth/me"),
+  forgotPassword: (b) => request("/auth/forgot", { method: "POST", body: b }),
+  checkReset: (token) => request(`/auth/reset?token=${encodeURIComponent(token)}`),
+  resetPassword: (b) => request("/auth/reset", { method: "POST", body: b }),
+  changePassword: (b) => request("/auth/password", { method: "POST", body: b }),
   updateProfile: (b) => request("/auth/me", { method: "PATCH", body: b }),
   deleteAccount: () => request("/auth/me", { method: "DELETE" }),
 

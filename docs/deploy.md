@@ -48,6 +48,22 @@ npx wrangler pages secret put KEY_ENCRYPTION_SECRET
 A free Groq key from [console.groq.com/keys](https://console.groq.com/keys) works
 and costs nothing.
 
+For password reset emails, also set:
+
+```bash
+npx wrangler pages secret put RESEND_API_KEY
+```
+
+and add `RESET_FROM_EMAIL` as a plain variable, e.g. `EconIB <noreply@econib.org>`.
+Get a key at [resend.com](https://resend.com) — the free tier is 3,000 emails a
+month — and verify `econib.org` there so the from address is accepted.
+
+**If you skip this**, password reset returns a clear "not set up on this
+deployment" message rather than pretending to send a link, and you reset
+passwords yourself with `scripts/set-password.mjs`. That is fine for a handful
+of users and untenable past that: every forgotten password becomes a support
+request only you can answer.
+
 `KEY_ENCRYPTION_SECRET` encrypts students' own API keys at rest. Generate one:
 
 ```bash
@@ -86,7 +102,8 @@ In the Pages project settings, or in `wrangler.toml` under `[vars]`:
 | `PW_ITERATIONS` | `600000` | Below 100000 the server refuses to start a login. |
 | `AI_DAILY_LIMIT_PER_USER` | `25` | Per account per UTC day. |
 | `AI_DAILY_LIMIT_GLOBAL` | `1000` | Across all accounts, so one leaked session cannot spend the whole budget. |
-| `ANTHROPIC_MODEL` | *(optional)* | Defaults to `claude-opus-5`. Marking quality is the product; change this only deliberately. |
+| `SHARED_AI_MODEL` | *(optional)* | Each provider has a sensible default. |
+| `RESET_FROM_EMAIL` | `EconIB <noreply@econib.org>` | The from address on reset emails. Must be a domain verified in Resend. |
 
 There is deliberately **no wildcard fallback** for `ALLOWED_ORIGIN`. If it is
 unset — exactly the state a fresh deployment is in — cross-origin requests are

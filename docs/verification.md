@@ -133,3 +133,44 @@ error rather than a crash or a silent wrong answer.
 - **Whether a real Groq model marks well.** The shape is proven; the judgment is
   not. Marking quality against a real examiner remains unmeasured, which is why
   every result names its model and carries a reliability caveat.
+
+---
+
+# Round three: password reset, change password, show/hide
+
+## Verified against a live server
+
+- **Reset link lifecycle** — a valid link reports `valid: true`; a fabricated one
+  reports `false`; a short new password is refused; the reset succeeds and signs
+  the user straight in; **the same link used twice is dead**; an expired link is
+  refused. The old password stops working and the new one works.
+- **Reset evicts other devices** — signed in on two devices, changing the
+  password left the acting device signed in (200) and signed the other out (401).
+  That is what makes a reset useful when someone else has your account.
+- **Change password** requires the current one (wrong current → 401 naming the
+  field) and refuses reusing the same password.
+- **The email itself** was captured from a mock provider standing in for Resend:
+  correct recipient, bearer auth, a one-hour expiry stated in the body, the
+  reset link, and a line telling anyone who did not request it to ignore it.
+  Following that link and setting a password, then signing in with it, works.
+- **No enumeration on reset** — a request for an unregistered address returns
+  the identical generic message and sends no email at all.
+- **Fails closed** — with no email provider configured, reset returns a plain
+  "not set up on this deployment" rather than accepting the request and
+  silently doing nothing.
+- **Show/hide toggle** — flips the field between `password` and `text`, keeps
+  the typed value, updates its own label and `aria-pressed`, and flips back.
+
+## Defect found in the recovery script itself
+
+`scripts/set-password.mjs` reported success for an email that does not exist.
+D1's execute output carries no row count, so an `UPDATE` matching nothing looks
+exactly like one that worked. It now confirms the account exists first, and was
+re-tested with a password containing both spaces and quote characters.
+
+## Guard added
+
+`scripts/check.mjs` now fails if any outbound URL in `shared/providers.js` or
+`shared/email.js` is not HTTPS, or points at localhost. Both files were pointed
+at local mocks during this testing; the check exists so that a debugging patch
+cannot reach a deployment.

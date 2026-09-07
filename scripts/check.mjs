@@ -150,6 +150,21 @@ for (const file of ["public/assets/css/base.css", "public/assets/css/app.css"]) 
   }
 }
 
+// -------------------------------------------------------- outbound endpoints
+// A URL patched to a local mock during testing must never reach a deploy.
+{
+  const files = ["shared/providers.js", "shared/email.js"];
+  for (const f of files) {
+    const src = text(f);
+    const urls = [...src.matchAll(/["'`](https?:\/\/[^"'`\s]+)["'`]/g)].map((m) => m[1]);
+    for (const u of urls) {
+      check(`${path.basename(f)}: "${u}" is HTTPS`, u.startsWith("https://"));
+      check(`${path.basename(f)}: "${u}" is not a local test server`,
+        !/localhost|127\.0\.0\.1|0\.0\.0\.0|:\d{4}/.test(u));
+    }
+  }
+}
+
 // ------------------------------------------------- published data copies
 // data/ is the source of truth; public/assets/data/ is what the browser fetches.
 // Two copies can drift, so drift is a failure rather than a surprise.

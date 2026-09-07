@@ -53,6 +53,25 @@ Two things the UI is explicit about, because a student cannot otherwise tell:
 Student keys are AES-GCM encrypted under `KEY_ENCRYPTION_SECRET` and are never
 returned to the browser — the page only ever sees a masked hint.
 
+## Accounts
+
+Email and password, with the password hashed using PBKDF2-SHA256. Sessions are
+opaque tokens in a `__Host-` prefixed, HttpOnly, SameSite=Strict cookie.
+
+- **Password reset by email**, single use, expiring in an hour. Requesting a
+  reset invalidates any earlier link, and completing one signs out every other
+  device — so a reset also evicts anyone who should not be there.
+- **Change password while signed in**, requiring the current one, which keeps
+  the current device signed in and signs out the rest.
+- **Show/hide on every password box.** Not being able to see what you typed is
+  how a typo at signup becomes an account nobody can get into.
+- **No account enumeration.** A wrong password and an unknown email return
+  identical responses in near-identical time, and a reset request for an
+  unregistered address sends nothing while replying the same way.
+
+Where no email provider is configured, reset says so plainly instead of
+pretending to send, and `scripts/set-password.mjs` sets a password directly.
+
 ## Layout
 
 ```

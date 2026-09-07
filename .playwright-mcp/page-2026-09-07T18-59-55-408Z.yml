@@ -1,0 +1,88 @@
+- generic [active] [ref=f8e1]:
+  - link "Skip to content" [ref=f8e2] [cursor=pointer]:
+    - /url: "#main"
+  - banner [ref=f8e3]:
+    - generic [ref=f8e4]:
+      - link "EconIB" [ref=f8e5] [cursor=pointer]:
+        - /url: /
+      - navigation "Main"
+      - generic [ref=f8e6]:
+        - 'button "Colour theme: Auto. Click to change." [ref=f8e8] [cursor=pointer]': Auto
+        - link "Sign in" [ref=f8e9] [cursor=pointer]:
+          - /url: /login
+  - main [ref=f8e10]:
+    - generic [ref=f8e11]:
+      - paragraph [ref=f8e12]: Last updated 7 September 2026
+      - heading "Terms and privacy" [level=1] [ref=f8e13]
+      - paragraph [ref=f8e14]: Short, specific, and about this site rather than about websites in general.
+    - generic [ref=f8e15]:
+      - heading "What EconIB is" [level=2] [ref=f8e16]
+      - paragraph [ref=f8e17]:
+        - text: A study tool for IB Diploma Economics, built and run independently. It is
+        - strong [ref=f8e18]: not affiliated with, endorsed by, or connected to the International Baccalaureate Organization
+        - text: . "IB" and "International Baccalaureate" are the IBO's trademarks and are used here only to describe the course this tool is for.
+      - paragraph [ref=f8e19]: All syllabus guidance, rubric wording and study content on this site is written by EconIB. Mark allocations, band boundaries and assessment weightings are factual details of the assessment model. No copyrighted IB text is reproduced. Always check the official subject guide and your teacher's marking.
+    - generic [ref=f8e20]:
+      - heading "Marks here are not official" [level=2] [ref=f8e21]
+      - paragraph [ref=f8e22]: EconIB gives you a considered second opinion. It is not a prediction and it is not moderation. Your IA is marked by your teacher and sampled by an IB moderator; your exams are marked by IB examiners.
+      - paragraph [ref=f8e23]: The marker reads text only. It cannot see a diagram you have attached, so criterion A is judged on how your writing refers to and explains one. Where a free or open model produces a mark, the result says so and tells you how much weight to put on it.
+      - generic [ref=f8e24]:
+        - generic [ref=f8e25]: Do not submit work on the strength of a mark from here
+        - paragraph [ref=f8e26]: A mark from EconIB tells you where the gaps are. It does not tell you what you will get. Grade boundaries move every session, which is why this site shows you a weighted percentage and never converts it into a grade.
+    - generic [ref=f8e27]:
+      - heading "Academic honesty" [level=2] [ref=f8e28]
+      - paragraph [ref=f8e29]: "Your IA must be your own work. EconIB is built so that it cannot write it for you: there is no feature that drafts a sentence for you to paste in, and the marker is instructed never to supply replacement prose. It names what is missing and leaves the writing to you."
+      - paragraph [ref=f8e30]: Using EconIB to find weaknesses in your own work is ordinary revision. Passing off text you did not write as your own is academic malpractice under the IB's rules, and the consequences fall on you, not on this site. If your school requires you to declare the tools you used, declare this one.
+    - generic [ref=f8e31]:
+      - heading "What is stored about you" [level=2] [ref=f8e32]
+      - table [ref=f8e34]:
+        - rowgroup [ref=f8e35]:
+          - row [ref=f8e36]:
+            - columnheader "What" [ref=f8e37]
+            - columnheader "Why" [ref=f8e38]
+        - rowgroup [ref=f8e39]:
+          - row [ref=f8e40]:
+            - cell "Email and name" [ref=f8e41]
+            - cell "To sign you in and address you." [ref=f8e42]
+          - row [ref=f8e43]:
+            - cell "Password" [ref=f8e44]
+            - cell "Stored only as a one-way hash. Nobody can read it back, including us." [ref=f8e45]
+          - row [ref=f8e46]:
+            - cell "Year group and level" [ref=f8e47]
+            - cell "To show the right topics and the right papers." [ref=f8e48]
+          - row [ref=f8e49]:
+            - cell "Your commentaries and exam answers" [ref=f8e50]
+            - cell "So your portfolio is there when you come back." [ref=f8e51]
+          - row [ref=f8e52]:
+            - cell "Marks and feedback" [ref=f8e53]
+            - cell "So you can see whether the same criterion keeps costing you." [ref=f8e54]
+          - row [ref=f8e55]:
+            - cell "Topic confidence ratings" [ref=f8e56]
+            - cell "To build your revision order." [ref=f8e57]
+          - row [ref=f8e58]:
+            - cell "Your own API key, if you add one" [ref=f8e59]
+            - cell "Encrypted before storage and never sent back to your browser." [ref=f8e60]
+      - paragraph [ref=f8e61]: There is no analytics, no advertising, no tracking pixel, no heatmap and no session recording. Nothing about your behaviour is sold or shared.
+    - generic [ref=f8e62]:
+      - heading "Cookies" [level=2] [ref=f8e63]
+      - paragraph [ref=f8e64]:
+        - text: EconIB sets
+        - strong [ref=f8e65]: one
+        - text: "cookie: a session token so you stay signed in. It is strictly necessary for the site to work, carries no tracking data, and needs no consent banner. There are no advertising or analytics cookies to consent to, which is why you are not being asked to dismiss a box."
+    - generic [ref=f8e66]:
+      - heading "Where your work goes when you ask for a mark" [level=2] [ref=f8e67]
+      - paragraph [ref=f8e68]: Marking sends your commentary or answer to an AI provider. The provider in use is named on every result. Your work is not sent anywhere else, and is not sent at all unless you press the mark button.
+      - generic [ref=f8e69]:
+        - generic [ref=f8e70]: Free AI tiers may train on what you send
+        - paragraph [ref=f8e71]: Some providers' free tiers allow submitted text to be used to improve their products, and read by human reviewers. Where that applies, EconIB warns you in red before you choose that provider. Your coursework is your call — but make it knowingly.
+    - generic [ref=f8e72]:
+      - heading "Deleting your account" [level=2] [ref=f8e73]
+      - paragraph [ref=f8e74]: "Account settings has a delete button. It permanently removes your account, your commentaries, every marked answer, your progress and any stored API key. It happens immediately, it cannot be undone, and there is no backup to restore from. That is deliberate: a delete that leaves a copy behind is not a delete."
+    - generic [ref=f8e75]:
+      - heading "No warranty" [level=2] [ref=f8e76]
+      - paragraph [ref=f8e77]: EconIB is provided as it is, with no guarantee that it is available, correct, or that its marks match an examiner's. It is a revision aid built by a student. Your results are your responsibility.
+      - paragraph [ref=f8e78]: These terms may change. The date at the top says when they last did.
+  - contentinfo [ref=f8e79]:
+    - paragraph [ref=f8e80]:
+      - link "Back to EconIB" [ref=f8e81] [cursor=pointer]:
+        - /url: /

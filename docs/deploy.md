@@ -3,25 +3,21 @@
 You need: the GitHub repo connected to Cloudflare Pages, a D1 database, an
 Anthropic API key, and the `econib.org` domain on Cloudflare DNS.
 
-## 1. Workers Paid plan — required, not optional
+## 1. The free plan is enough
 
-Password login performs PBKDF2-SHA256 at 600,000 iterations. Measured on this
-codebase that costs **~395 ms of CPU per login**.
+EconIB runs on the **Cloudflare Workers Free plan**. No paid tier is required.
 
-| Plan | CPU per request | Password login |
-|---|---|---|
-| Workers Free | 10 ms | **cannot work** — every login fails |
-| Workers Paid | 30 s default | works |
+That is only true because of one design decision. A password KDF costs ~400ms
+of CPU and the free plan allows 10ms per request, so the stretching happens in
+the **browser**: it sends a verifier, and the server stores a fast SHA-256 of
+it. Measured server cost is ~1-3ms.
 
-This is not a tuning problem. A password KDF is deliberately expensive; that is
-what makes it a KDF. Lowering the iteration count to fit 10 ms would leave
-password hashes cheap to crack, so the code refuses to run below 100,000
-iterations and fails loudly rather than quietly weakening.
+This costs nothing in security. An attacker holding the database still has to
+run the full 600,000-iteration PBKDF2 for every password guess, and the server
+never sees the password at all — so a compromised server cannot learn it.
 
-If you want to stay on the free plan, the alternative is email magic links: no
-password to store and no expensive hash, at the cost of an email provider
-dependency and a round trip through the inbox on every new device. That is a
-different auth model, not a config change.
+`/api/health` times the server-side hash on every call and warns if it ever
+exceeds 10ms, which would mean the key derivation had moved back to the server.
 
 ## 2. Create the database
 
@@ -42,6 +38,7 @@ Never put a key in `wrangler.toml` — that file is committed.
 ```bash
 npx wrangler pages secret put SHARED_AI_KEY
 npx wrangler pages secret put KEY_ENCRYPTION_SECRET
+npx wrangler pages secret put GOOGLE_CLIENT_SECRET   # only if using Google sign-in
 ```
 
 `SHARED_AI_KEY` is the key for whichever provider `SHARED_AI_PROVIDER` names.
@@ -99,7 +96,7 @@ In the Pages project settings, or in `wrangler.toml` under `[vars]`:
 | Variable | Value | Notes |
 |---|---|---|
 | `ALLOWED_ORIGIN` | `https://econib.org` | Exact scheme and host, **no trailing slash**. The browser compares character for character; `https://econib.org/` will never match. |
-| `PW_ITERATIONS` | `600000` | Below 100000 the server refuses to start a login. |
+| `GOOGLE_CLIENT_ID` | from Google Cloud | Optional. Without it the Google button does not appear. |
 | `AI_DAILY_LIMIT_PER_USER` | `25` | Per account per UTC day. |
 | `AI_DAILY_LIMIT_GLOBAL` | `1000` | Across all accounts, so one leaked session cannot spend the whole budget. |
 | `SHARED_AI_MODEL` | *(optional)* | Each provider has a sensible default. |
@@ -150,3 +147,36 @@ It reports presence and timing only, never secret values.
   endpoint's `passwordHashing` warning — it is almost always the free plan.
 - Mark one commentary end to end to confirm the API key works.
 - Confirm `https://econib.org/api/health` shows `allowedOrigin` as `set`.
+
+
+## 9. Google sign-in (optional, recommended)
+
+Students almost all have a school Google account, and signing in with it means
+no password to forget and no reset email to configure.
+
+1. [console.cloud.google.com](https://console.cloud.google.com) → create a project.
+2. **APIs & Services → OAuth consent screen** → External → fill in the app name
+   and your email → add the scopes `openid`, `email`, `profile`.
+3. **Credentials → Create credentials → OAuth client ID → Web application**.
+4. Under **Authorised redirect URIs** add exactly:
+
+   ```
+   https://econib.org/api/auth/google/callback
+   ```
+
+   It must match character for character — no trailing slash.
+5. Copy the client ID and secret. Set `GOOGLE_CLIENT_ID` as a plain variable and
+   `GOOGLE_CLIENT_SECRET` as a **secret**.
+6. Reload the sign-in page. The Google button appears only when both are set,
+   so a half-finished setup shows no broken button.
+
+An account created with Google starts as IB1 / SL and lands on the account page
+so the student can set their own year and level. If someone signs in with Google
+using an email that already has a password account, the two are linked rather
+than duplicated — one person, one portfolio.
+
+## 10. Do you still need Resend?
+
+Only for password reset. If everyone uses Google, nobody needs a reset link and
+you can skip it. Password reset degrades honestly when it is not configured:
+the form says it is unavailable rather than pretending to send.

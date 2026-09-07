@@ -20,26 +20,34 @@ const enc = new TextEncoder();
 const b64 = (buf) => btoa(String.fromCharCode(...new Uint8Array(buf)));
 const unb64 = (s) => Uint8Array.from(atob(s), (c) => c.charCodeAt(0));
 
-export function iterations(env) {
-  const n = Number(env.PW_ITERATIONS || 600000);
-  if (!Number.isInteger(n) || n < 100000) {
-    // Fail closed and loudly. A quietly weakened work factor is worse than an
-    // outage because nothing ever reports it.
-    throw new HttpError(500, "Server is misconfigured.", "bad_config");
-  }
-  return n;
+/**
+ * The browser stretches the password (600,000 PBKDF2 iterations) and sends a
+ * verifier. The server stores a fast hash of it under a random per-user salt.
+ *
+ * The expensive step deliberately does NOT happen here: a password KDF costs
+ * ~400ms of CPU and Cloudflare's free plan allows 10ms per request. Moving it
+ * to the client is what lets this run without a paid plan, and it costs nothing
+ * in offline-cracking resistance — an attacker holding the database must still
+ * run the full KDF for every guess.
+ *
+ * The client half is public/assets/js/lib/pwcrypto.js.
+ */
+export const KDF_VERSION = 1;
+export const CLIENT_KDF_ITERATIONS = 600000;
+
+/** A verifier is exactly 32 bytes, base64. Anything else did not come from our client. */
+export function isVerifier(value) {
+  return typeof value === "string" && /^[A-Za-z0-9+/]{43}=$/.test(value);
 }
 
-export async function hashPassword(password, env, saltB64) {
+export async function hashVerifier(verifier, saltB64) {
   const salt = saltB64 ? unb64(saltB64) : crypto.getRandomValues(new Uint8Array(16));
-  const iters = iterations(env);
-  const key = await crypto.subtle.importKey("raw", enc.encode(password), "PBKDF2", false, ["deriveBits"]);
-  const bits = await crypto.subtle.deriveBits(
-    { name: "PBKDF2", hash: "SHA-256", salt, iterations: iters },
-    key,
-    256
-  );
-  return { hash: b64(bits), salt: b64(salt), iterations: iters };
+  const raw = unb64(verifier);
+  const material = new Uint8Array(raw.length + salt.length);
+  material.set(raw, 0);
+  material.set(salt, raw.length);
+  const digest = await crypto.subtle.digest("SHA-256", material);
+  return { hash: b64(digest), salt: b64(salt), iterations: CLIENT_KDF_ITERATIONS };
 }
 
 /** Length-independent, value-independent comparison. */
@@ -53,18 +61,19 @@ export function timingSafeEqual(a, b) {
   return diff === 0;
 }
 
-export async function verifyPassword(password, user, env) {
-  const derived = await hashPassword(password, { PW_ITERATIONS: String(user.pw_iterations) }, user.pw_salt);
+export async function verifyPassword(verifier, user) {
+  if (!isVerifier(verifier)) return false;
+  const derived = await hashVerifier(verifier, user.pw_salt);
   return timingSafeEqual(derived.hash, user.pw_hash);
 }
 
 /**
- * Burn equivalent CPU when the email is unknown, so response time does not
- * reveal whether an account exists.
+ * Do equivalent work when the email is unknown, so the code paths stay
+ * symmetrical and response time reveals nothing about which accounts exist.
  */
-export async function dummyVerify(password, env) {
+export async function dummyVerify(verifier) {
   const salt = b64(new Uint8Array(16));
-  await hashPassword(password || "x", env, salt);
+  await hashVerifier(isVerifier(verifier) ? verifier : b64(new Uint8Array(32)), salt);
   return false;
 }
 

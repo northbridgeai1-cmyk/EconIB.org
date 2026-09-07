@@ -1,6 +1,6 @@
 import { json, handler, readJson, nowIso, HttpError } from "../../../shared/http.js";
-import { email, password, str, oneOf, LIMITS } from "../../../shared/validate.js";
-import { hashPassword, createSession, sessionCookie, publicUser, newId } from "../../../shared/auth.js";
+import { email, verifier as validVerifier, str, oneOf, LIMITS } from "../../../shared/validate.js";
+import { hashVerifier, createSession, sessionCookie, publicUser, newId } from "../../../shared/auth.js";
 import { enforce, clientIp } from "../../../shared/ratelimit.js";
 
 export const onRequestPost = handler(async (ctx) => {
@@ -11,7 +11,7 @@ export const onRequestPost = handler(async (ctx) => {
 
   const body = await readJson(request);
   const mail = email(body.email);
-  const pw = password(body.password);
+  const pw = validVerifier(body.verifier);
   const name = str(body.name, "Name", { max: LIMITS.name, name: "name" });
   const yearGroup = oneOf(body.yearGroup, ["IB1", "IB2"], "Year", "yearGroup");
   const level = oneOf(body.level, ["SL", "HL"], "Level", "level");
@@ -22,7 +22,7 @@ export const onRequestPost = handler(async (ctx) => {
     throw new HttpError(409, "There is already an account with that email. Sign in instead.", "email_taken", { field: "email" });
   }
 
-  const { hash, salt, iterations } = await hashPassword(pw, env);
+  const { hash, salt, iterations } = await hashVerifier(pw);
   const id = newId();
   const now = nowIso();
 

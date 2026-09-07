@@ -1,5 +1,6 @@
 import { api, ApiError } from "./lib/api.js";
 import { $, esc, wirePasswordToggles } from "./lib/dom.js";
+import { deriveVerifier, checkPassword } from "./lib/pwcrypto.js";
 
 const root = $("#reset-root");
 const token = new URLSearchParams(location.search).get("token") || "";
@@ -52,10 +53,19 @@ async function submit(event) {
   event.preventDefault();
   const password = $("#password").value;
   const button = $("#submit");
+
+  const strength = checkPassword(password);
+  if (!strength.ok) return form({ password: strength.message });
+
   button.disabled = true;
-  button.textContent = "Saving…";
+  button.textContent = "Securing your password…";
   try {
-    await api.resetPassword({ token, password });
+    // The reset endpoint needs the email to derive the same verifier, and the
+    // token identifies the account, so the server returns it with the check.
+    const { email } = await api.checkReset(token);
+    const verifier = await deriveVerifier(email, password);
+    button.textContent = "Saving…";
+    await api.resetPassword({ token, verifier });
     // The server signs us in, so go straight to the app rather than making
     // someone type the password they just chose.
     location.href = "/app";

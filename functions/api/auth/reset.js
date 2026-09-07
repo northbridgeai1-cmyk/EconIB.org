@@ -1,13 +1,18 @@
 import { json, handler, readJson, nowIso, HttpError } from "../../../shared/http.js";
-import { password as validPassword, str } from "../../../shared/validate.js";
-import { hashPassword, hashToken, createSession, sessionCookie, publicUser } from "../../../shared/auth.js";
+import { verifier as validVerifier, str } from "../../../shared/validate.js";
+import { hashVerifier, hashToken, createSession, sessionCookie, publicUser } from "../../../shared/auth.js";
 import { enforce, clientIp } from "../../../shared/ratelimit.js";
 
 /** Is this link still good? Lets the page say so before the student types. */
 export const onRequestGet = handler(async (ctx) => {
   const token = new URL(ctx.request.url).searchParams.get("token") || "";
   const row = await lookup(ctx.env.DB, token);
-  return json({ valid: Boolean(row) }, { request: ctx.request, env: ctx.env });
+  if (!row) return json({ valid: false }, { request: ctx.request, env: ctx.env });
+  // The client stretches the password using the email as salt, so it needs the
+  // address. Only the person holding the emailed token can reach this, and it
+  // is their own address.
+  const user = await ctx.env.DB.prepare("SELECT email FROM users WHERE id = ?").bind(row.user_id).first();
+  return json({ valid: true, email: user?.email || null }, { request: ctx.request, env: ctx.env });
 });
 
 export const onRequestPost = handler(async (ctx) => {
@@ -18,7 +23,7 @@ export const onRequestPost = handler(async (ctx) => {
 
   const body = await readJson(request);
   const token = str(body.token, "Reset link", { max: 200, name: "token" });
-  const password = validPassword(body.password);
+  const pw = validVerifier(body.verifier);
 
   const row = await lookup(db, token);
   if (!row) {
@@ -29,7 +34,7 @@ export const onRequestPost = handler(async (ctx) => {
     );
   }
 
-  const { hash, salt, iterations } = await hashPassword(password, env);
+  const { hash, salt, iterations } = await hashVerifier(pw);
   const now = nowIso();
 
   await db.batch([

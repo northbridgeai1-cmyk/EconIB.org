@@ -1,4 +1,5 @@
 import { mount, esc, toast, wirePasswordToggles } from "../lib/dom.js";
+import { deriveVerifier, checkPassword } from "../lib/pwcrypto.js";
 import { api, ApiError } from "../lib/api.js";
 import { state, loadUser } from "../lib/store.js";
 import { paintUserChip } from "../app.js";
@@ -123,7 +124,15 @@ export default async function account({ view }) {
     button.disabled = true;
     button.textContent = "Changing…";
     try {
-      const res = await api.changePassword(values);
+      const strength = checkPassword(values.newPassword);
+      if (!strength.ok) { toast(strength.message, "error"); return; }
+      button.textContent = "Securing…";
+      const [currentVerifier, newVerifier] = await Promise.all([
+        deriveVerifier(user.email, values.currentPassword),
+        deriveVerifier(user.email, values.newPassword),
+      ]);
+      button.textContent = "Changing…";
+      const res = await api.changePassword({ currentVerifier, newVerifier });
       form.reset();
       toast(res.message, "good");
     } catch (err) {

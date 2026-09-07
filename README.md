@@ -58,6 +58,13 @@ returned to the browser — the page only ever sees a masked hint.
 Email and password, with the password hashed using PBKDF2-SHA256. Sessions are
 opaque tokens in a `__Host-` prefixed, HttpOnly, SameSite=Strict cookie.
 
+- **Sign in with Google**, or email and password. A Google sign-in for an email
+  that already has a password account links the two rather than making a second
+  portfolio.
+- **Passwords are stretched in the browser**, not on the server. The server
+  stores a fast hash of the resulting verifier and never sees the password.
+  Offline-cracking cost is unchanged — an attacker still pays 600,000
+  iterations per guess — and this is what lets it run on the free plan.
 - **Password reset by email**, single use, expiring in an hour. Requesting a
   reset invalidates any earlier link, and completing one signs out every other
   device — so a reset also evicts anyone who should not be there.
@@ -111,9 +118,9 @@ on purpose and the suite confirmed to go red. See [docs/verification.md](docs/ve
 
 ## Deploying
 
-See [docs/deploy.md](docs/deploy.md). Note that **password login requires the
-Cloudflare Workers Paid plan** — the measured cost of hashing is ~395 ms of CPU
-against a 10 ms limit on the free plan.
+See [docs/deploy.md](docs/deploy.md). It runs on the **Cloudflare Workers Free
+plan**: password stretching happens in the browser, so the server does one
+SHA-256 (~1-3 ms) rather than a ~400 ms key derivation it has no budget for.
 
 ## Honest limits
 

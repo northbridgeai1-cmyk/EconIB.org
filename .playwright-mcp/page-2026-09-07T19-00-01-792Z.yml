@@ -1,0 +1,53 @@
+- generic [ref=f9e1]:
+  - link "Skip to content" [ref=f9e2] [cursor=pointer]:
+    - /url: "#auth-root"
+  - generic [ref=f9e3]:
+    - complementary [ref=f9e4]:
+      - link "EconIB" [ref=f9e5] [cursor=pointer]:
+        - /url: /
+      - heading "Your IB Economics workspace" [level=2] [ref=f9e6]
+      - paragraph [ref=f9e7]: Your IA portfolio, your marked exam answers and your topic progress, kept together and available on any device you sign in on.
+      - paragraph [ref=f9e8]:
+        - text: By creating an account you agree to the
+        - link "terms and privacy notice" [ref=f9e9] [cursor=pointer]:
+          - /url: /terms
+        - text: .
+      - paragraph [ref=f9e10]: Tell us whether you are in IB1 or IB2 and whether you take SL or HL, and EconIB shows the right syllabus and the right papers. You can change it later.
+    - main [ref=f9e11]:
+      - generic [ref=f9e13]:
+        - heading "Create your account" [level=1] [ref=f9e14]
+        - paragraph [ref=f9e15]: You will need this to save your IA portfolio and marked answers.
+        - generic [ref=f9e16]:
+          - generic [ref=f9e17]:
+            - generic [ref=f9e18]: Your name
+            - textbox "Your name" [active] [ref=f9e19]
+          - generic [ref=f9e20]:
+            - generic [ref=f9e21]: Email
+            - textbox "Email" [ref=f9e22]
+          - generic [ref=f9e23]:
+            - generic [ref=f9e24]: Password
+            - generic [ref=f9e25]:
+              - textbox "Password" [ref=f9e26]
+              - button "Show password" [ref=f9e27] [cursor=pointer]: Show
+            - paragraph [ref=f9e28]: At least 10 characters. Length beats complexity — a short phrase you will remember is stronger than a mangled word. Use Show to check it before you continue.
+          - generic [ref=f9e29]:
+            - generic [ref=f9e30]:
+              - generic [ref=f9e31]: Year
+              - combobox "Year" [ref=f9e32]:
+                - option "IB1 — first year" [selected]
+                - option "IB2 — final year"
+            - generic [ref=f9e33]:
+              - generic [ref=f9e34]: Level
+              - combobox "Level" [ref=f9e35]:
+                - option "Standard Level" [selected]
+                - option "Higher Level"
+          - generic [ref=f9e36]:
+            - generic [ref=f9e37]: Exam session (optional)
+            - textbox "Exam session (optional)" [ref=f9e38]:
+              - /placeholder: May 2027
+          - button "Create account" [ref=f9e39] [cursor=pointer]
+        - paragraph [ref=f9e40]:
+          - text: Already have an account?
+          - link "Sign in" [ref=f9e41] [cursor=pointer]:
+            - /url: "#"
+          - text: .

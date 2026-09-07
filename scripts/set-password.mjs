@@ -22,21 +22,32 @@ if (password.length < 10) {
   process.exit(1);
 }
 
+// Must match public/assets/js/lib/pwcrypto.js exactly, or a password set here
+// will not verify in the browser.
+const KDF_VERSION = 1;
 const ITERATIONS = 600000;
 const enc = new TextEncoder();
 const b64 = (buf) => Buffer.from(new Uint8Array(buf)).toString("base64");
 
-const salt = crypto.getRandomValues(new Uint8Array(16));
+const normalisedEmail = email.trim().toLowerCase();
+
+// 1. Stretch the password exactly as the browser does, into a verifier.
+const kdfSalt = enc.encode(`econib-kdf-v${KDF_VERSION}:${normalisedEmail}`);
 const key = await crypto.subtle.importKey("raw", enc.encode(password), "PBKDF2", false, ["deriveBits"]);
-const bits = await crypto.subtle.deriveBits(
-  { name: "PBKDF2", hash: "SHA-256", salt, iterations: ITERATIONS },
+const verifierBits = await crypto.subtle.deriveBits(
+  { name: "PBKDF2", hash: "SHA-256", salt: kdfSalt, iterations: ITERATIONS },
   key,
   256
 );
+const verifier = new Uint8Array(verifierBits);
 
-const hash = b64(bits);
+// 2. Store what the server stores: SHA-256(verifier || random salt).
+const salt = crypto.getRandomValues(new Uint8Array(16));
+const material = new Uint8Array(verifier.length + salt.length);
+material.set(verifier, 0);
+material.set(salt, verifier.length);
+const hash = b64(await crypto.subtle.digest("SHA-256", material));
 const saltB64 = b64(salt);
-const normalisedEmail = email.trim().toLowerCase();
 
 // Single-quote escaping for the SQL literal; values here are a base64 hash, a
 // base64 salt and an email, so this is the whole of the escaping needed.

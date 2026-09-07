@@ -244,3 +244,76 @@ auto-focuses, matches topics by code and title, command terms and key concepts,
 shows distinct empty and too-short states, moves with arrow keys and navigates
 on Enter; back-to-top mounts; entrance animation applies per navigation; motion
 resolves to 170ms and card radius to 12px; the service worker registers.
+
+---
+
+# Round five: off the paid plan
+
+## The change
+
+Password stretching moved from the server into the browser. The client runs
+600,000 PBKDF2 iterations and sends a 32-byte verifier; the server stores
+SHA-256(verifier ‖ per-user salt).
+
+**Measured:** server-side hashing went from **395 ms to 1–3 ms**, which is what
+takes this from "requires Workers Paid" to "runs on the free plan".
+
+**Security is not traded away.** An attacker holding the database still has to
+run the full 600,000-iteration KDF for every password guess, so offline
+cracking cost is unchanged. The server never receives the password, so a
+compromised server cannot learn it — strictly better than hashing server-side.
+The verifier is password-equivalent in transit, exactly as a password would be,
+under the same TLS.
+
+The KDF salt is derived from the email rather than fetched, so signing in needs
+no "what is my salt" round trip — which would otherwise have revealed which
+addresses have accounts.
+
+The one real trade: the server can no longer enforce a minimum password length,
+because it never sees the password. Strength is checked in the browser. Someone
+who bypasses that only weakens their own account.
+
+## Verified in a browser against a live server
+
+| Case | Result |
+|---|---|
+| Correct verifier | 200 |
+| Wrong verifier | 401 |
+| **Raw password sent instead of a verifier** | **401 — the server cannot be tricked back onto the old path** |
+| Malformed verifier | 401 |
+| Verifier for an unknown email | 401 |
+| Derivation is deterministic | yes |
+| `A@B.com` and `a@b.com` derive the same verifier | yes |
+| Different emails derive different verifiers | yes |
+| Client stretch cost, in browser | 465 ms |
+| Stored shape | 44-char hash, 24-char salt, iterations recorded as 600000 |
+
+## Mutation
+
+Replacing the server's SHA-256 with a 600,000-iteration KDF made the budget
+test fail with `server hash took 438.95ms per call — the KDF has moved back to
+the server`. The test that guards the free plan can fail.
+
+## Google sign-in
+
+Authorisation-code flow with a `state` value held in a short-lived `__Host-`
+cookie, compared timing-safely on return — the cookie is `SameSite=Lax` rather
+than `Strict` precisely because the browser arrives back from Google as a
+cross-site navigation and `Strict` would withhold it.
+
+The ID token is decoded without signature verification, which is safe **only**
+because it is received directly from Google's token endpoint over TLS in
+exchange for the client secret, per Google's own guidance — and it keeps the
+request inside the free plan's CPU budget. `aud` and `exp` are still checked.
+
+A Google sign-in for an email that already has a password account links the two
+rather than creating a second portfolio. New Google accounts land on the account
+page, because IB1/SL is a placeholder and guessing someone's course silently
+would be worse than asking.
+
+## Note for anyone with an account created before this change
+
+The stored credential format changed. Accounts created under the old
+server-side scheme cannot sign in and must be reset with
+`scripts/set-password.mjs`, which was updated to derive the verifier exactly as
+the browser does. No live accounts existed when this shipped.

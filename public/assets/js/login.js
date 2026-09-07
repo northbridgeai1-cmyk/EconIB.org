@@ -1,8 +1,10 @@
 import { api, ApiError } from "./lib/api.js";
 import { $, esc, wirePasswordToggles } from "./lib/dom.js";
+import { deriveVerifier, checkPassword } from "./lib/pwcrypto.js";
 
 const root = $("#auth-root");
 const params = new URLSearchParams(location.search);
+let providers = { google: false, password: true, passwordReset: false };
 let mode = params.get("mode") === "signup" ? "signup"
   : params.get("forgot") ? "forgot"
   : "login";
@@ -31,6 +33,20 @@ function render(values = {}, errors = {}, banner = null) {
       ? "You will need this to save your IA portfolio and marked answers."
       : "Welcome back."}</p>
     ${banner ? `<div class="note note-bad"><b>Could not ${signup ? "sign up" : "sign in"}</b><p>${esc(banner)}</p></div>` : ""}
+
+    ${providers.google ? `
+      <a class="btn btn-google" href="/api/auth/google/start">
+        <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
+          <path fill="#4285F4" d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84a4.14 4.14 0 0 1-1.8 2.72v2.26h2.91c1.7-1.57 2.69-3.88 2.69-6.62z"/>
+          <path fill="#34A853" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.91-2.26c-.81.54-1.84.86-3.05.86-2.35 0-4.33-1.58-5.04-3.71H.96v2.33A9 9 0 0 0 9 18z"/>
+          <path fill="#FBBC05" d="M3.96 10.71a5.41 5.41 0 0 1 0-3.42V4.96H.96a9 9 0 0 0 0 8.08l3-2.33z"/>
+          <path fill="#EA4335" d="M9 3.58c1.32 0 2.5.45 3.44 1.35l2.58-2.58C13.46.89 11.43 0 9 0A9 9 0 0 0 .96 4.96l3 2.33C4.67 5.16 6.65 3.58 9 3.58z"/>
+        </svg>
+        Continue with Google
+      </a>
+      <div class="or-divider"><span>or ${signup ? "sign up" : "sign in"} with email</span></div>
+    ` : ""}
+
     <form id="auth-form" novalidate>
       ${signup ? `
       <div class="field">
@@ -55,7 +71,7 @@ function render(values = {}, errors = {}, banner = null) {
         ${errors.password ? `<p class="field-error">${esc(errors.password)}</p>` : ""}
         <p class="field-hint">${signup
           ? "At least 10 characters. Length beats complexity — a short phrase you will remember is stronger than a mangled word. Use Show to check it before you continue."
-          : '<a href="#" id="forgot">I forgot my password</a>'}</p>
+          : (providers.passwordReset ? '<a href="#" id="forgot">I forgot my password</a>' : '')}</p>
       </div>
 
       ${signup ? `
@@ -125,8 +141,26 @@ async function submit(event) {
   button.textContent = mode === "signup" ? "Creating account…" : "Signing in…";
 
   try {
-    if (mode === "signup") await api.signup(values);
-    else await api.login({ email: values.email, password: values.password });
+    // Strength is checked here because the server only ever sees the verifier.
+    if (mode === "signup") {
+      const strength = checkPassword(values.password);
+      if (!strength.ok) {
+        const kept = { ...values }; delete kept.password;
+        render(kept, { password: strength.message });
+        return;
+      }
+    }
+    // Stretching takes a moment on a slow phone; say so rather than looking stuck.
+    button.textContent = "Securing your password…";
+    const verifier = await deriveVerifier(values.email, values.password);
+    button.textContent = mode === "signup" ? "Creating account…" : "Signing in…";
+
+    if (mode === "signup") {
+      const { password, ...rest } = values;
+      await api.signup({ ...rest, verifier });
+    } else {
+      await api.login({ email: values.email, verifier });
+    }
     location.href = "/app";
   } catch (err) {
     const errors = {};
@@ -151,7 +185,17 @@ function errorField(err) {
     : err.code === "bad_email" || err.code === "email_taken" ? "email" : null);
 }
 
-render(mode === "signup" ? { yearGroup: "IB1", level: "SL" } : {});
+/** Ask what this deployment can actually offer before drawing the buttons. */
+async function start() {
+  const failure = params.get("error");
+  try {
+    const res = await fetch("/api/auth/providers", { credentials: "same-origin" });
+    if (res.ok) providers = await res.json();
+  } catch { /* the email form still works without this */ }
+  render(mode === "signup" ? { yearGroup: "IB1", level: "SL" } : {}, {}, failure || null);
+}
+
+start();
 
 
 // --------------------------------------------------------------- forgot password

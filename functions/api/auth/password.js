@@ -1,8 +1,7 @@
 import { json, handler, readJson, nowIso, HttpError } from "../../../shared/http.js";
-import { password as validPassword } from "../../../shared/validate.js";
+import { verifier as validVerifier } from "../../../shared/validate.js";
 import {
-  requireUser, verifyPassword, hashPassword, readSessionToken,
-  hashToken, createSession, sessionCookie,
+  requireUser, verifyPassword, hashVerifier, readSessionToken, hashToken,
 } from "../../../shared/auth.js";
 import { enforce, clientIp } from "../../../shared/ratelimit.js";
 
@@ -14,19 +13,19 @@ export const onRequestPost = handler(async (ctx) => {
   await enforce(db, { route: "change-password", identifier: user.id, limit: 10, windowSeconds: 3600 });
 
   const body = await readJson(ctx.request);
-  const current = typeof body.currentPassword === "string" ? body.currentPassword : "";
-  const next = validPassword(body.newPassword);
+  const current = typeof body.currentVerifier === "string" ? body.currentVerifier : "";
+  const next = validVerifier(body.newVerifier, "newPassword");
 
   // Requiring the current password stops someone who walks up to an unlocked
   // laptop from locking the owner out of their own account.
-  if (!(await verifyPassword(current, user, ctx.env))) {
+  if (!(await verifyPassword(current, user))) {
     throw new HttpError(401, "That is not your current password.", "bad_credentials", { field: "currentPassword" });
   }
   if (current === next) {
     throw new HttpError(400, "That is the password you already have.", "same_password", { field: "newPassword" });
   }
 
-  const { hash, salt, iterations } = await hashPassword(next, ctx.env);
+  const { hash, salt, iterations } = await hashVerifier(next);
   const now = nowIso();
   const keep = await hashToken(readSessionToken(ctx.request) || "");
 

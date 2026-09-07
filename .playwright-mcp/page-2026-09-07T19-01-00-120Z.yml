@@ -1,0 +1,16 @@
+- generic [active] [ref=f11e1]:
+  - link "Skip to content" [ref=f11e2] [cursor=pointer]:
+    - /url: "#auth-root"
+  - generic [ref=f11e3]:
+    - complementary [ref=f11e4]:
+      - link "EconIB" [ref=f11e5] [cursor=pointer]:
+        - /url: /
+      - heading "Your IB Economics workspace" [level=2] [ref=f11e6]
+      - paragraph [ref=f11e7]: Your IA portfolio, your marked exam answers and your topic progress, kept together and available on any device you sign in on.
+      - paragraph [ref=f11e8]:
+        - text: By creating an account you agree to the
+        - link "terms and privacy notice" [ref=f11e9] [cursor=pointer]:
+          - /url: /terms
+        - text: .
+      - paragraph [ref=f11e10]: Tell us whether you are in IB1 or IB2 and whether you take SL or HL, and EconIB shows the right syllabus and the right papers. You can change it later.
+    - main [ref=f11e11]

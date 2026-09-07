@@ -17,11 +17,14 @@ database_id = "00000000-0000-0000-0000-000000000000"  # replaced by the real id 
 # cross-origin reads rather than quietly allowing every origin.
 ALLOWED_ORIGIN = "https://econib.org"
 
-# PBKDF2 work factor. 600000 follows current OWASP guidance for
-# PBKDF2-HMAC-SHA256. It costs roughly 300ms of CPU, which exceeds the
-# Workers FREE plan limit of 10ms per request — password login requires the
-# Workers Paid plan. See docs/deploy.md.
-PW_ITERATIONS = "600000"
+# Google sign-in. Optional: without a client id the Google button does not
+# appear at all, rather than appearing and failing.
+# GOOGLE_CLIENT_ID = "....apps.googleusercontent.com"
+#
+# There is no PW_ITERATIONS setting any more: password stretching happens in
+# the browser (600,000 PBKDF2 iterations, see public/assets/js/lib/pwcrypto.js)
+# and the server only stores a fast hash of the result. That is what lets this
+# run on the Workers FREE plan.
 
 # Spend caps for AI grading, applied only to the SHARED key. A student using
 # their own key spends their own quota and is not limited here.

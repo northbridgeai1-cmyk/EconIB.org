@@ -43,13 +43,21 @@ export function email(value) {
   return s;
 }
 
-export function password(value) {
-  if (typeof value !== "string") throw badRequest("Password is required.", "missing_field", { field: "password" });
-  if (value.length < 10) {
-    throw badRequest("Use at least 10 characters. Length beats complexity.", "weak_password", { field: "password" });
+/**
+ * The browser stretches the password and sends a 32-byte verifier, so the
+ * server never receives the password and cannot check its length. Strength is
+ * enforced client-side in pwcrypto.js; someone who bypasses that only weakens
+ * their own account, which is the same as choosing a weak password anywhere.
+ */
+export function verifier(value, field = "password") {
+  if (typeof value !== "string" || !value) {
+    throw badRequest("Password is required.", "missing_field", { field });
   }
-  if (value.length > LIMITS.password) {
-    throw badRequest(`Passwords must be ${LIMITS.password} characters or fewer.`, "too_long", { field: "password" });
+  if (!/^[A-Za-z0-9+/]{43}=$/.test(value)) {
+    throw badRequest(
+      "Your browser could not secure that password. Reload the page and try again.",
+      "bad_verifier", { field }
+    );
   }
   return value;
 }

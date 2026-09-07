@@ -7,9 +7,17 @@ CREATE TABLE IF NOT EXISTS users (
   id            TEXT PRIMARY KEY,
   email         TEXT NOT NULL UNIQUE,     -- stored lowercased and trimmed
   name          TEXT NOT NULL,
-  pw_hash       TEXT NOT NULL,            -- base64 PBKDF2-SHA256 derived key
-  pw_salt       TEXT NOT NULL,            -- base64, 16 random bytes per user
-  pw_iterations INTEGER NOT NULL,         -- recorded so hashes can be upgraded later
+  -- Password columns are nullable: an account created with Google has none.
+  -- The browser stretches the password and sends a verifier; what is stored
+  -- here is SHA-256(verifier || pw_salt). See shared/auth.js.
+  pw_hash       TEXT,
+  pw_salt       TEXT,
+  pw_iterations INTEGER,
+
+  -- Google sign-in. google_sub is Google's stable user id, never the email,
+  -- because an email can be reassigned and a sub cannot.
+  google_sub    TEXT UNIQUE,
+  auth_provider TEXT NOT NULL DEFAULT 'password' CHECK (auth_provider IN ('password','google')),
   year_group    TEXT NOT NULL CHECK (year_group IN ('IB1','IB2')),
   level         TEXT NOT NULL CHECK (level IN ('SL','HL')),
   exam_session  TEXT,                     -- e.g. "May 2027", free text

@@ -12,7 +12,7 @@ export const onRequestPost = handler(async (ctx) => {
 
   const body = await readJson(request);
   const mail = email(body.email);
-  const supplied = typeof body.password === "string" ? body.password : "";
+  const supplied = typeof body.verifier === "string" ? body.verifier : "";
 
   // Also limit per account, so one targeted account cannot be ground down from
   // a rotating set of addresses.
@@ -22,7 +22,7 @@ export const onRequestPost = handler(async (ctx) => {
 
   // Burn equivalent CPU when the account does not exist, so response time does
   // not reveal which emails are registered.
-  const ok = user ? await verifyPassword(supplied, user, env) : await dummyVerify(supplied, env);
+  const ok = user ? await verifyPassword(supplied, user) : await dummyVerify(supplied);
 
   if (!ok) {
     throw new HttpError(401, "That email and password do not match.", "bad_credentials");

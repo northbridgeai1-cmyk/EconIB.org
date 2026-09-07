@@ -1,6 +1,6 @@
 import { json, handler } from "../../shared/http.js";
 import { allowedOrigin } from "../../shared/http.js";
-import { hashPassword, iterations } from "../../shared/auth.js";
+import { hashVerifier, CLIENT_KDF_ITERATIONS } from "../../shared/auth.js";
 
 /**
  * Reports what the RUNNING deployment is actually configured with, not what the
@@ -29,28 +29,48 @@ export const onRequestGet = handler(async ({ env }) => {
       : "NOT SET - all cross-origin requests are denied",
   };
 
+  const aiKey = env.SHARED_AI_KEY || env.ANTHROPIC_API_KEY;
   checks.aiMarking = {
-    ok: Boolean(env.ANTHROPIC_API_KEY),
-    detail: env.ANTHROPIC_API_KEY ? "key present" : "no ANTHROPIC_API_KEY - marking will return 503",
+    ok: Boolean(aiKey),
+    detail: aiKey
+      ? `shared key present for provider "${env.SHARED_AI_PROVIDER || "groq"}"`
+      : "no SHARED_AI_KEY - shared marking returns 503; students can still add their own key",
   };
 
-  // Time a real hash. On the Workers Free plan (10ms CPU) this will exceed
-  // budget and password login cannot work; better to say so here than to let
-  // every login 500 with no explanation.
+  checks.keyEncryption = {
+    ok: Boolean(env.KEY_ENCRYPTION_SECRET && env.KEY_ENCRYPTION_SECRET.length >= 32),
+    detail: env.KEY_ENCRYPTION_SECRET
+      ? (env.KEY_ENCRYPTION_SECRET.length >= 32 ? "secret set" : "secret is too short - must be 32+ characters")
+      : "no KEY_ENCRYPTION_SECRET - students cannot save their own API key",
+  };
+
+  // The expensive password stretch happens in the browser; the server only
+  // does one SHA-256. Time it anyway, because the number is the whole reason
+  // this deployment can run on the free plan — a regression here would be
+  // silent otherwise.
   checks.passwordHashing = await (async () => {
     try {
       const started = Date.now();
-      await hashPassword("benchmark-only-not-a-real-password", env);
+      await hashVerifier("A".repeat(43) + "=");
       const ms = Date.now() - started;
       return {
-        ok: true,
-        detail: `${iterations(env)} iterations in ~${ms}ms`,
-        warning: ms > 10 ? "Exceeds the Workers FREE plan CPU limit of 10ms. Password login requires the Workers Paid plan." : null,
+        ok: ms <= 10,
+        detail: `server-side hash ~${ms}ms (client stretches at ${CLIENT_KDF_ITERATIONS} iterations)`,
+        warning: ms > 10
+          ? "Exceeds the Workers Free plan CPU limit of 10ms — something has moved the key derivation back onto the server."
+          : null,
       };
-    } catch (e) {
-      return { ok: false, detail: "PW_ITERATIONS is missing or below the safe floor" };
+    } catch {
+      return { ok: false, detail: "verifier hashing failed" };
     }
   })();
+
+  checks.googleSignIn = {
+    ok: Boolean(env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET),
+    detail: env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET
+      ? "configured"
+      : "not configured - the Google button will not appear",
+  };
 
   const ok = Object.values(checks).every((c) => c.ok);
   return json({ ok, checks }, { status: ok ? 200 : 503 });

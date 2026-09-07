@@ -9,14 +9,17 @@
   },
   "scripts": {
     "test": "node --test tests/*.test.mjs",
-    "check": "node scripts/check.mjs",
+    "check": "node scripts/check.mjs && node scripts/syntax-check.mjs",
     "verify": "npm run test && npm run check",
-    "dev": "wrangler pages dev public --compatibility-date=2025-01-01 --d1=DB",
+    "dev": "wrangler pages dev --port 8788",
     "db:local": "wrangler d1 execute econib --local --file=./schema.sql",
-    "db:remote": "wrangler d1 execute econib --remote --file=./schema.sql"
+    "db:remote": "wrangler d1 execute econib --remote --file=./schema.sql",
+    "sync-data": "cp data/*.json public/assets/data/"
   },
-  "devDependencies": {},
   "dependencies": {
     "@anthropic-ai/sdk": "^0.71.0"
+  },
+  "devDependencies": {
+    "wrangler": "^4.129.0"
   }
 }

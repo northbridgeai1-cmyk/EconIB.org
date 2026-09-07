@@ -12,10 +12,10 @@ export const onRequestPost = handler(async (ctx) => {
   const body = await readJson(request);
   const mail = email(body.email);
   const pw = password(body.password);
-  const name = str(body.name, "Name", { max: LIMITS.name });
-  const yearGroup = oneOf(body.yearGroup, ["IB1", "IB2"], "Year");
-  const level = oneOf(body.level, ["SL", "HL"], "Level");
-  const examSession = str(body.examSession, "Exam session", { max: LIMITS.examSession, required: false });
+  const name = str(body.name, "Name", { max: LIMITS.name, name: "name" });
+  const yearGroup = oneOf(body.yearGroup, ["IB1", "IB2"], "Year", "yearGroup");
+  const level = oneOf(body.level, ["SL", "HL"], "Level", "level");
+  const examSession = str(body.examSession, "Exam session", { max: LIMITS.examSession, required: false, name: "examSession" });
 
   const existing = await db.prepare("SELECT id FROM users WHERE email = ?").bind(mail).first();
   if (existing) {

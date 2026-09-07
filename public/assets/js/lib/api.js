@@ -8,11 +8,16 @@
  */
 
 export class ApiError extends Error {
-  constructor(message, status, code) {
+  constructor(message, status, code, payload = {}) {
     super(message);
     this.name = "ApiError";
     this.status = status;
     this.code = code;
+    // The server names the offending field and any retry hint; keep them, or
+    // the UI can only ever show a generic banner.
+    this.field = payload.field || null;
+    this.retryAfterSeconds = payload.retryAfterSeconds ?? null;
+    this.payload = payload;
   }
 }
 
@@ -46,7 +51,8 @@ async function request(path, { method = "GET", body, signal } = {}) {
     throw new ApiError(
       data?.error || `Request failed (${res.status}).`,
       res.status,
-      data?.code || "http_error"
+      data?.code || "http_error",
+      data || {}
     );
   }
   return data;
@@ -68,6 +74,7 @@ export const api = {
 
   gradeIa: (b, signal) => request("/grade/ia", { method: "POST", body: b, signal }),
   gradePaper: (b, signal) => request("/grade/paper", { method: "POST", body: b, signal }),
+  gradePaperHistory: () => request("/grade/paper"),
 
   getProgress: () => request("/progress"),
   setProgress: (b) => request("/progress", { method: "PATCH", body: b }),

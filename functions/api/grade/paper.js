@@ -1,10 +1,11 @@
-import { json, handler, readJson, nowIso, badRequest } from "../../../shared/http.js";
+import { json, handler, readJson, nowIso, badRequest, HttpError } from "../../../shared/http.js";
 import { str, LIMITS } from "../../../shared/validate.js";
 import { requireUser, newId } from "../../../shared/auth.js";
 import { enforce, clientIp } from "../../../shared/ratelimit.js";
 import { reserve, refund } from "../../../shared/spend.js";
 import { structured } from "../../../shared/anthropic.js";
 import { paperRubric, paperTool, buildPaperPrompt, validatePaperResult } from "../../../shared/grading.js";
+import { canUseRubric } from "../../../shared/access.js";
 import { countWords } from "../../../public/assets/js/lib/ia-rules.js";
 
 export const onRequestPost = handler(async (ctx) => {
@@ -15,6 +16,18 @@ export const onRequestPost = handler(async (ctx) => {
 
   const body = await readJson(ctx.request, { maxBytes: 128 * 1024 });
   const rubric = paperRubric(str(body.rubricId, "Paper type", { max: 8 }));
+
+  // Paper 3 is HL only. The UI hides it for SL students, but the UI is not the
+  // control — the API is. Without this an SL account could mark against an HL
+  // rubric and spend budget doing it.
+  if (!canUseRubric(user.level, rubric.id)) {
+    throw new HttpError(
+      403,
+      "Paper 3 is HL only. Your account is set to SL — change it in your account settings if that is wrong.",
+      "hl_only"
+    );
+  }
+
   const question = str(body.question, "Question", { max: LIMITS.question, required: false });
   const answer = str(body.answer, "Answer", { max: LIMITS.answer, trim: false });
 

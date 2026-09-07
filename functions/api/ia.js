@@ -77,13 +77,13 @@ export function readFields(body, existing = null) {
   const unitRaw = pick("unit", existing?.unit ?? null);
   const conceptRaw = pick("keyConcept", existing?.key_concept ?? null);
   return {
-    title: str(pick("title", existing?.title ?? ""), "Article title", { max: LIMITS.title, required: false }),
-    source: str(pick("source", existing?.source ?? ""), "Source", { max: LIMITS.source, required: false }),
+    title: str(pick("title", existing?.title ?? ""), "Article title", { max: LIMITS.title, required: false, name: "title" }),
+    source: str(pick("source", existing?.source ?? ""), "Source", { max: LIMITS.source, required: false, name: "source" }),
     articleUrl: optionalUrl(pick("articleUrl", existing?.article_url ?? "")),
     publishedAt: optionalDate(pick("publishedAt", existing?.published_at ?? null), "Publication date"),
     writtenAt: optionalDate(pick("writtenAt", existing?.written_at ?? null), "Date written"),
-    unit: unitRaw === null || unitRaw === "" ? null : intIn(unitRaw, 2, 4, "Unit"),
-    keyConcept: !conceptRaw ? null : oneOf(conceptRaw, CONCEPT_IDS, "Key concept"),
+    unit: unitRaw === null || unitRaw === "" ? null : intIn(unitRaw, 2, 4, "Unit", "unit"),
+    keyConcept: !conceptRaw ? null : oneOf(conceptRaw, CONCEPT_IDS, "Key concept", "keyConcept"),
     body: str(pick("body", existing?.body ?? ""), "Commentary", { max: LIMITS.body, required: false, trim: false }),
   };
 }

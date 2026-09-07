@@ -20,15 +20,16 @@ export const LIMITS = {
   examSession: 40,
 };
 
-export function str(value, field, { max, required = true, trim = true } = {}) {
+export function str(value, field, { max, required = true, trim = true, name } = {}) {
+  const key = name || field;
   if (value === null || value === undefined) {
-    if (required) throw badRequest(`${field} is required.`, "missing_field", { field });
+    if (required) throw badRequest(`${field} is required.`, "missing_field", { field: key });
     return "";
   }
-  if (typeof value !== "string") throw badRequest(`${field} must be text.`, "bad_field", { field });
+  if (typeof value !== "string") throw badRequest(`${field} must be text.`, "bad_field", { field: key });
   let s = trim ? value.trim() : value;
-  if (required && !s) throw badRequest(`${field} is required.`, "missing_field", { field });
-  if (max && s.length > max) throw badRequest(`${field} must be ${max} characters or fewer.`, "too_long", { field, max });
+  if (required && !s) throw badRequest(`${field} is required.`, "missing_field", { field: key });
+  if (max && s.length > max) throw badRequest(`${field} must be ${max} characters or fewer.`, "too_long", { field: key, max });
   return s;
 }
 
@@ -53,9 +54,14 @@ export function password(value) {
   return value;
 }
 
-export function oneOf(value, allowed, field) {
+/**
+ * @param label  what the student sees ("Key concept")
+ * @param name   the form field it maps to ("keyConcept") — the client attaches
+ *               the error to this input, so a label here silently loses it
+ */
+export function oneOf(value, allowed, label, name) {
   if (!allowed.includes(value)) {
-    throw badRequest(`${field} must be one of: ${allowed.join(", ")}.`, "bad_field", { field });
+    throw badRequest(`${label} must be one of: ${allowed.join(", ")}.`, "bad_field", { field: name || label });
   }
   return value;
 }
@@ -84,10 +90,10 @@ export function optionalUrl(value) {
   return u.toString();
 }
 
-export function intIn(value, min, max, field) {
+export function intIn(value, min, max, label, name) {
   const n = Number(value);
   if (!Number.isInteger(n) || n < min || n > max) {
-    throw badRequest(`${field} must be a whole number between ${min} and ${max}.`, "bad_field", { field });
+    throw badRequest(`${label} must be a whole number between ${min} and ${max}.`, "bad_field", { field: name || label });
   }
   return n;
 }

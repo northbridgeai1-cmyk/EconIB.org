@@ -1,0 +1,679 @@
+{
+  "note": "Topic codes, titles, unit structure, HL-only flags and teaching hours are factual features of the syllabus. All study content (essentials, diagrams, traps) is EconIB original writing.",
+  "units": [
+    {
+      "unit": 1,
+      "title": "Introduction to economics",
+      "hours": {
+        "sl": 10,
+        "hl": 10
+      }
+    },
+    {
+      "unit": 2,
+      "title": "Microeconomics",
+      "hours": {
+        "sl": 35,
+        "hl": 70
+      }
+    },
+    {
+      "unit": 3,
+      "title": "Macroeconomics",
+      "hours": {
+        "sl": 40,
+        "hl": 75
+      }
+    },
+    {
+      "unit": 4,
+      "title": "The global economy",
+      "hours": {
+        "sl": 45,
+        "hl": 65
+      }
+    }
+  ],
+  "topics": [
+    {
+      "code": "1.1",
+      "title": "What is economics?",
+      "unit": 1,
+      "hlOnly": false,
+      "essentials": [
+        "Scarcity: finite resources against unlimited wants, which forces the three basic questions — what to produce, how, and for whom.",
+        "Opportunity cost as the value of the next best alternative forgone.",
+        "Factors of production: land, labour, capital, entrepreneurship, and the income each earns (rent, wages, interest, profit).",
+        "The production possibilities curve: points on it are efficient, inside are unemployed resources, outside are unattainable; the curve's shape shows increasing opportunity cost.",
+        "Economic systems: free market, planned, and mixed — and where real economies sit between them.",
+        "The circular flow of income between households and firms, with injections and leakages."
+      ],
+      "diagrams": [
+        "Production possibilities curve, including a shift outward for growth",
+        "Circular flow of income"
+      ],
+      "hl": [],
+      "trap": "Opportunity cost is the NEXT BEST alternative forgone, singular — not the sum of everything you gave up."
+    },
+    {
+      "code": "1.2",
+      "title": "How do economists approach the world?",
+      "unit": 1,
+      "hlOnly": false,
+      "essentials": [
+        "Economics as a social science: models simplify by holding other things constant (ceteris paribus).",
+        "Positive statements (testable against evidence) versus normative statements (value judgments about what ought to be).",
+        "The nine key concepts as the conceptual thread running through the whole course.",
+        "Different schools of thought disagree about how markets self-correct, which is why evaluation is possible at all.",
+        "Equity and sustainability as central lenses on modern economic problems."
+      ],
+      "diagrams": [],
+      "hl": [],
+      "trap": "'The government should raise the minimum wage' is normative. 'Raising the minimum wage above equilibrium creates a surplus of labour' is positive. Examiners ask you to distinguish these."
+    },
+    {
+      "code": "2.1",
+      "title": "Demand",
+      "unit": 2,
+      "hlOnly": false,
+      "essentials": [
+        "The law of demand: as price rises, quantity demanded falls, ceteris paribus.",
+        "Why the demand curve slopes down: income effect, substitution effect, and the law of diminishing marginal utility.",
+        "Non-price determinants: income, tastes and preferences, prices of substitutes and complements, expectations, number of consumers.",
+        "Movement ALONG the curve is caused by price; a SHIFT of the curve is caused by everything else.",
+        "Individual demand versus market demand as the horizontal sum."
+      ],
+      "diagrams": [
+        "Downward-sloping demand curve",
+        "Movement along versus shift of the demand curve"
+      ],
+      "hl": [
+        "Assumptions behind the law of demand, including diminishing marginal utility",
+        "Linear demand functions: Qd = a - bP, and plotting them"
+      ],
+      "trap": "'Demand fell' and 'quantity demanded fell' are different claims. Price changes never shift the demand curve. This single confusion costs more marks than any other in Unit 2."
+    },
+    {
+      "code": "2.2",
+      "title": "Supply",
+      "unit": 2,
+      "hlOnly": false,
+      "essentials": [
+        "The law of supply: as price rises, quantity supplied rises, ceteris paribus.",
+        "Non-price determinants: costs of factors of production, prices of related goods (joint and competitive supply), indirect taxes and subsidies, expectations, technology, number of firms.",
+        "Movement along versus shift, exactly as with demand.",
+        "Individual firm supply versus market supply."
+      ],
+      "diagrams": [
+        "Upward-sloping supply curve",
+        "Movement along versus shift of the supply curve"
+      ],
+      "hl": [
+        "The law of diminishing marginal returns and increasing marginal costs as the reason supply slopes up",
+        "Linear supply functions: Qs = c + dP"
+      ],
+      "trap": "An indirect tax shifts supply LEFT (or upward by the tax per unit) — it is a cost to the producer, not a change in demand."
+    },
+    {
+      "code": "2.3",
+      "title": "Competitive market equilibrium",
+      "unit": 2,
+      "hlOnly": false,
+      "essentials": [
+        "Equilibrium where quantity demanded equals quantity supplied; excess demand (shortage) below it and excess supply (surplus) above it.",
+        "How shifts in demand or supply produce a new equilibrium price and quantity.",
+        "Functions of the price mechanism: signalling, incentive, and rationing.",
+        "Consumer surplus, producer surplus, and social (community) surplus.",
+        "Allocative efficiency at the competitive equilibrium: community surplus is maximised where marginal benefit equals marginal cost."
+      ],
+      "diagrams": [
+        "Market equilibrium",
+        "Changes in equilibrium and the price mechanism at work",
+        "Consumer and producer surplus"
+      ],
+      "hl": [
+        "Calculating consumer and producer surplus from a diagram",
+        "Solving for equilibrium algebraically from demand and supply functions"
+      ],
+      "trap": "Allocative efficiency is MB = MC, not simply 'where the curves cross'. State the condition; the free mark is in the wording."
+    },
+    {
+      "code": "2.4",
+      "title": "Critique of the maximizing behaviour of consumers and producers",
+      "unit": 2,
+      "hlOnly": false,
+      "essentials": [
+        "The rational consumer assumption of standard theory: perfect information, utility maximisation, consistent preferences.",
+        "Behavioural critiques: biases and rules of thumb, bounded rationality, bounded self-control, imperfect information.",
+        "Choice architecture and nudge theory as policy tools.",
+        "Firms may pursue objectives other than profit maximisation — market share, growth, corporate social responsibility, satisficing."
+      ],
+      "diagrams": [],
+      "hl": [],
+      "trap": "This topic is a gift for evaluation anywhere in the course. If a question assumes rational behaviour, questioning that assumption is a legitimate and well-credited evaluative move."
+    },
+    {
+      "code": "2.5",
+      "title": "Elasticity of demand",
+      "unit": 2,
+      "hlOnly": false,
+      "essentials": [
+        "PED = percentage change in quantity demanded / percentage change in price; interpret the value, ignoring the negative sign.",
+        "Ranges: elastic (>1), inelastic (<1), unit elastic (=1), and the perfectly elastic and perfectly inelastic extremes.",
+        "Determinants of PED: number and closeness of substitutes, degree of necessity, proportion of income spent, time.",
+        "PED and total revenue: raising price raises revenue when demand is inelastic and cuts it when elastic.",
+        "YED = % change in quantity demanded / % change in income; positive for normal goods, negative for inferior goods, above 1 for luxuries.",
+        "Applications: why primary commodity producers face volatile incomes, and why the primary sector shrinks as economies develop."
+      ],
+      "diagrams": [
+        "Relatively elastic and relatively inelastic demand",
+        "Perfectly elastic, perfectly inelastic and unit elastic demand"
+      ],
+      "hl": [
+        "PED varies along a straight-line demand curve — it is not constant",
+        "Engel curves for income elastic, income inelastic and inferior goods",
+        "Calculating PED and YED from data"
+      ],
+      "trap": "PED is not the slope. A single straight demand curve has elastic, unit elastic and inelastic sections. Saying 'the flatter curve is more elastic' is only true when comparing at the same price and quantity."
+    },
+    {
+      "code": "2.6",
+      "title": "Elasticity of supply",
+      "unit": 2,
+      "hlOnly": false,
+      "essentials": [
+        "PES = % change in quantity supplied / % change in price.",
+        "Determinants: time, mobility of factors of production, spare capacity, ability to store stock, and the length of the production period.",
+        "Primary commodities tend to have low PES; manufactured goods higher."
+      ],
+      "diagrams": [
+        "Relatively elastic and relatively inelastic supply",
+        "Perfectly elastic and perfectly inelastic supply"
+      ],
+      "hl": [
+        "Calculating PES from data"
+      ],
+      "trap": "Time is the dominant determinant. Almost all supply is more elastic in the long run, and saying so is an easy evaluation point in any tax or subsidy question."
+    },
+    {
+      "code": "2.7",
+      "title": "Role of government in microeconomics",
+      "unit": 2,
+      "hlOnly": false,
+      "essentials": [
+        "Indirect taxes (specific and ad valorem): effect on price, quantity, consumer and producer surplus, government revenue, and welfare loss.",
+        "Subsidies: effect on price, quantity, government cost, and welfare.",
+        "Price ceilings (maximum prices) set below equilibrium: shortages, rationing, parallel markets, and welfare loss.",
+        "Price floors (minimum prices) set above equilibrium: surpluses, government buying, and welfare loss.",
+        "Minimum wage as a price floor in the labour market.",
+        "Tax incidence: the burden splits according to the relative elasticities of demand and supply."
+      ],
+      "diagrams": [
+        "Specific and ad valorem indirect taxes",
+        "Subsidy",
+        "Price ceiling with shortage and welfare loss",
+        "Price floor with surplus and welfare loss"
+      ],
+      "hl": [
+        "Calculating from a diagram: tax revenue, subsidy cost, consumer and producer expenditure, and welfare loss"
+      ],
+      "trap": "A price ceiling only binds if it is set BELOW equilibrium, and a price floor only if ABOVE. A non-binding control changes nothing — examiners set this deliberately."
+    },
+    {
+      "code": "2.8",
+      "title": "Market failure — externalities and common pool resources",
+      "unit": 2,
+      "hlOnly": false,
+      "essentials": [
+        "Externalities as costs or benefits falling on third parties, so private and social costs or benefits diverge.",
+        "The four cases: negative production, positive production, negative consumption, positive consumption externalities.",
+        "Marginal private cost/benefit versus marginal social cost/benefit, and the welfare loss triangle.",
+        "Common pool resources: rivalrous but non-excludable, leading to over-use — the tragedy of the commons.",
+        "Policy responses: indirect taxes, carbon taxes, tradable permits, legislation and regulation, education, subsidies, direct provision, collective self-governance.",
+        "Sustainability and the need for international cooperation, and why enforcement is hard."
+      ],
+      "diagrams": [
+        "Negative production externality with welfare loss",
+        "Positive consumption externality with welfare loss",
+        "Common pool resource over-extraction"
+      ],
+      "hl": [
+        "Calculating welfare loss from a diagram"
+      ],
+      "trap": "Draw the welfare loss triangle and shade it. Many answers describe the externality perfectly and never show the loss, which caps criterion A and the diagram dimension of the markband."
+    },
+    {
+      "code": "2.9",
+      "title": "Market failure — public goods",
+      "unit": 2,
+      "hlOnly": false,
+      "essentials": [
+        "Public goods are non-rivalrous and non-excludable.",
+        "The free rider problem means the private market will under-provide or not provide them at all.",
+        "Government responses: direct provision funded by taxation, or contracting out to the private sector."
+      ],
+      "diagrams": [],
+      "hl": [],
+      "trap": "'Public good' does not mean 'good provided by the government'. Test both properties. Healthcare and education are usually merit goods, not public goods."
+    },
+    {
+      "code": "2.10",
+      "title": "Market failure — asymmetric information",
+      "unit": 2,
+      "hlOnly": true,
+      "essentials": [
+        "Asymmetric information exists where one party to a transaction knows more than the other.",
+        "Adverse selection occurs before the transaction — the used car and insurance markets are the standard cases.",
+        "Moral hazard occurs after it, once behaviour changes because someone else bears the risk.",
+        "Government responses: legislation, regulation, provision of information.",
+        "Private responses: signalling by the informed party and screening by the uninformed."
+      ],
+      "diagrams": [],
+      "hl": [
+        "Entire topic is HL only"
+      ],
+      "trap": "Adverse selection is before the deal, moral hazard after. Getting them the wrong way round is the most common HL slip here."
+    },
+    {
+      "code": "2.11",
+      "title": "Market failure — market power",
+      "unit": 2,
+      "hlOnly": true,
+      "essentials": [
+        "Costs: fixed and variable, total and average, and marginal cost; the short run versus the long run.",
+        "Diminishing marginal returns in the short run; economies and diseconomies of scale in the long run.",
+        "Revenue: total, average and marginal, and how they differ under price-taking and price-making.",
+        "Profit maximisation at MC = MR; normal and abnormal profit; the shut-down and break-even rules.",
+        "Perfect competition: many firms, homogeneous products, free entry, price takers; allocative and productive efficiency in the long run.",
+        "Monopoly: barriers to entry, price making, abnormal profit sustained in the long run, welfare loss; natural monopoly.",
+        "Monopolistic competition: many firms, differentiated products, some price-setting power, no long-run abnormal profit.",
+        "Oligopoly: few firms, interdependence, collusion and cartels, game theory and the prisoner's dilemma, non-price competition.",
+        "Policy responses to market power: regulation, legislation, nationalisation, trade liberalisation."
+      ],
+      "diagrams": [
+        "Short-run and long-run cost curves",
+        "Perfect competition: firm and industry, short run and long run",
+        "Monopoly with welfare loss",
+        "Natural monopoly",
+        "Monopolistic competition, short run and long run",
+        "Payoff matrix for a duopoly"
+      ],
+      "hl": [
+        "Entire topic is HL only",
+        "Calculating costs, revenues and profit from data"
+      ],
+      "trap": "MC cuts AC and AVC at their minimum points, always. Drawing it otherwise loses marks before the argument is read."
+    },
+    {
+      "code": "2.12",
+      "title": "The market's inability to achieve equity",
+      "unit": 2,
+      "hlOnly": true,
+      "essentials": [
+        "Markets allocate on ability to pay, which need not produce a fair distribution.",
+        "Merit goods are under-consumed and demerit goods over-consumed relative to what is socially desirable.",
+        "The efficiency versus equity trade-off in policy design.",
+        "Government responses and their costs, including the incentive effects of redistribution."
+      ],
+      "diagrams": [
+        "Merit good under-consumption",
+        "Demerit good over-consumption"
+      ],
+      "hl": [
+        "Entire topic is HL only"
+      ],
+      "trap": "Equity is normative. Say whose conception of fairness you are applying — that acknowledgement is exactly what the top evaluation band rewards."
+    },
+    {
+      "code": "3.1",
+      "title": "Measuring economic activity and illustrating its variations",
+      "unit": 3,
+      "hlOnly": false,
+      "essentials": [
+        "The circular flow of income, including injections (investment, government spending, exports) and leakages (saving, taxation, imports).",
+        "GDP measured three ways — output, income, expenditure — and why they are equal.",
+        "GDP versus GNI, and nominal versus real; why real figures are needed for comparison over time.",
+        "GDP per capita, and purchasing power parity for comparison across countries.",
+        "Limitations of national income statistics: the informal economy, unpaid work, externalities, distribution, and quality of life.",
+        "Alternative measures: the OECD Better Life Index, the Happy Planet Index, and the concept of green GDP.",
+        "The business cycle: expansion, peak, contraction, trough, and the long-term growth trend."
+      ],
+      "diagrams": [
+        "Circular flow of income",
+        "Business cycle showing the trend line"
+      ],
+      "hl": [
+        "Calculating nominal and real GDP and GNI from data",
+        "Calculating GDP using a price deflator"
+      ],
+      "trap": "Real GDP per capita is the figure that speaks to living standards. Quoting total nominal GDP growth in a development answer is a weak argument that examiners routinely penalise."
+    },
+    {
+      "code": "3.2",
+      "title": "Variations in economic activity — aggregate demand and aggregate supply",
+      "unit": 3,
+      "hlOnly": false,
+      "essentials": [
+        "AD = C + I + G + (X − M), and the determinants of each component.",
+        "Why the AD curve slopes down: wealth, interest rate and international trade effects.",
+        "Short-run aggregate supply and its determinants (costs of production, indirect taxes, subsidies).",
+        "Two models of long-run supply: the monetarist/new classical vertical LRAS at full employment, and the Keynesian AS curve with its horizontal, upward-sloping and vertical sections.",
+        "Equilibrium: inflationary and deflationary (recessionary) gaps.",
+        "The multiplier effect and how a change in an injection produces a larger change in national income."
+      ],
+      "diagrams": [
+        "AD/AS with a deflationary gap",
+        "AD/AS with an inflationary gap",
+        "Keynesian AS curve",
+        "Monetarist/new classical LRAS"
+      ],
+      "hl": [
+        "Calculating the multiplier from MPC, MPS, MPT and MPM",
+        "Using the multiplier to find the change in real GDP"
+      ],
+      "trap": "Choose your AS model deliberately and say why. The Keynesian and new classical models give different answers about whether the economy self-corrects — that choice IS the evaluation."
+    },
+    {
+      "code": "3.3",
+      "title": "Macroeconomic objectives",
+      "unit": 3,
+      "hlOnly": false,
+      "essentials": [
+        "Low unemployment: measurement by the unemployment rate, and its limitations (hidden unemployment, underemployment, participation).",
+        "Types of unemployment: structural, frictional, seasonal, and cyclical (demand-deficient), with their different causes and cures.",
+        "Costs of unemployment, economic and social.",
+        "Low and stable inflation: measurement by CPI and its limitations.",
+        "Demand-pull and cost-push inflation; the costs of inflation and of deflation; disinflation.",
+        "Economic growth: actual versus potential, shown on a PPC or AD/AS diagram.",
+        "Conflicts between objectives, including the short-run Phillips curve trade-off between unemployment and inflation."
+      ],
+      "diagrams": [
+        "Demand-pull inflation",
+        "Cost-push inflation",
+        "Deflation",
+        "Actual and potential growth on a PPC and on AD/AS",
+        "Short-run and long-run Phillips curve"
+      ],
+      "hl": [
+        "Constructing a weighted price index and calculating inflation from it",
+        "Calculating the unemployment rate"
+      ],
+      "trap": "Deflation and disinflation are not the same. Deflation is a falling price level; disinflation is a falling rate of inflation with prices still rising."
+    },
+    {
+      "code": "3.4",
+      "title": "Economics of inequality and poverty",
+      "unit": 3,
+      "hlOnly": false,
+      "essentials": [
+        "Inequality of income and of wealth, and why the two differ.",
+        "The Lorenz curve and the Gini coefficient as measures.",
+        "Absolute versus relative poverty, and the difficulty of drawing a poverty line.",
+        "Causes of inequality and poverty: inheritance, discrimination, unequal education and health, unequal status and power.",
+        "Consequences: lower living standards, lower growth, reduced social cohesion.",
+        "Redistribution policies: progressive taxation, transfer payments, provision of merit goods, and universal basic income.",
+        "The equity versus efficiency trade-off in redistribution."
+      ],
+      "diagrams": [
+        "Lorenz curve and the line of equality",
+        "Progressive, proportional and regressive tax structures"
+      ],
+      "hl": [
+        "Calculating the Gini coefficient conceptually from a Lorenz curve",
+        "Calculating marginal and average tax rates from a tax schedule"
+      ],
+      "trap": "A higher Gini coefficient means MORE inequality. The Lorenz curve bows further from the 45-degree line. Reversing this reverses your whole argument."
+    },
+    {
+      "code": "3.5",
+      "title": "Demand management — monetary policy",
+      "unit": 3,
+      "hlOnly": false,
+      "essentials": [
+        "The central bank's goals and its independence.",
+        "The interest rate as the main tool, and how it is set to influence AD.",
+        "The transmission mechanism: interest rates affect consumption, investment, the exchange rate and hence net exports.",
+        "Expansionary policy in a recession, contractionary policy against inflation.",
+        "Strengths: incremental, reversible, free of political pressure, quick to implement.",
+        "Limitations: time lags, the liquidity trap and the zero lower bound, low confidence blunting the effect, conflict with other objectives."
+      ],
+      "diagrams": [
+        "Money market showing the interest rate",
+        "Expansionary monetary policy on AD/AS",
+        "Contractionary monetary policy on AD/AS"
+      ],
+      "hl": [
+        "The money market: demand for and supply of money",
+        "Quantitative easing as a tool when rates hit the lower bound"
+      ],
+      "trap": "Monetary policy cannot fix cost-push inflation without cutting output. Saying so is one of the most reliable evaluation points in Unit 3."
+    },
+    {
+      "code": "3.6",
+      "title": "Demand management — fiscal policy",
+      "unit": 3,
+      "hlOnly": false,
+      "essentials": [
+        "Government revenue and expenditure; the budget outcome as deficit, surplus or balance; government (national) debt.",
+        "Expansionary and contractionary fiscal policy and their effect on AD.",
+        "Automatic stabilisers: progressive taxes and unemployment benefits damping the cycle without new decisions.",
+        "The multiplier magnifying any fiscal change.",
+        "Strengths: targeted, effective in deep recession, can build potential capacity through infrastructure.",
+        "Limitations: political constraints, time lags, crowding out, debt sustainability."
+      ],
+      "diagrams": [
+        "Expansionary fiscal policy closing a deflationary gap",
+        "Contractionary fiscal policy closing an inflationary gap"
+      ],
+      "hl": [
+        "Calculating the multiplier and the resulting change in real GDP",
+        "Using the multiplier to size a fiscal intervention"
+      ],
+      "trap": "A budget deficit is a yearly flow; national debt is the accumulated stock. A government can cut its deficit while its debt still rises."
+    },
+    {
+      "code": "3.7",
+      "title": "Supply-side policies",
+      "unit": 3,
+      "hlOnly": false,
+      "essentials": [
+        "The aim: to increase potential output by shifting LRAS or the Keynesian AS right.",
+        "Market-based policies: labour market reform, deregulation, privatisation, trade liberalisation, incentive-related tax cuts.",
+        "Interventionist policies: investment in education and training, healthcare, infrastructure, research and development, and industrial policy.",
+        "Effects on growth, unemployment, inflation and the trade balance — potentially improving several objectives at once.",
+        "Limitations: long time lags, high cost, equity concerns from market-based reforms, uncertain outcomes."
+      ],
+      "diagrams": [
+        "Supply-side policy shifting LRAS right",
+        "Supply-side policy on the Keynesian AS curve"
+      ],
+      "hl": [],
+      "trap": "Supply-side policies are the only ones that can lower inflation and unemployment together. That makes them a strong closing evaluation in almost any macro policy question."
+    },
+    {
+      "code": "4.1",
+      "title": "Benefits of international trade",
+      "unit": 4,
+      "hlOnly": false,
+      "essentials": [
+        "Gains from trade: lower prices, greater choice, economies of scale, more competition, access to resources, faster growth.",
+        "Absolute and comparative advantage, and specialisation according to lower opportunity cost.",
+        "Limitations of the comparative advantage model: transport costs, assumed constant costs, factor immobility, ignoring externalities."
+      ],
+      "diagrams": [
+        "Production possibilities curves illustrating comparative advantage",
+        "Gains from trade"
+      ],
+      "hl": [
+        "Calculating opportunity costs from output or input data to identify comparative advantage",
+        "Deriving the terms of trade at which both parties gain"
+      ],
+      "trap": "Comparative advantage rests on opportunity cost, not on who produces more. A country can hold absolute advantage in everything and still gain from trade."
+    },
+    {
+      "code": "4.2",
+      "title": "Types of trade protection",
+      "unit": 4,
+      "hlOnly": false,
+      "essentials": [
+        "Tariffs: effect on price, domestic production, consumption, imports, government revenue, and welfare.",
+        "Quotas: quantitative limits, with the gain going to importers rather than the government.",
+        "Subsidies to domestic producers as protection.",
+        "Administrative barriers: standards, licensing, customs procedures.",
+        "In every case: identify winners (domestic producers, sometimes government) and losers (consumers, foreign producers, overall welfare)."
+      ],
+      "diagrams": [
+        "Tariff with government revenue and welfare loss",
+        "Quota with the quota rent identified",
+        "Production subsidy as protection"
+      ],
+      "hl": [
+        "Calculating from a tariff diagram: revenue, welfare loss, changes in domestic production, consumption and imports",
+        "Calculating the effects of a quota and of a subsidy"
+      ],
+      "trap": "On a tariff diagram there are TWO welfare loss triangles — production inefficiency and consumption inefficiency. Shading only one loses the calculation mark."
+    },
+    {
+      "code": "4.3",
+      "title": "Arguments for and against trade control/protection",
+      "unit": 4,
+      "hlOnly": false,
+      "essentials": [
+        "Arguments for: infant industry, national security, health and safety standards, environmental standards, anti-dumping, protecting employment, correcting a current account deficit, government revenue.",
+        "Arguments against: higher prices and less choice, loss of the gains from comparative advantage, protected inefficiency, retaliation and trade wars, damage to exporters.",
+        "Weighing them depends on time horizon, the industry, and the alternatives available."
+      ],
+      "diagrams": [],
+      "hl": [],
+      "trap": "The infant industry argument requires a credible exit. Protection with no timetable for removal becomes permanent inefficiency — say this and you have your evaluation."
+    },
+    {
+      "code": "4.4",
+      "title": "Economic integration",
+      "unit": 4,
+      "hlOnly": false,
+      "essentials": [
+        "Preferential trade agreements, bilateral and regional.",
+        "Stages of integration: free trade area, customs union, common market, monetary union, full economic union.",
+        "Trade creation and trade diversion.",
+        "Advantages and disadvantages of monetary union, including the loss of independent monetary policy and exchange rate adjustment.",
+        "The World Trade Organization: role, and the limits of its power."
+      ],
+      "diagrams": [
+        "Trade creation and trade diversion"
+      ],
+      "hl": [],
+      "trap": "A customs union adds a common external tariff to a free trade area. Getting the ladder of stages in order is a straightforward mark you should never drop."
+    },
+    {
+      "code": "4.5",
+      "title": "Exchange rates",
+      "unit": 4,
+      "hlOnly": false,
+      "essentials": [
+        "Floating rates determined by demand for and supply of a currency; appreciation and depreciation.",
+        "Determinants: trade flows, investment flows, interest rate differentials, speculation, relative inflation.",
+        "Fixed and managed exchange rate systems; devaluation and revaluation.",
+        "Effects of a change in the exchange rate on inflation, employment, growth and the current account.",
+        "Central bank intervention to influence the rate, and its limits."
+      ],
+      "diagrams": [
+        "Foreign exchange market: appreciation and depreciation",
+        "Central bank intervention to maintain a fixed rate"
+      ],
+      "hl": [
+        "Calculating exchange rates and converting values between currencies"
+      ],
+      "trap": "Label the axes 'price of currency A in terms of currency B' and 'quantity of currency A'. Unlabelled forex axes are the fastest way to lose the diagram marks in Unit 4."
+    },
+    {
+      "code": "4.6",
+      "title": "Balance of payments",
+      "unit": 4,
+      "hlOnly": false,
+      "essentials": [
+        "Structure: the current account, the capital account, and the financial account.",
+        "Components of the current account: trade in goods, trade in services, primary income, secondary income.",
+        "Why the accounts must balance overall, so a current account deficit is matched by a financial account surplus.",
+        "Consequences of a persistent current account deficit and of a surplus.",
+        "Correcting a deficit: expenditure switching, expenditure reducing, and supply-side measures.",
+        "The Marshall-Lerner condition and the J-curve effect."
+      ],
+      "diagrams": [
+        "J-curve"
+      ],
+      "hl": [
+        "Calculating the balance on the current account and its components from data",
+        "Applying the Marshall-Lerner condition"
+      ],
+      "trap": "The Marshall-Lerner condition is that the sum of PED for exports and imports exceeds 1. Only then does depreciation improve the current account — which is exactly why the J-curve dips first."
+    },
+    {
+      "code": "4.7",
+      "title": "Sustainable development",
+      "unit": 4,
+      "hlOnly": false,
+      "essentials": [
+        "Meeting present needs without compromising future generations' ability to meet theirs.",
+        "The tension between economic growth and environmental sustainability.",
+        "Poverty as both cause and consequence of environmental degradation.",
+        "The Sustainable Development Goals as a framework and a measurement problem."
+      ],
+      "diagrams": [],
+      "hl": [
+        "Sustainability constraints on long-run growth"
+      ],
+      "trap": "Sustainable development is broader than environmental protection — it includes economic and social sustainability. Treating it as only 'green' narrows your answer."
+    },
+    {
+      "code": "4.8",
+      "title": "Measuring development",
+      "unit": 4,
+      "hlOnly": false,
+      "essentials": [
+        "Economic growth versus economic development: growth is a rise in output, development is a broader rise in well-being and freedom.",
+        "Single indicators: GDP and GNI per capita at PPP, health indicators, education indicators, energy and environment indicators.",
+        "Composite indicators: the Human Development Index and its three dimensions; the inequality-adjusted HDI; the Gender Inequality Index.",
+        "Strengths and limitations of every indicator, particularly averaging away distribution."
+      ],
+      "diagrams": [],
+      "hl": [],
+      "trap": "HDI combines income, health and education. A country can post strong GDP growth and a flat HDI — that gap is usually the most interesting thing to say."
+    },
+    {
+      "code": "4.9",
+      "title": "Barriers to economic growth and/or economic development",
+      "unit": 4,
+      "hlOnly": false,
+      "essentials": [
+        "Poverty traps and low-income cycles of low saving, low investment and low productivity.",
+        "Economic barriers: rising economic inequality, lack of access to infrastructure and appropriate technology, low levels of human capital, dependence on primary exports, volatile commodity prices, adverse terms of trade, capital flight, indebtedness.",
+        "Political and social barriers: weak institutions, poor governance, corruption, unequal political power, gender inequality, lack of property rights.",
+        "How the barriers reinforce one another."
+      ],
+      "diagrams": [
+        "Poverty cycle"
+      ],
+      "hl": [],
+      "trap": "Name the mechanism, not the label. 'Corruption is a barrier' scores little; 'corruption raises the effective cost of investment, deterring FDI and lowering the capital stock' is analysis."
+    },
+    {
+      "code": "4.10",
+      "title": "Economic growth and/or economic development strategies",
+      "unit": 4,
+      "hlOnly": false,
+      "essentials": [
+        "Trade strategies: import substitution, export promotion, trade liberalisation, diversification.",
+        "Market-based approaches: liberalisation, privatisation, deregulation, attracting foreign direct investment.",
+        "Interventionist approaches: education, health, infrastructure, industrial policy.",
+        "Foreign aid (humanitarian, development, tied), multilateral development assistance, debt relief.",
+        "Institutional change: microfinance and mobile banking, women's empowerment, reducing corruption, property and land rights.",
+        "Strengths and limitations of each, and of market-oriented versus interventionist approaches overall.",
+        "Progress toward selected Sustainable Development Goals, compared across countries."
+      ],
+      "diagrams": [],
+      "hl": [],
+      "trap": "There is no universally best strategy — the top band belongs to answers that say what the right strategy depends on: the country's institutions, factor endowments and stage of development."
+    }
+  ]
+}

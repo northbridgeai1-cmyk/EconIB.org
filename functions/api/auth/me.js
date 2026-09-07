@@ -13,12 +13,12 @@ export const onRequestPatch = handler(async (ctx) => {
   const user = await requireUser(ctx);
   const body = await readJson(ctx.request);
 
-  const name = body.name === undefined ? user.name : str(body.name, "Name", { max: LIMITS.name });
-  const yearGroup = body.yearGroup === undefined ? user.year_group : oneOf(body.yearGroup, ["IB1", "IB2"], "Year");
-  const level = body.level === undefined ? user.level : oneOf(body.level, ["SL", "HL"], "Level");
+  const name = body.name === undefined ? user.name : str(body.name, "Name", { max: LIMITS.name, name: "name" });
+  const yearGroup = body.yearGroup === undefined ? user.year_group : oneOf(body.yearGroup, ["IB1", "IB2"], "Year", "yearGroup");
+  const level = body.level === undefined ? user.level : oneOf(body.level, ["SL", "HL"], "Level", "level");
   const examSession = body.examSession === undefined
     ? user.exam_session
-    : str(body.examSession, "Exam session", { max: LIMITS.examSession, required: false });
+    : str(body.examSession, "Exam session", { max: LIMITS.examSession, required: false, name: "examSession" });
 
   await ctx.env.DB.prepare(
     "UPDATE users SET name = ?, year_group = ?, level = ?, exam_session = ?, updated_at = ? WHERE id = ?"

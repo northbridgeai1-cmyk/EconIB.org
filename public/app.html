@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EconIB</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/tokens.css">
+<link rel="stylesheet" href="/assets/css/base.css">
+<link rel="stylesheet" href="/assets/css/app.css">
+</head>
+<body>
+
+<div id="offline-banner" class="offline" hidden>
+  You are offline. Your syllabus and saved work still open; marking and saving need a connection.
+</div>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="brand" href="/app#/">Econ<span>IB</span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="#/" data-route="">Dashboard</a>
+      <a href="#/syllabus" data-route="syllabus">Syllabus</a>
+      <a href="#/ia" data-route="ia">IA portfolio</a>
+      <a href="#/papers" data-route="papers">Exam answers</a>
+      <a href="#/reference" data-route="reference">Reference</a>
+      <a href="#/grades" data-route="grades">Grade calculator</a>
+    </nav>
+    <div class="masthead-meta">
+      <span id="user-chip" class="small"></span>
+      <a class="btn btn-quiet btn-sm" href="#/account">Account</a>
+    </div>
+  </div>
+</header>
+
+<main id="view" class="wrap view" tabindex="-1">
+  <div class="stack">
+    <div class="skeleton skeleton-line"></div>
+    <div class="skeleton skeleton-line"></div>
+    <div class="skeleton skeleton-block"></div>
+  </div>
+</main>
+
+<script type="module" src="/assets/js/app.js"></script>
+</body>
+</html>

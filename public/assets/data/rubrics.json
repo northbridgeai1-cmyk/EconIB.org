@@ -1,0 +1,242 @@
+{
+  "note": "Criterion names, mark ranges and band boundaries are factual features of the assessment model. All descriptor wording below is EconIB's own plain-English rendering, written to be diagnostic. It is not IB text. Always check the official subject guide and your teacher's marking.",
+  "model": "Each rubric is a set of dimensions. Every dimension has the same five-rung ladder (0-4). Your band is set by your weakest dimensions, not your best — which is why the fix is always the lowest rung, never more of what you already do well.",
+  "ia": {
+    "id": "ia",
+    "name": "Internal assessment portfolio",
+    "maxMarks": 45,
+    "structure": "Each of the three commentaries is marked out of 14 on criteria A-E. Criterion F is applied once to the whole portfolio, out of 3. 14 x 3 + 3 = 45.",
+    "criteria": [
+      {
+        "id": "A", "name": "Diagrams", "max": 3, "ao": ["AO2", "AO4"],
+        "assesses": "Whether you can construct a diagram and explain it.",
+        "levels": [
+          { "mark": 0, "text": "No relevant diagram, or nothing that meets the description below." },
+          { "mark": 1, "text": "A relevant diagram is there, but it is not explained — or the explanation is wrong." },
+          { "mark": 2, "text": "The diagram is relevant, accurate and correctly labelled, but the explanation is thin." },
+          { "mark": 3, "text": "The diagram is relevant, accurate and correctly labelled, and it is fully explained in the text." }
+        ],
+        "howToMove": "Most students sit on 2. The gap to 3 is almost never the drawing — it is that the prose never walks the reader through the shift. Name the curve, say why it moved, and state what happened to price and quantity, referring to your own labels."
+      },
+      {
+        "id": "B", "name": "Terminology", "max": 2, "ao": ["AO1"],
+        "assesses": "Whether you use economic terminology appropriately.",
+        "levels": [
+          { "mark": 0, "text": "No relevant economic terminology, or nothing that meets the description below." },
+          { "mark": 1, "text": "Economic terminology relevant to the article appears in the commentary." },
+          { "mark": 2, "text": "Relevant economic terminology is used correctly throughout, not just in one patch." }
+        ],
+        "howToMove": "Throughout is the operative word. Terms clustered in an opening definitions paragraph and then abandoned reads as 1. Use precise terms where the analysis happens."
+      },
+      {
+        "id": "C", "name": "Application and analysis", "max": 3, "ao": ["AO2"],
+        "assesses": "Whether you apply economic theory to this article and analyse with it.",
+        "levels": [
+          { "mark": 0, "text": "No relevant theory applied, or nothing that meets the description below." },
+          { "mark": 1, "text": "Relevant theory is applied to the article, but the analysis is limited." },
+          { "mark": 2, "text": "Relevant theory is applied throughout, with sound economic analysis." },
+          { "mark": 3, "text": "Relevant theory is applied throughout, with effective economic analysis." }
+        ],
+        "howToMove": "The difference between 2 and 3 is causal chains that reach an outcome. Not 'a tax reduces demand' but 'the tax raises unit cost, shifting supply left, raising price to P2 and cutting quantity to Q2, with the burden split by relative elasticities'."
+      },
+      {
+        "id": "D", "name": "Key concept", "max": 3, "ao": ["AO2"],
+        "assesses": "Whether you link one of the nine key concepts to the article.",
+        "levels": [
+          { "mark": 0, "text": "No key concept identified — or the key concept has already been used in another commentary in this portfolio." },
+          { "mark": 1, "text": "A key concept is named and there is an attempt to link it to the article." },
+          { "mark": 2, "text": "A key concept is named and the link to the article is partly explained." },
+          { "mark": 3, "text": "A key concept is named and the link to the article is fully explained." }
+        ],
+        "howToMove": "The cheapest lost marks in the whole IA. Reusing a concept across two commentaries scores 0 here, and across three costs you up to 6 marks. Pick your three concepts before you write anything, and make the concept the lens of the analysis rather than a sentence bolted to the end."
+      },
+      {
+        "id": "E", "name": "Evaluation", "max": 3, "ao": ["AO3"],
+        "assesses": "Whether your judgments are supported by reasoned argument.",
+        "levels": [
+          { "mark": 0, "text": "No judgments, or nothing that meets the description below." },
+          { "mark": 1, "text": "Judgments are made but the reasoning behind them is limited." },
+          { "mark": 2, "text": "Judgments are made and supported by appropriate reasoning." },
+          { "mark": 3, "text": "Judgments are made and supported by effective and balanced reasoning." }
+        ],
+        "howToMove": "Balanced is the word that decides 3. Give the strongest version of the other side, then say what your judgment depends on — magnitude, time frame, elasticity, or who bears the cost."
+      },
+      {
+        "id": "F", "name": "Rubric requirements", "max": 3, "ao": ["AO4"], "scope": "portfolio",
+        "assesses": "Three portfolio-level requirements. One mark each.",
+        "requirements": [
+          { "id": "units", "text": "Each article is based on a different unit of the syllabus (Microeconomics, Macroeconomics, The global economy — Unit 1 is excluded)." },
+          { "id": "sources", "text": "Each article comes from a different and appropriate source." },
+          { "id": "recency", "text": "Each article was published no earlier than one year before that commentary was written." }
+        ],
+        "levels": [
+          { "mark": 0, "text": "No requirement met." },
+          { "mark": 1, "text": "One requirement met." },
+          { "mark": 2, "text": "Two requirements met." },
+          { "mark": 3, "text": "All three requirements met." }
+        ],
+        "howToMove": "These three marks are free and are decided by admin, not economics. EconIB checks them for you deterministically — no judgment involved."
+      }
+    ]
+  },
+  "papers": [
+    {
+      "id": "p1a", "component": "Paper 1", "part": "(a)", "max": 10,
+      "name": "Paper 1 part (a)",
+      "prompt": "Explain-type question. No evaluation is required and none is credited.",
+      "bands": [[1, 2], [3, 4], [5, 6], [7, 8], [9, 10]],
+      "dimensions": [
+        { "id": "demands", "label": "Answering the question asked", "rungs": [
+          "Little sign the specific demands of the question were understood.",
+          "Some understanding of what the question asks.",
+          "The demands are understood but only partly addressed.",
+          "The demands are understood and addressed.",
+          "The demands are understood and fully addressed."] },
+        { "id": "theory", "label": "Economic theory", "rungs": [
+          "Theory appears but it is not relevant to the question.",
+          "Relevant theory is described.",
+          "Relevant theory is partly explained.",
+          "Relevant theory is explained.",
+          "Relevant theory is fully explained."] },
+        { "id": "terms", "label": "Economic terminology", "rungs": [
+          "Terms appear but they are not relevant.",
+          "Some relevant terms are included.",
+          "Some relevant terms are used appropriately.",
+          "Relevant terms are used mostly appropriately.",
+          "Relevant terms are used appropriately throughout."] },
+        { "id": "diagrams", "label": "Diagrams", "rungs": [
+          "No relevant diagram where one was needed.",
+          "No relevant diagram where one was needed.",
+          "A relevant diagram is included.",
+          "A relevant diagram is included and explained.",
+          "A relevant diagram is included and fully explained."] }
+      ]
+    },
+    {
+      "id": "p1b", "component": "Paper 1", "part": "(b)", "max": 15,
+      "name": "Paper 1 part (b)",
+      "prompt": "Evaluation question. Real-world examples are required to reach the top bands.",
+      "bands": [[1, 3], [4, 6], [7, 9], [10, 12], [13, 15]],
+      "dimensions": [
+        { "id": "demands", "label": "Answering the question asked", "rungs": [
+          "Little sign the specific demands of the question were understood.",
+          "Some understanding of what the question asks.",
+          "The demands are understood but only partly addressed.",
+          "The demands are understood and addressed.",
+          "The demands are understood and fully addressed."] },
+        { "id": "theory", "label": "Economic theory", "rungs": [
+          "Theory appears but it is not relevant.",
+          "Relevant theory is described.",
+          "Relevant theory is partly explained.",
+          "Relevant theory is explained.",
+          "Relevant theory is fully explained."] },
+        { "id": "terms", "label": "Economic terminology", "rungs": [
+          "Terms appear but they are not relevant.",
+          "Some relevant terms are included.",
+          "Some relevant terms are used appropriately.",
+          "Relevant terms are used mostly appropriately.",
+          "Relevant terms are used appropriately throughout."] },
+        { "id": "diagrams", "label": "Diagrams", "rungs": [
+          "No relevant diagram where one was needed.",
+          "No relevant diagram where one was needed.",
+          "A relevant diagram is included.",
+          "A relevant diagram is included and explained.",
+          "A relevant diagram is included and fully explained."] },
+        { "id": "evaluation", "label": "Synthesis and evaluation", "rungs": [
+          "No evaluation at all.",
+          "Evaluation is present but superficial.",
+          "Evaluation is appropriate but one-sided.",
+          "Evaluation is appropriate and mostly balanced.",
+          "Evaluation is effective and balanced."] },
+        { "id": "example", "label": "Real-world example", "rungs": [
+          "An example is named but it is irrelevant.",
+          "A relevant example is named.",
+          "A relevant example is named and partly developed in context.",
+          "A relevant example is named and developed in context.",
+          "A relevant example is named and fully developed to support the argument."] }
+      ]
+    },
+    {
+      "id": "p2g", "component": "Paper 2", "part": "(g)", "max": 15,
+      "name": "Paper 2 part (g)",
+      "prompt": "Evaluation question on the data response. The text and data provided must be used — this is what separates it from Paper 1 (b).",
+      "bands": [[1, 3], [4, 6], [7, 9], [10, 12], [13, 15]],
+      "dimensions": [
+        { "id": "demands", "label": "Answering the question asked", "rungs": [
+          "Little sign the specific demands of the question were understood.",
+          "Some understanding of what the question asks.",
+          "The demands are understood but only partly addressed.",
+          "The demands are understood and addressed.",
+          "The demands are understood and fully addressed."] },
+        { "id": "theory", "label": "Economic theory", "rungs": [
+          "Theory appears but it is not relevant.",
+          "Relevant theory is described.",
+          "Relevant theory is partly explained.",
+          "Relevant theory is explained.",
+          "Relevant theory is fully explained."] },
+        { "id": "terms", "label": "Economic terminology", "rungs": [
+          "Terms appear but they are not relevant.",
+          "Some relevant terms are included.",
+          "Some relevant terms are used appropriately.",
+          "Relevant terms are used appropriately.",
+          "Relevant terms are used appropriately throughout."] },
+        { "id": "diagrams", "label": "Diagrams", "rungs": [
+          "No relevant diagram where one was needed.",
+          "No relevant diagram where one was needed.",
+          "A relevant diagram is included.",
+          "A relevant diagram is included and explained.",
+          "A relevant diagram is included and fully explained."] },
+        { "id": "evaluation", "label": "Synthesis and evaluation", "rungs": [
+          "No evaluation at all.",
+          "Evaluation is present but superficial.",
+          "Evaluation is appropriate but one-sided.",
+          "Evaluation is appropriate and mostly balanced.",
+          "Evaluation is effective and balanced."] },
+        { "id": "data", "label": "Use of the text and data", "rungs": [
+          "The text and data are not used at all.",
+          "The text and data are barely used.",
+          "Some relevant information from the text or data is included.",
+          "Information from the text and data is generally appropriate, relevant and applied correctly.",
+          "Information from the text and data is used to build a reasoned argument that the analysis and evaluation rest on."] }
+      ]
+    },
+    {
+      "id": "p3b", "component": "Paper 3", "part": "(b)", "max": 10,
+      "name": "Paper 3 part (b)",
+      "prompt": "The policy recommendation. HL only. You must choose a policy and defend it using both theory and the data given.",
+      "bands": [[1, 2], [3, 4], [5, 6], [7, 8], [9, 10]],
+      "dimensions": [
+        { "id": "policy", "label": "The policy itself", "rungs": [
+          "A policy is named.",
+          "An appropriate policy is named.",
+          "An appropriate policy is named and explained.",
+          "An appropriate policy is named and fully explained.",
+          "An appropriate policy is named and fully explained."] },
+        { "id": "theory", "label": "Theory supporting the recommendation", "rungs": [
+          "No economic theory supports the recommendation.",
+          "Limited theory, used superficially.",
+          "Relevant theory partly supports the recommendation.",
+          "Relevant theory supports the recommendation.",
+          "Relevant theory supports the recommendation effectively."] },
+        { "id": "terms", "label": "Economic terminology", "rungs": [
+          "Terms appear but they are not relevant.",
+          "Some relevant terms are included.",
+          "Some relevant terms are used appropriately.",
+          "Relevant terms are used mostly appropriately.",
+          "Relevant terms are used appropriately throughout."] },
+        { "id": "data", "label": "Use of the text and data", "rungs": [
+          "The text and data are not used to support the recommendation.",
+          "No relevant text or data is used to support the recommendation.",
+          "Some relevant information from the text or data supports the recommendation.",
+          "Information from the text and data is generally appropriate, relevant and applied correctly.",
+          "Information from the text and data supports the analysis and evaluation effectively."] },
+        { "id": "evaluation", "label": "Synthesis and evaluation", "rungs": [
+          "No evaluation at all.",
+          "Evaluation is superficial.",
+          "Evaluation is appropriate but one-sided.",
+          "Evaluation is appropriate and mostly balanced.",
+          "Evaluation is effective and balanced."] }
+      ]
+    }
+  ]
+}

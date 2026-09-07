@@ -137,6 +137,16 @@ for (const file of ["public/assets/css/base.css", "public/assets/css/app.css"]) 
   check(`${path.basename(file)} has no @media inside a selector list`, !/,\s*\n\s*@media/.test(css));
 }
 
+// ------------------------------------------------- published data copies
+// data/ is the source of truth; public/assets/data/ is what the browser fetches.
+// Two copies can drift, so drift is a failure rather than a surprise.
+for (const file of ["syllabus.json", "rubrics.json", "command-terms.json", "key-concepts.json", "assessment.json"]) {
+  let source, published;
+  try { source = text(`data/${file}`); } catch { failures.push(`data/${file} is missing`); continue; }
+  try { published = text(`public/assets/data/${file}`); } catch { failures.push(`public/assets/data/${file} is missing — run npm run sync-data`); continue; }
+  check(`public/assets/data/${file} matches data/${file}`, source === published, "run npm run sync-data");
+}
+
 // --------------------------------------------------------------------- report
 if (failures.length) {
   console.error(`\n${failures.length} check(s) FAILED:\n`);

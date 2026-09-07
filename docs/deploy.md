@@ -35,13 +35,46 @@ Paste the returned `database_id` into `wrangler.toml`, then apply the schema:
 npx wrangler d1 execute econib --remote --file=./schema.sql
 ```
 
-## 3. Set the secret
+## 3. Set the secrets
 
-Never put the key in `wrangler.toml` — that file is committed.
+Never put a key in `wrangler.toml` — that file is committed.
 
 ```bash
-npx wrangler pages secret put ANTHROPIC_API_KEY
+npx wrangler pages secret put SHARED_AI_KEY
+npx wrangler pages secret put KEY_ENCRYPTION_SECRET
 ```
+
+`SHARED_AI_KEY` is the key for whichever provider `SHARED_AI_PROVIDER` names.
+A free Groq key from [console.groq.com/keys](https://console.groq.com/keys) works
+and costs nothing.
+
+`KEY_ENCRYPTION_SECRET` encrypts students' own API keys at rest. Generate one:
+
+```bash
+openssl rand -base64 48
+```
+
+Without it, students cannot save their own key and the server says so plainly
+rather than storing a credential in the clear.
+
+### Sizing the shared cap honestly
+
+Free tiers cap **tokens** per day, not just requests, and one IA marking costs
+roughly 4,600 tokens. So:
+
+| Shared provider | Daily token allowance | Real markings/day, whole site |
+|---|---|---|
+| Groq `openai/gpt-oss-120b` | 200,000 | ~43 |
+| Groq `llama-3.3-70b-versatile` | 100,000 | ~21 |
+| Gemini Flash | 1,500 requests | ~1,500 |
+
+`AI_DAILY_LIMIT_GLOBAL` defaults to 40 to match Groq. Setting it to 1,000 because
+the request limit says 1,000 would mean students hit an opaque upstream 429
+mid-marking instead of EconIB's own clear message.
+
+**The shared key is a trial tier, not a service.** Past a handful of active
+students, point them at account settings to add their own free key — that is the
+only configuration that scales without someone paying per marking.
 
 ## 4. Set the environment variables
 

@@ -23,9 +23,25 @@ ALLOWED_ORIGIN = "https://econib.org"
 # Workers Paid plan. See docs/deploy.md.
 PW_ITERATIONS = "600000"
 
-# Spend caps for AI grading. Per user per day, and across all users per day.
-AI_DAILY_LIMIT_PER_USER = "25"
-AI_DAILY_LIMIT_GLOBAL = "1000"
+# Spend caps for AI grading, applied only to the SHARED key. A student using
+# their own key spends their own quota and is not limited here.
+#
+# Set these to match your provider's real allowance. Free tiers cap TOKENS per
+# day, not just requests: one IA marking is roughly 4,600 tokens, so Groq's
+# 200,000 token daily allowance is about 43 markings for the whole deployment,
+# not the 1,000 its request limit implies.
+AI_DAILY_LIMIT_PER_USER = "5"
+AI_DAILY_LIMIT_GLOBAL = "40"
+
+# Which provider the shared key belongs to: groq | gemini | anthropic | openrouter
+SHARED_AI_PROVIDER = "groq"
+# Optional; each provider has a sensible default model if this is unset.
+# SHARED_AI_MODEL = "openai/gpt-oss-120b"
 
 # Secrets are NEVER set here. Set them with:
-#   wrangler pages secret put ANTHROPIC_API_KEY
+#   wrangler pages secret put SHARED_AI_KEY          <- the shared provider key
+#   wrangler pages secret put KEY_ENCRYPTION_SECRET  <- 48+ random chars
+#
+# KEY_ENCRYPTION_SECRET encrypts students' own API keys at rest. Without it,
+# students cannot save a key and the server says so rather than storing one in
+# the clear. Generate one with:  openssl rand -base64 48

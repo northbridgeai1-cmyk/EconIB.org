@@ -1,7 +1,7 @@
 import { mount, esc, fmtDate } from "../lib/dom.js";
 import { api, ApiError } from "../lib/api.js";
 import { data, state } from "../lib/store.js";
-import { meter, ladder, paintBars } from "./_ui.js";
+import { meter, ladder, paintBars, markedByNote } from "./_ui.js";
 
 export default async function papers({ view, parts }) {
   const rubrics = await data.rubrics();
@@ -94,7 +94,7 @@ export default async function papers({ view, parts }) {
     restore(keep);
     try {
       const res = await api.gradePaper({ rubricId: chosen.id, question: keep.question, answer: keep.answer });
-      if (state.usage) state.usage.used = res.budget.used;
+      if (state.usage && res.budget) state.usage.used = res.budget.used;
       paint(res.result, null, false);
       restore(keep);
       view.querySelector("#result").scrollIntoView({ behavior: "smooth", block: "start" });
@@ -130,6 +130,7 @@ function renderResult(result, rubric) {
     <section class="card mt-4">
       <h2>${esc(result.name)}</h2>
       ${meter(result.mark, result.max, { label: `Band ${result.bandIndex} of ${result.bandCount - 1} · ${result.band[0]}–${result.band[1]} marks` })}
+      ${markedByNote(result.markedBy)}
 
       <div class="note note-warn mt-4">
         <b>What is capping this answer</b>

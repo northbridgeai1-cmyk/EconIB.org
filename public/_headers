@@ -9,5 +9,19 @@
   Cross-Origin-Opener-Policy: same-origin
   Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'; object-src 'none'
 
-/assets/*
-  Cache-Control: public, max-age=3600, must-revalidate
+# There is no build step, so filenames carry no content hash and a long cache
+# would serve stale JavaScript against a new API after every deploy — for up to
+# the max-age, with no way to reach those browsers. Revalidate instead: the 304
+# is cheap and correctness is not negotiable.
+/assets/js/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/assets/css/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/assets/data/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Content that genuinely does not change can be cached hard.
+/assets/favicon.svg
+  Cache-Control: public, max-age=86400

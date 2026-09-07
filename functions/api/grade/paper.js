@@ -3,7 +3,7 @@ import { str, LIMITS } from "../../../shared/validate.js";
 import { requireUser, newId } from "../../../shared/auth.js";
 import { enforce, clientIp } from "../../../shared/ratelimit.js";
 import { reserve, refund } from "../../../shared/spend.js";
-import { structured } from "../../../shared/anthropic.js";
+import { structured, selectRuntime } from "../../../shared/llm.js";
 import { paperRubric, paperTool, buildPaperPrompt, validatePaperResult } from "../../../shared/grading.js";
 import { canUseRubric } from "../../../shared/access.js";
 import { countWords } from "../../../public/assets/js/lib/ia-rules.js";
@@ -39,15 +39,27 @@ export const onRequestPost = handler(async (ctx) => {
     );
   }
 
-  const budget = await reserve(db, user.id, ctx.env);
+  const runtime = await selectRuntime(user, ctx.env);
+  const budget = runtime.source === "byok" ? null : await reserve(db, user.id, ctx.env);
 
   let result;
   try {
     const { system, user: prompt } = buildPaperPrompt(rubric, { question, answer });
-    const { data, usage } = await structured(ctx.env, { system, user: prompt, tool: paperTool(rubric) });
-    result = { ...validatePaperResult(rubric, data), usage, words };
+    const out = await structured(runtime, { system, user: prompt, tool: paperTool(rubric) });
+    result = {
+      ...validatePaperResult(rubric, out.data),
+      usage: out.usage,
+      words,
+      markedBy: {
+        provider: out.providerLabel,
+        model: out.model,
+        source: out.source,
+        reliability: out.reliability,
+        reliabilityNote: out.reliabilityNote,
+      },
+    };
   } catch (err) {
-    await refund(db, user.id);
+    if (budget) await refund(db, user.id);
     throw err;
   }
 

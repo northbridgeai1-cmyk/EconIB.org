@@ -137,6 +137,19 @@ for (const file of ["public/assets/css/base.css", "public/assets/css/app.css"]) 
   check(`${path.basename(file)} has no @media inside a selector list`, !/,\s*\n\s*@media/.test(css));
 }
 
+// ------------------------------------------------------------- providers
+// A base URL patched to a local mock during testing must never reach a deploy.
+{
+  const src = text("shared/providers.js");
+  const urls = [...src.matchAll(/baseUrl:\s*"([^"]+)"/g)].map((m) => m[1]);
+  check("every provider base URL is set", urls.length >= 4, `found ${urls.length}`);
+  for (const u of urls) {
+    check(`provider base URL "${u}" is HTTPS`, u.startsWith("https://"));
+    check(`provider base URL "${u}" is not a local test server`,
+      !/localhost|127\.0\.0\.1|0\.0\.0\.0|:\d{4}/.test(u));
+  }
+}
+
 // ------------------------------------------------- published data copies
 // data/ is the source of truth; public/assets/data/ is what the browser fetches.
 // Two copies can drift, so drift is a failure rather than a surprise.

@@ -88,3 +88,48 @@ Against `wrangler pages dev` with a real D1 database:
   locally at ~395 ms; concurrency was not tested.
 - **Marking quality.** Whether the marks EconIB gives agree with a real examiner
   is unmeasured. It is a second opinion, not a prediction.
+
+---
+
+# Round two: provider-agnostic marking
+
+## Further defects found by running
+
+| Defect | Consequence | Found by |
+|---|---|---|
+| `/assets/*` cached for an hour with no content hashing and no build step | After any deploy, returning students run up-to-an-hour-old JavaScript against a new API, and nothing can reach those browsers until it expires. Caught in the act: the browser was still running a pre-patch module while the server served the fixed one | Comparing the module the browser had against the one the server sent |
+| Client read `res.budget.used` unconditionally | A student using their own key would crash the results view, because BYOK requests correctly return no budget | Adding the BYOK path and re-reading the callers |
+
+The cache bug demonstrated itself while being diagnosed: fixing the header does
+**not** rescue a browser that already cached under the old one, because a stored
+response keeps its original `max-age`. Deploying this fix leaves already-cached
+browsers stale until their hour expires. That is a one-time cost, and it is the
+reason the fix is `must-revalidate` rather than a shorter `max-age`.
+
+## Verified end to end against a mock provider
+
+The gap recorded above — "AI marking has never made a real API call" — is now
+closed for the request and response shape. A local server speaking the OpenAI
+chat-completions shape that Groq, Gemini and OpenRouter all use was pointed at
+by the real code path, and the full route exercised:
+
+- **IA marking** returned A 2/3, B 2/2, C 3/3, D 2/3, E 1/3 → subtotal 10/14,
+  with criterion B correctly capped at its maximum of 2, criterion F computed
+  separately as 1/3, and a portfolio total of 11/45 marked provisional.
+- **Paper 1 (b)** returned 6/15, band [4,6], correctly naming *Synthesis and
+  evaluation* as the capping strand because it sat at the lowest rung.
+- **BYOK** marking reported `source: byok` and left the shared budget untouched
+  (2 → 2); removing the key fell back to shared and consumed it (2 → 3).
+- **Key storage** — the database holds ciphertext, the API returns only a masked
+  hint, and the full key never appears in any response.
+
+Unit tests additionally verify the adapter sends bearer auth, `temperature: 0`,
+the right tool schema and forced `tool_choice`; and that a 429, a rejected key, a
+model that ignores tool use, and malformed JSON each produce a distinct, honest
+error rather than a crash or a silent wrong answer.
+
+## Still not verified
+
+- **Whether a real Groq model marks well.** The shape is proven; the judgment is
+  not. Marking quality against a real examiner remains unmeasured, which is why
+  every result names its model and carries a reliability caveat.

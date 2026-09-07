@@ -89,3 +89,25 @@ export function paintBars(root) {
 }
 
 export const UNIT_NAMES = { 2: "Microeconomics", 3: "Macroeconomics", 4: "The global economy" };
+
+/**
+ * Who produced this mark, and how far to trust it.
+ *
+ * A student cannot tell a strong model's mark from a weak one's unless the page
+ * says so, and will otherwise treat both as equally authoritative.
+ */
+export function markedByNote(markedBy) {
+  if (!markedBy) return "";
+  const tone = markedBy.reliability === "high" ? "" : markedBy.reliability === "low" ? "note-bad" : "note-warn";
+  const chip = markedBy.reliability === "high" ? "chip-good"
+    : markedBy.reliability === "low" ? "chip-bad" : "chip-warn";
+  return `<div class="note ${tone}">
+      <b>Marked by ${esc(markedBy.provider)}</b>
+      <p>
+        <span class="chip ${chip}">${esc(markedBy.reliability)} reliability</span>
+        <span class="mono small">${esc(markedBy.model)}</span>
+        ${markedBy.source === "byok" ? '<span class="chip">your key</span>' : '<span class="chip">shared key</span>'}
+      </p>
+      <p>${esc(markedBy.reliabilityNote)}</p>
+    </div>`;
+}

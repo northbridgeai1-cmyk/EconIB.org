@@ -29,6 +29,30 @@ certain marks should not become three guessed ones.
 field that can hold student prose, and the prompt forbids supplying any. An IA is
 assessed work that must be the student's own.
 
+## Providers
+
+Marking is provider-agnostic. Groq, Google Gemini and OpenRouter speak the
+OpenAI chat-completions shape and share one adapter; Anthropic has its own.
+Switch with the `SHARED_AI_PROVIDER` variable — no code change.
+
+Students can also add **their own API key** in account settings. Their key spends
+their own quota and is not subject to the shared daily cap, which is the only way
+this scales to many users without someone paying per marking.
+
+Two things the UI is explicit about, because a student cannot otherwise tell:
+
+- **Every result names the model that produced it** and carries a reliability
+  note. A free open model is useful for finding what is missing and unreliable on
+  the exact mark; presenting its output identically to a stronger model's would
+  invite a student to trust a wrong number.
+- **Free tiers may train on what you send them.** Google's free tier states that
+  submissions may be used to improve its products and may be read by human
+  reviewers. Providers where that applies are flagged in red before a student
+  saves a key, because the text being submitted is their coursework.
+
+Student keys are AES-GCM encrypted under `KEY_ENCRYPTION_SECRET` and are never
+returned to the browser — the page only ever sees a masked hint.
+
 ## Layout
 
 ```

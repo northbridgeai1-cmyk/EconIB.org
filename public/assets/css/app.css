@@ -144,3 +144,6 @@
 .auth-title { margin-top: var(--s-5); }
 .auth-side .lede { font-size: var(--t-base); }
 .mt-4 { margin-top: var(--s-4); }
+
+.note-good-ish { border-left-color: var(--good); }
+.note-good-ish b { color: var(--good); }

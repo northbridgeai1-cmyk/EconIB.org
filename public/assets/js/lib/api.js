@@ -76,6 +76,10 @@ export const api = {
   gradePaper: (b, signal) => request("/grade/paper", { method: "POST", body: b, signal }),
   gradePaperHistory: () => request("/grade/paper"),
 
+  getAiSettings: () => request("/settings/ai"),
+  setAiKey: (b) => request("/settings/ai", { method: "PUT", body: b }),
+  clearAiKey: () => request("/settings/ai", { method: "DELETE" }),
+
   getProgress: () => request("/progress"),
   setProgress: (b) => request("/progress", { method: "PATCH", body: b }),
 };

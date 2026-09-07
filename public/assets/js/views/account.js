@@ -5,6 +5,7 @@ import { paintUserChip } from "../app.js";
 
 export default async function account({ view }) {
   const user = state.user;
+  const ai = await api.getAiSettings();
 
   mount(view, `
     <div class="view-head">
@@ -54,6 +55,10 @@ export default async function account({ view }) {
           <button class="btn btn-primary" type="submit" id="save">Save changes</button>
         </form>
 
+        <section class="card mt-4" id="ai-card">
+          ${renderAi(ai)}
+        </section>
+
         <section class="card mt-4">
           <h2>Sign out</h2>
           <p class="small">Ends this session on this device. Your work stays saved.</p>
@@ -91,6 +96,8 @@ export default async function account({ view }) {
     }
   });
 
+  wireAi(view, ai);
+
   view.querySelector("#logout").addEventListener("click", async () => {
     try { await api.logout(); } catch { /* clear the cookie regardless */ }
     location.href = "/";
@@ -113,4 +120,132 @@ export default async function account({ view }) {
       button.textContent = "Delete everything";
     }
   });
+}
+
+
+// ---------------------------------------------------------------- AI provider
+
+function renderAi(ai) {
+  const { providers, current, shared } = ai;
+  const chosenId = current.provider || (providers.find((p) => p.free) || providers[0]).id;
+  const chosen = providers.find((p) => p.id === chosenId) || providers[0];
+
+  return `
+    <h2>Who marks your work</h2>
+
+    ${shared ? `<p class="small">
+      Shared default: <strong>${esc(shared.label)}</strong>${shared.configured ? "" : " — not configured on this deployment"}.
+      ${shared.estimatedMarkingsPerDay
+        ? `Its free tier covers roughly <strong>${esc(shared.estimatedMarkingsPerDay)} markings a day across everyone using EconIB</strong>, because free tiers cap tokens per day, not just requests. Add your own key and you are not competing for that.`
+        : ""}
+    </p>` : ""}
+
+    ${current.usingOwnKey
+      ? `<div class="note note-good-ish">
+           <b>Using your own key</b>
+           <p>${esc(providers.find((p) => p.id === current.provider)?.label || current.provider)} ·
+              <span class="mono">${esc(current.model || "")}</span> ·
+              key <span class="mono">${esc(current.keyHint || "")}</span></p>
+           <p class="small">Your key is encrypted before it is stored and is never sent back to this page.</p>
+         </div>
+         <button class="btn btn-danger btn-sm" type="button" id="ai-clear">Remove my key</button>
+         <hr>`
+      : ""}
+
+    <h3 class="mt-4">${current.usingOwnKey ? "Replace your key" : "Use your own key"}</h3>
+    <p class="small">
+      Free keys are quick to create and mean you never wait on a shared limit.
+      It stays yours: your quota, your provider's data policy.
+    </p>
+
+    <form id="ai-form">
+      <div class="grid-2">
+        <div class="field">
+          <label for="ai-provider">Provider</label>
+          <select id="ai-provider" name="provider">
+            ${providers.map((p) => `<option value="${esc(p.id)}"${p.id === chosenId ? " selected" : ""}>
+                ${esc(p.label)}${p.free ? " — free tier" : " — paid"}
+              </option>`).join("")}
+          </select>
+        </div>
+        <div class="field">
+          <label for="ai-model">Model</label>
+          <select id="ai-model" name="model">
+            ${chosen.models.map((m) => `<option value="${esc(m.id)}"${m.id === chosen.defaultModel ? " selected" : ""}>
+                ${esc(m.label)}
+              </option>`).join("")}
+          </select>
+        </div>
+      </div>
+
+      <div id="ai-policy">${policyNote(chosen)}</div>
+
+      <div class="field">
+        <label for="ai-key">API key</label>
+        <input id="ai-key" name="apiKey" type="password" autocomplete="off" spellcheck="false"
+               placeholder="Paste your key">
+        <p class="field-hint">
+          Get one at <a href="${esc(chosen.keyUrl)}" target="_blank" rel="noopener noreferrer">${esc(chosen.keyUrl)}</a>.
+        </p>
+      </div>
+
+      <button class="btn btn-primary" type="submit" id="ai-save">Save key</button>
+    </form>`;
+}
+
+function policyNote(provider) {
+  const risky = provider.dataPolicyRisk === "high";
+  return `<div class="note ${risky ? "note-bad" : ""}">
+      <b>${risky ? "Read this before using this provider" : "Data policy"}</b>
+      <p>${esc(provider.dataPolicy)}</p>
+      <p class="small">${esc(provider.reliabilityNote)}</p>
+    </div>`;
+}
+
+function wireAi(view, ai) {
+  const form = view.querySelector("#ai-form");
+  if (!form) return;
+
+  const providerSelect = view.querySelector("#ai-provider");
+  providerSelect.addEventListener("change", () => {
+    const p = ai.providers.find((x) => x.id === providerSelect.value);
+    const modelSelect = view.querySelector("#ai-model");
+    modelSelect.innerHTML = p.models
+      .map((m) => `<option value="${esc(m.id)}"${m.id === p.defaultModel ? " selected" : ""}>${esc(m.label)}</option>`)
+      .join("");
+    view.querySelector("#ai-policy").innerHTML = policyNote(p);
+    const hint = form.querySelector(".field-hint");
+    if (hint) hint.innerHTML = `Get one at <a href="${esc(p.keyUrl)}" target="_blank" rel="noopener noreferrer">${esc(p.keyUrl)}</a>.`;
+  });
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const values = Object.fromEntries(new FormData(form).entries());
+    const button = view.querySelector("#ai-save");
+    button.disabled = true;
+    button.textContent = "Saving…";
+    try {
+      await api.setAiKey(values);
+      toast("Key saved. Your markings now use it.", "good");
+      location.reload();
+    } catch (err) {
+      toast(err instanceof ApiError ? err.message : "Could not save that key.", "error");
+      button.disabled = false;
+      button.textContent = "Save key";
+    }
+  });
+
+  const clear = view.querySelector("#ai-clear");
+  if (clear) {
+    clear.addEventListener("click", async () => {
+      if (!confirm("Remove your API key? Marking will fall back to the shared key and its daily limit.")) return;
+      try {
+        await api.clearAiKey();
+        toast("Key removed.", "good");
+        location.reload();
+      } catch (err) {
+        toast(err instanceof ApiError ? err.message : "Could not remove the key.", "error");
+      }
+    });
+  }
 }

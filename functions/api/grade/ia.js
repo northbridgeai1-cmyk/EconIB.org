@@ -2,7 +2,7 @@ import { json, handler, readJson, nowIso, HttpError, badRequest } from "../../..
 import { requireUser } from "../../../shared/auth.js";
 import { enforce, clientIp } from "../../../shared/ratelimit.js";
 import { reserve, refund } from "../../../shared/spend.js";
-import { structured } from "../../../shared/anthropic.js";
+import { structured, selectRuntime } from "../../../shared/llm.js";
 import { iaTool, buildIaPrompt, validateIaResult } from "../../../shared/grading.js";
 import { countWords, criterionF, checkKeyConcepts, wordCountStatus } from "../../../public/assets/js/lib/ia-rules.js";
 import { shape, portfolioPayload } from "../ia.js";
@@ -28,16 +28,32 @@ export const onRequestPost = handler(async (ctx) => {
   if (!commentary.keyConcept) throw badRequest("Choose a key concept before marking. Criterion D depends on it.", "no_concept");
   if (!commentary.unit) throw badRequest("Set the syllabus unit before marking.", "no_unit");
 
-  const budget = await reserve(db, user.id, ctx.env);
+  // Resolve the provider BEFORE reserving budget: a misconfigured key should
+  // not cost the student one of their daily markings.
+  const runtime = await selectRuntime(user, ctx.env);
+
+  // A student spending their own key spends their own quota, so the shared
+  // budget does not apply to them.
+  const budget = runtime.source === "byok" ? null : await reserve(db, user.id, ctx.env);
 
   let result;
   try {
     const words = countWords(commentary.body);
     const { system, user: prompt } = buildIaPrompt(commentary, { words });
-    const { data, usage } = await structured(ctx.env, { system, user: prompt, tool: iaTool() });
-    result = { ...validateIaResult(data), usage };
+    const out = await structured(runtime, { system, user: prompt, tool: iaTool() });
+    result = {
+      ...validateIaResult(out.data),
+      usage: out.usage,
+      markedBy: {
+        provider: out.providerLabel,
+        model: out.model,
+        source: out.source,
+        reliability: out.reliability,
+        reliabilityNote: out.reliabilityNote,
+      },
+    };
   } catch (err) {
-    await refund(db, user.id);
+    if (budget) await refund(db, user.id);
     throw err;
   }
 

@@ -14,7 +14,14 @@ CREATE TABLE IF NOT EXISTS users (
   level         TEXT NOT NULL CHECK (level IN ('SL','HL')),
   exam_session  TEXT,                     -- e.g. "May 2027", free text
   created_at    TEXT NOT NULL,
-  updated_at    TEXT NOT NULL
+  updated_at    TEXT NOT NULL,
+
+  -- Bring-your-own-key. The key is AES-GCM encrypted under KEY_ENCRYPTION_SECRET
+  -- and is never returned to the browser; ai_key_hint is a masked preview only.
+  ai_provider      TEXT,
+  ai_model         TEXT,
+  ai_key_encrypted TEXT,
+  ai_key_hint      TEXT
 );
 
 -- Sessions store only a hash of the token. A stolen database row cannot be

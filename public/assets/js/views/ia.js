@@ -5,7 +5,8 @@ import {
   wordCountStatus, checkRecency, IA_WORD_LIMIT, WORD_COUNT_EXCLUSIONS,
 } from "../lib/ia-rules.js";
 import {
-  meter, provisionalNote, criterionBlock, wordCounter, requirementRow, paintBars, UNIT_NAMES,
+  meter, provisionalNote, criterionBlock, wordCounter, requirementRow, paintBars,
+  markedByNote, UNIT_NAMES,
 } from "./_ui.js";
 
 export default async function ia({ view, parts, navigate }) {
@@ -287,7 +288,7 @@ async function editor(view, slot, navigate) {
       const res = await api.gradeIa({ id: commentary.id });
       commentary.feedback = res.result;
       commentary.markedAt = res.markedAt;
-      if (state.usage) state.usage.used = res.budget.used;
+      if (state.usage && res.budget) state.usage.used = res.budget.used;
       paint();
       view.querySelector("#result").scrollIntoView({ behavior: "smooth", block: "start" });
     } catch (err) {
@@ -320,6 +321,7 @@ function renderResult(result, markedAt) {
         <span class="small">${esc(fmtDate(markedAt))}</span>
       </div>
       ${meter(result.subtotal, 14, { label: "This commentary" })}
+      ${markedByNote(result.markedBy)}
 
       ${result.diagramPresent ? "" : `<div class="note note-warn">
         <b>No diagram referred to in the text</b>

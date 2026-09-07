@@ -1,0 +1,34 @@
+- generic [active] [ref=f1e1]:
+  - link "Skip to content" [ref=f1e2] [cursor=pointer]:
+    - /url: "#view"
+  - banner [ref=f1e3]:
+    - generic [ref=f1e4]:
+      - link "EconIB" [ref=f1e5] [cursor=pointer]:
+        - /url: /app#/
+      - navigation "Main":
+        - link "Dashboard" [ref=f1e6] [cursor=pointer]:
+          - /url: "#/"
+        - link "Syllabus" [ref=f1e7] [cursor=pointer]:
+          - /url: "#/syllabus"
+        - link "IA portfolio" [ref=f1e8] [cursor=pointer]:
+          - /url: "#/ia"
+        - link "Exam answers" [ref=f1e9] [cursor=pointer]:
+          - /url: "#/papers"
+        - link "Reference" [ref=f1e10] [cursor=pointer]:
+          - /url: "#/reference"
+        - link "Grade calculator" [ref=f1e11] [cursor=pointer]:
+          - /url: "#/grades"
+      - generic [ref=f1e12]:
+        - link "Account" [ref=f1e13] [cursor=pointer]:
+          - /url: "#/account"
+        - button "Search the syllabus" [ref=f1e14] [cursor=pointer]:
+          - generic [ref=f1e15]: Search
+          - generic [ref=f1e16]: ⌘K
+        - 'button "Colour theme: Dark. Click to change." [ref=f1e17] [cursor=pointer]': Dark
+  - main [ref=f1e18]
+  - contentinfo [ref=f1e23]:
+    - paragraph [ref=f1e24]:
+      - link "Terms and privacy" [ref=f1e25] [cursor=pointer]:
+        - /url: /terms
+      - text: · Marks here are not official. EconIB is not affiliated with the IB.
+  - button "Back to top"

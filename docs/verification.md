@@ -317,3 +317,38 @@ The stored credential format changed. Accounts created under the old
 server-side scheme cannot sign in and must be reset with
 `scripts/set-password.mjs`, which was updated to derive the verifier exactly as
 the browser does. No live accounts existed when this shipped.
+
+---
+
+# Round six: study-platform redesign
+
+Restructured toward how RevisionDojo and Kognity actually work — subject-first,
+not tool-first — while keeping EconIB's own identity. Their testimonials and
+"650K students" social proof were deliberately not copied: EconIB has no users
+to cite, and inventing them is the failure mode this project keeps refusing.
+
+**Taken:** a book-style unit tree that stays put, one colour per syllabus unit
+for wayfinding, Definition blocks, content-type tabs per topic, larger reading
+type for study prose.
+
+**Added:** 161 key-term definitions across all 31 topics, checked for
+duplicates and minimum length by `scripts/check.mjs`. Criterion B of the IA is
+terminology and every Paper 1 part (a) opens by defining, so this is the single
+highest-value content in the app.
+
+## Defects found by running
+
+| Defect | Consequence | Found by |
+|---|---|---|
+| Masthead search and theme controls overflowed at 375px | Horizontal scroll on **every** view on a phone. A flex child will not shrink below its content without `min-width: 0` | Walking every element at 375px |
+| Motion tokens named `--t-fast` etc. | Counted as type sizes and broke the 7-size budget — the design check caught it immediately | `npm run check` |
+| Service worker used stale-while-revalidate for JS | One load after every deploy runs old modules against a new API, with no content hashing to tell them apart. Now network-first with cache fallback | Reasoning from the observed stale module, then confirmed in the SW source |
+| **`/sw.js` was cacheable** | A deleted `econib-v1` cache reappeared after reload: the browser re-fetched a cached worker script and reinstalled the old worker. A cached service worker cannot be replaced, because the fix is the file being cached | Watching cache names after clearing them |
+
+The last one is the worst kind of bug: it disables its own remedy. `/sw.js` is
+now `no-cache, no-store, must-revalidate`.
+
+## Confirmed after fixes
+
+Zero overflow and no horizontal scroll across ten views at 375px. Definition
+blocks render, tabs switch, unit colours apply in both themes.

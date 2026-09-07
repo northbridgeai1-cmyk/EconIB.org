@@ -53,7 +53,29 @@
         "Circular flow of income"
       ],
       "hl": [],
-      "trap": "Opportunity cost is the NEXT BEST alternative forgone, singular — not the sum of everything you gave up."
+      "trap": "Opportunity cost is the NEXT BEST alternative forgone, singular — not the sum of everything you gave up.",
+      "terms": [
+        {
+          "term": "Scarcity",
+          "definition": "The condition in which economic resources are limited relative to society's unlimited wants."
+        },
+        {
+          "term": "Opportunity cost",
+          "definition": "The value of the next best alternative forgone when a choice is made."
+        },
+        {
+          "term": "Factors of production",
+          "definition": "The resources used to produce goods and services: land, labour, capital and entrepreneurship."
+        },
+        {
+          "term": "Production possibilities curve",
+          "definition": "A curve showing the maximum combinations of two goods an economy can produce when all resources are fully and efficiently employed."
+        },
+        {
+          "term": "Free market economy",
+          "definition": "An economic system in which resources are allocated by the price mechanism with minimal government intervention."
+        }
+      ]
     },
     {
       "code": "1.2",
@@ -69,7 +91,25 @@
       ],
       "diagrams": [],
       "hl": [],
-      "trap": "'The government should raise the minimum wage' is normative. 'Raising the minimum wage above equilibrium creates a surplus of labour' is positive. Examiners ask you to distinguish these."
+      "trap": "'The government should raise the minimum wage' is normative. 'Raising the minimum wage above equilibrium creates a surplus of labour' is positive. Examiners ask you to distinguish these.",
+      "terms": [
+        {
+          "term": "Ceteris paribus",
+          "definition": "The assumption that all other variables are held constant while the effect of one variable is examined."
+        },
+        {
+          "term": "Positive statement",
+          "definition": "A statement about what is, which can in principle be tested against evidence."
+        },
+        {
+          "term": "Normative statement",
+          "definition": "A statement about what ought to be, based on a value judgment and not testable by evidence."
+        },
+        {
+          "term": "Economic model",
+          "definition": "A simplified representation of economic behaviour that isolates the relationships being studied."
+        }
+      ]
     },
     {
       "code": "2.1",
@@ -91,7 +131,33 @@
         "Assumptions behind the law of demand, including diminishing marginal utility",
         "Linear demand functions: Qd = a - bP, and plotting them"
       ],
-      "trap": "'Demand fell' and 'quantity demanded fell' are different claims. Price changes never shift the demand curve. This single confusion costs more marks than any other in Unit 2."
+      "trap": "'Demand fell' and 'quantity demanded fell' are different claims. Price changes never shift the demand curve. This single confusion costs more marks than any other in Unit 2.",
+      "terms": [
+        {
+          "term": "Demand",
+          "definition": "The quantity of a good consumers are willing and able to buy at each price over a given period."
+        },
+        {
+          "term": "Law of demand",
+          "definition": "As the price of a good rises, the quantity demanded falls, ceteris paribus."
+        },
+        {
+          "term": "Substitute good",
+          "definition": "A good that can be consumed in place of another, so a rise in the price of one raises demand for the other."
+        },
+        {
+          "term": "Complementary good",
+          "definition": "A good consumed together with another, so a rise in the price of one lowers demand for the other."
+        },
+        {
+          "term": "Normal good",
+          "definition": "A good for which demand rises as consumer income rises."
+        },
+        {
+          "term": "Inferior good",
+          "definition": "A good for which demand falls as consumer income rises."
+        }
+      ]
     },
     {
       "code": "2.2",
@@ -112,7 +178,29 @@
         "The law of diminishing marginal returns and increasing marginal costs as the reason supply slopes up",
         "Linear supply functions: Qs = c + dP"
       ],
-      "trap": "An indirect tax shifts supply LEFT (or upward by the tax per unit) — it is a cost to the producer, not a change in demand."
+      "trap": "An indirect tax shifts supply LEFT (or upward by the tax per unit) — it is a cost to the producer, not a change in demand.",
+      "terms": [
+        {
+          "term": "Supply",
+          "definition": "The quantity of a good producers are willing and able to sell at each price over a given period."
+        },
+        {
+          "term": "Law of supply",
+          "definition": "As the price of a good rises, the quantity supplied rises, ceteris paribus."
+        },
+        {
+          "term": "Joint supply",
+          "definition": "Where producing one good automatically produces another, so a rise in output of one raises supply of the other."
+        },
+        {
+          "term": "Subsidy",
+          "definition": "A payment from government to producers that lowers their costs and increases supply."
+        },
+        {
+          "term": "Indirect tax",
+          "definition": "A tax on expenditure, paid to government by the producer, which raises costs and reduces supply."
+        }
+      ]
     },
     {
       "code": "2.3",
@@ -135,7 +223,33 @@
         "Calculating consumer and producer surplus from a diagram",
         "Solving for equilibrium algebraically from demand and supply functions"
       ],
-      "trap": "Allocative efficiency is MB = MC, not simply 'where the curves cross'. State the condition; the free mark is in the wording."
+      "trap": "Allocative efficiency is MB = MC, not simply 'where the curves cross'. State the condition; the free mark is in the wording.",
+      "terms": [
+        {
+          "term": "Market equilibrium",
+          "definition": "The price and quantity at which quantity demanded equals quantity supplied, so there is no tendency to change."
+        },
+        {
+          "term": "Excess demand",
+          "definition": "A shortage arising when price is below equilibrium and quantity demanded exceeds quantity supplied."
+        },
+        {
+          "term": "Excess supply",
+          "definition": "A surplus arising when price is above equilibrium and quantity supplied exceeds quantity demanded."
+        },
+        {
+          "term": "Consumer surplus",
+          "definition": "The difference between what consumers are willing to pay and what they actually pay."
+        },
+        {
+          "term": "Producer surplus",
+          "definition": "The difference between the price producers receive and the minimum they would accept."
+        },
+        {
+          "term": "Allocative efficiency",
+          "definition": "The outcome where resources produce the combination of goods most wanted by society, achieved where marginal benefit equals marginal cost."
+        }
+      ]
     },
     {
       "code": "2.4",
@@ -150,7 +264,25 @@
       ],
       "diagrams": [],
       "hl": [],
-      "trap": "This topic is a gift for evaluation anywhere in the course. If a question assumes rational behaviour, questioning that assumption is a legitimate and well-credited evaluative move."
+      "trap": "This topic is a gift for evaluation anywhere in the course. If a question assumes rational behaviour, questioning that assumption is a legitimate and well-credited evaluative move.",
+      "terms": [
+        {
+          "term": "Bounded rationality",
+          "definition": "The idea that decision-makers have limited information and limited capacity to process it, so they satisfice rather than optimise."
+        },
+        {
+          "term": "Choice architecture",
+          "definition": "The way choices are presented, which influences the decisions people make."
+        },
+        {
+          "term": "Nudge",
+          "definition": "A change to choice architecture that alters behaviour predictably without forbidding options or changing incentives significantly."
+        },
+        {
+          "term": "Corporate social responsibility",
+          "definition": "A firm's pursuit of social and environmental objectives alongside, or instead of, profit maximisation."
+        }
+      ]
     },
     {
       "code": "2.5",
@@ -174,7 +306,29 @@
         "Engel curves for income elastic, income inelastic and inferior goods",
         "Calculating PED and YED from data"
       ],
-      "trap": "PED is not the slope. A single straight demand curve has elastic, unit elastic and inelastic sections. Saying 'the flatter curve is more elastic' is only true when comparing at the same price and quantity."
+      "trap": "PED is not the slope. A single straight demand curve has elastic, unit elastic and inelastic sections. Saying 'the flatter curve is more elastic' is only true when comparing at the same price and quantity.",
+      "terms": [
+        {
+          "term": "Price elasticity of demand (PED)",
+          "definition": "The responsiveness of quantity demanded to a change in price, measured as the percentage change in quantity demanded divided by the percentage change in price."
+        },
+        {
+          "term": "Elastic demand",
+          "definition": "Demand where PED is greater than one, so quantity demanded changes proportionately more than price."
+        },
+        {
+          "term": "Inelastic demand",
+          "definition": "Demand where PED is less than one, so quantity demanded changes proportionately less than price."
+        },
+        {
+          "term": "Income elasticity of demand (YED)",
+          "definition": "The responsiveness of quantity demanded to a change in income, measured as the percentage change in quantity demanded divided by the percentage change in income."
+        },
+        {
+          "term": "Total revenue",
+          "definition": "Price multiplied by quantity sold."
+        }
+      ]
     },
     {
       "code": "2.6",
@@ -193,7 +347,17 @@
       "hl": [
         "Calculating PES from data"
       ],
-      "trap": "Time is the dominant determinant. Almost all supply is more elastic in the long run, and saying so is an easy evaluation point in any tax or subsidy question."
+      "trap": "Time is the dominant determinant. Almost all supply is more elastic in the long run, and saying so is an easy evaluation point in any tax or subsidy question.",
+      "terms": [
+        {
+          "term": "Price elasticity of supply (PES)",
+          "definition": "The responsiveness of quantity supplied to a change in price, measured as the percentage change in quantity supplied divided by the percentage change in price."
+        },
+        {
+          "term": "Spare capacity",
+          "definition": "Unused productive capability that allows a firm to raise output quickly, making supply more elastic."
+        }
+      ]
     },
     {
       "code": "2.7",
@@ -217,7 +381,33 @@
       "hl": [
         "Calculating from a diagram: tax revenue, subsidy cost, consumer and producer expenditure, and welfare loss"
       ],
-      "trap": "A price ceiling only binds if it is set BELOW equilibrium, and a price floor only if ABOVE. A non-binding control changes nothing — examiners set this deliberately."
+      "trap": "A price ceiling only binds if it is set BELOW equilibrium, and a price floor only if ABOVE. A non-binding control changes nothing — examiners set this deliberately.",
+      "terms": [
+        {
+          "term": "Price ceiling",
+          "definition": "A legally imposed maximum price, which causes a shortage when set below equilibrium."
+        },
+        {
+          "term": "Price floor",
+          "definition": "A legally imposed minimum price, which causes a surplus when set above equilibrium."
+        },
+        {
+          "term": "Specific tax",
+          "definition": "An indirect tax of a fixed amount per unit, shifting supply upward in parallel."
+        },
+        {
+          "term": "Ad valorem tax",
+          "definition": "An indirect tax charged as a percentage of price, so the supply curve pivots rather than shifting in parallel."
+        },
+        {
+          "term": "Tax incidence",
+          "definition": "The division of the burden of an indirect tax between consumers and producers, determined by relative elasticities."
+        },
+        {
+          "term": "Welfare loss",
+          "definition": "The loss of community surplus that occurs when output is not at the allocatively efficient level."
+        }
+      ]
     },
     {
       "code": "2.8",
@@ -240,7 +430,37 @@
       "hl": [
         "Calculating welfare loss from a diagram"
       ],
-      "trap": "Draw the welfare loss triangle and shade it. Many answers describe the externality perfectly and never show the loss, which caps criterion A and the diagram dimension of the markband."
+      "trap": "Draw the welfare loss triangle and shade it. Many answers describe the externality perfectly and never show the loss, which caps criterion A and the diagram dimension of the markband.",
+      "terms": [
+        {
+          "term": "Externality",
+          "definition": "A cost or benefit falling on a third party not involved in the transaction, causing private and social costs or benefits to diverge."
+        },
+        {
+          "term": "Marginal private cost (MPC)",
+          "definition": "The cost to the producer of supplying one more unit."
+        },
+        {
+          "term": "Marginal social cost (MSC)",
+          "definition": "The total cost to society of one more unit, including any external costs."
+        },
+        {
+          "term": "Common pool resource",
+          "definition": "A resource that is rivalrous but non-excludable, and therefore prone to over-use."
+        },
+        {
+          "term": "Tragedy of the commons",
+          "definition": "The depletion of a common pool resource because each user gains the full benefit of use while bearing only part of the cost."
+        },
+        {
+          "term": "Carbon tax",
+          "definition": "A tax per unit of carbon emitted, intended to internalise the external cost of pollution."
+        },
+        {
+          "term": "Tradable permit",
+          "definition": "A saleable licence to emit a fixed quantity of pollutant, capping total emissions while letting the market allocate them."
+        }
+      ]
     },
     {
       "code": "2.9",
@@ -254,7 +474,25 @@
       ],
       "diagrams": [],
       "hl": [],
-      "trap": "'Public good' does not mean 'good provided by the government'. Test both properties. Healthcare and education are usually merit goods, not public goods."
+      "trap": "'Public good' does not mean 'good provided by the government'. Test both properties. Healthcare and education are usually merit goods, not public goods.",
+      "terms": [
+        {
+          "term": "Public good",
+          "definition": "A good that is both non-rivalrous and non-excludable, and therefore under-provided or not provided by the free market."
+        },
+        {
+          "term": "Non-rivalrous",
+          "definition": "Consumption by one person does not reduce the amount available to others."
+        },
+        {
+          "term": "Non-excludable",
+          "definition": "It is not possible to prevent people who have not paid from consuming the good."
+        },
+        {
+          "term": "Free rider problem",
+          "definition": "The tendency for people to consume a non-excludable good without paying, so the market fails to supply it."
+        }
+      ]
     },
     {
       "code": "2.10",
@@ -272,7 +510,29 @@
       "hl": [
         "Entire topic is HL only"
       ],
-      "trap": "Adverse selection is before the deal, moral hazard after. Getting them the wrong way round is the most common HL slip here."
+      "trap": "Adverse selection is before the deal, moral hazard after. Getting them the wrong way round is the most common HL slip here.",
+      "terms": [
+        {
+          "term": "Asymmetric information",
+          "definition": "A situation where one party to a transaction has more or better information than the other."
+        },
+        {
+          "term": "Adverse selection",
+          "definition": "A market failure occurring before a transaction, where the better-informed party self-selects to the detriment of the other."
+        },
+        {
+          "term": "Moral hazard",
+          "definition": "A market failure occurring after a transaction, where one party changes behaviour because another bears the risk."
+        },
+        {
+          "term": "Signalling",
+          "definition": "Action by the informed party to credibly convey information to the uninformed party."
+        },
+        {
+          "term": "Screening",
+          "definition": "Action by the uninformed party to draw information out of the informed party."
+        }
+      ]
     },
     {
       "code": "2.11",
@@ -302,7 +562,45 @@
         "Entire topic is HL only",
         "Calculating costs, revenues and profit from data"
       ],
-      "trap": "MC cuts AC and AVC at their minimum points, always. Drawing it otherwise loses marks before the argument is read."
+      "trap": "MC cuts AC and AVC at their minimum points, always. Drawing it otherwise loses marks before the argument is read.",
+      "terms": [
+        {
+          "term": "Market power",
+          "definition": "The ability of a firm to influence the price of its product rather than take it as given."
+        },
+        {
+          "term": "Perfect competition",
+          "definition": "A market with many small firms selling a homogeneous product, free entry and exit, and perfect information, in which firms are price takers."
+        },
+        {
+          "term": "Monopoly",
+          "definition": "A market with a single seller protected by barriers to entry, able to set price."
+        },
+        {
+          "term": "Natural monopoly",
+          "definition": "An industry in which economies of scale are so large that one firm can supply the whole market at lower average cost than several."
+        },
+        {
+          "term": "Monopolistic competition",
+          "definition": "A market with many firms selling differentiated products with low barriers to entry, giving each limited price-setting power."
+        },
+        {
+          "term": "Oligopoly",
+          "definition": "A market dominated by a few interdependent firms, where each firm's decisions depend on rivals' expected responses."
+        },
+        {
+          "term": "Collusion",
+          "definition": "An agreement between firms to restrict output or fix prices in order to raise joint profits."
+        },
+        {
+          "term": "Abnormal profit",
+          "definition": "Profit above normal profit, earned when total revenue exceeds total cost including opportunity cost."
+        },
+        {
+          "term": "Productive efficiency",
+          "definition": "Producing at the lowest point of the average cost curve, so no output is wasted."
+        }
+      ]
     },
     {
       "code": "2.12",
@@ -322,7 +620,21 @@
       "hl": [
         "Entire topic is HL only"
       ],
-      "trap": "Equity is normative. Say whose conception of fairness you are applying — that acknowledgement is exactly what the top evaluation band rewards."
+      "trap": "Equity is normative. Say whose conception of fairness you are applying — that acknowledgement is exactly what the top evaluation band rewards.",
+      "terms": [
+        {
+          "term": "Merit good",
+          "definition": "A good that is under-consumed relative to what is socially desirable, because consumers undervalue its private benefits."
+        },
+        {
+          "term": "Demerit good",
+          "definition": "A good that is over-consumed relative to what is socially desirable, because consumers undervalue its private costs."
+        },
+        {
+          "term": "Equity",
+          "definition": "Fairness in the distribution of income, wealth or opportunity — a normative concept, distinct from equality."
+        }
+      ]
     },
     {
       "code": "3.1",
@@ -346,7 +658,33 @@
         "Calculating nominal and real GDP and GNI from data",
         "Calculating GDP using a price deflator"
       ],
-      "trap": "Real GDP per capita is the figure that speaks to living standards. Quoting total nominal GDP growth in a development answer is a weak argument that examiners routinely penalise."
+      "trap": "Real GDP per capita is the figure that speaks to living standards. Quoting total nominal GDP growth in a development answer is a weak argument that examiners routinely penalise.",
+      "terms": [
+        {
+          "term": "Gross domestic product (GDP)",
+          "definition": "The total market value of all final goods and services produced within a country in a given period."
+        },
+        {
+          "term": "Gross national income (GNI)",
+          "definition": "GDP plus net income from abroad, measuring income earned by a country's residents wherever it is generated."
+        },
+        {
+          "term": "Nominal GDP",
+          "definition": "GDP measured at current prices, so it rises with both output and inflation."
+        },
+        {
+          "term": "Real GDP",
+          "definition": "GDP adjusted for changes in the price level, so it reflects changes in output alone."
+        },
+        {
+          "term": "Purchasing power parity (PPP)",
+          "definition": "An exchange rate adjustment that equalises the cost of a common basket of goods, allowing fairer comparison of income between countries."
+        },
+        {
+          "term": "Business cycle",
+          "definition": "The short-run fluctuation of real GDP around its long-term growth trend, through expansion, peak, contraction and trough."
+        }
+      ]
     },
     {
       "code": "3.2",
@@ -371,7 +709,33 @@
         "Calculating the multiplier from MPC, MPS, MPT and MPM",
         "Using the multiplier to find the change in real GDP"
       ],
-      "trap": "Choose your AS model deliberately and say why. The Keynesian and new classical models give different answers about whether the economy self-corrects — that choice IS the evaluation."
+      "trap": "Choose your AS model deliberately and say why. The Keynesian and new classical models give different answers about whether the economy self-corrects — that choice IS the evaluation.",
+      "terms": [
+        {
+          "term": "Aggregate demand (AD)",
+          "definition": "The total planned spending on domestic output at each price level: consumption plus investment plus government spending plus net exports."
+        },
+        {
+          "term": "Short-run aggregate supply (SRAS)",
+          "definition": "The total output firms are willing to supply at each price level when the prices of factors of production are fixed."
+        },
+        {
+          "term": "Long-run aggregate supply (LRAS)",
+          "definition": "The level of output an economy can sustain when all resources are fully employed, independent of the price level in the monetarist model."
+        },
+        {
+          "term": "Deflationary gap",
+          "definition": "The shortfall of real output below the full employment level, caused by insufficient aggregate demand."
+        },
+        {
+          "term": "Inflationary gap",
+          "definition": "The excess of real output above the full employment level, generating upward pressure on the price level."
+        },
+        {
+          "term": "Multiplier",
+          "definition": "The factor by which an initial change in injections changes national income, determined by the marginal propensity to withdraw."
+        }
+      ]
     },
     {
       "code": "3.3",
@@ -398,7 +762,53 @@
         "Constructing a weighted price index and calculating inflation from it",
         "Calculating the unemployment rate"
       ],
-      "trap": "Deflation and disinflation are not the same. Deflation is a falling price level; disinflation is a falling rate of inflation with prices still rising."
+      "trap": "Deflation and disinflation are not the same. Deflation is a falling price level; disinflation is a falling rate of inflation with prices still rising.",
+      "terms": [
+        {
+          "term": "Unemployment rate",
+          "definition": "The number of people unemployed expressed as a percentage of the labour force."
+        },
+        {
+          "term": "Structural unemployment",
+          "definition": "Unemployment caused by a mismatch between workers' skills or location and the jobs available."
+        },
+        {
+          "term": "Frictional unemployment",
+          "definition": "Short-term unemployment while people move between jobs."
+        },
+        {
+          "term": "Cyclical unemployment",
+          "definition": "Unemployment caused by a fall in aggregate demand during a downturn, also called demand-deficient unemployment."
+        },
+        {
+          "term": "Inflation",
+          "definition": "A sustained increase in the general price level over time."
+        },
+        {
+          "term": "Deflation",
+          "definition": "A sustained decrease in the general price level over time."
+        },
+        {
+          "term": "Disinflation",
+          "definition": "A fall in the rate of inflation, where prices are still rising but more slowly."
+        },
+        {
+          "term": "Consumer price index (CPI)",
+          "definition": "A weighted index measuring the change in price of a representative basket of goods bought by a typical household."
+        },
+        {
+          "term": "Demand-pull inflation",
+          "definition": "Inflation caused by rising aggregate demand outstripping the economy's capacity to supply."
+        },
+        {
+          "term": "Cost-push inflation",
+          "definition": "Inflation caused by rising costs of production shifting short-run aggregate supply leftward."
+        },
+        {
+          "term": "Phillips curve",
+          "definition": "A curve showing the short-run inverse relationship between the rate of inflation and the rate of unemployment."
+        }
+      ]
     },
     {
       "code": "3.4",
@@ -422,7 +832,37 @@
         "Calculating the Gini coefficient conceptually from a Lorenz curve",
         "Calculating marginal and average tax rates from a tax schedule"
       ],
-      "trap": "A higher Gini coefficient means MORE inequality. The Lorenz curve bows further from the 45-degree line. Reversing this reverses your whole argument."
+      "trap": "A higher Gini coefficient means MORE inequality. The Lorenz curve bows further from the 45-degree line. Reversing this reverses your whole argument.",
+      "terms": [
+        {
+          "term": "Lorenz curve",
+          "definition": "A curve plotting the cumulative share of income against the cumulative share of population, showing the degree of income inequality."
+        },
+        {
+          "term": "Gini coefficient",
+          "definition": "A number between 0 and 1 summarising income inequality, where 0 is perfect equality and higher values mean greater inequality."
+        },
+        {
+          "term": "Absolute poverty",
+          "definition": "A condition where income is insufficient to meet basic needs such as food, shelter and clothing."
+        },
+        {
+          "term": "Relative poverty",
+          "definition": "A condition where income is substantially below the average for the society in question."
+        },
+        {
+          "term": "Progressive tax",
+          "definition": "A tax that takes a rising proportion of income as income rises."
+        },
+        {
+          "term": "Regressive tax",
+          "definition": "A tax that takes a falling proportion of income as income rises."
+        },
+        {
+          "term": "Transfer payment",
+          "definition": "A payment from government to individuals for which no good or service is exchanged, such as a pension or benefit."
+        }
+      ]
     },
     {
       "code": "3.5",
@@ -446,7 +886,33 @@
         "The money market: demand for and supply of money",
         "Quantitative easing as a tool when rates hit the lower bound"
       ],
-      "trap": "Monetary policy cannot fix cost-push inflation without cutting output. Saying so is one of the most reliable evaluation points in Unit 3."
+      "trap": "Monetary policy cannot fix cost-push inflation without cutting output. Saying so is one of the most reliable evaluation points in Unit 3.",
+      "terms": [
+        {
+          "term": "Monetary policy",
+          "definition": "Central bank action on interest rates and the money supply to influence aggregate demand."
+        },
+        {
+          "term": "Interest rate",
+          "definition": "The price of borrowing money, or the reward for saving, expressed as a percentage."
+        },
+        {
+          "term": "Expansionary monetary policy",
+          "definition": "Lowering interest rates to raise consumption and investment and so increase aggregate demand."
+        },
+        {
+          "term": "Contractionary monetary policy",
+          "definition": "Raising interest rates to reduce aggregate demand and ease inflationary pressure."
+        },
+        {
+          "term": "Liquidity trap",
+          "definition": "A situation where interest rates are so low that further cuts fail to stimulate borrowing and spending."
+        },
+        {
+          "term": "Quantitative easing",
+          "definition": "Central bank purchase of financial assets to increase the money supply when interest rates are already near zero."
+        }
+      ]
     },
     {
       "code": "3.6",
@@ -469,7 +935,29 @@
         "Calculating the multiplier and the resulting change in real GDP",
         "Using the multiplier to size a fiscal intervention"
       ],
-      "trap": "A budget deficit is a yearly flow; national debt is the accumulated stock. A government can cut its deficit while its debt still rises."
+      "trap": "A budget deficit is a yearly flow; national debt is the accumulated stock. A government can cut its deficit while its debt still rises.",
+      "terms": [
+        {
+          "term": "Fiscal policy",
+          "definition": "Government use of taxation and spending to influence aggregate demand."
+        },
+        {
+          "term": "Budget deficit",
+          "definition": "The amount by which government spending exceeds government revenue in a given year."
+        },
+        {
+          "term": "Government debt",
+          "definition": "The accumulated stock of past budget deficits still outstanding."
+        },
+        {
+          "term": "Automatic stabiliser",
+          "definition": "A feature of the tax and benefit system that dampens the business cycle without new government decisions."
+        },
+        {
+          "term": "Crowding out",
+          "definition": "The reduction in private investment caused by government borrowing raising interest rates."
+        }
+      ]
     },
     {
       "code": "3.7",
@@ -488,7 +976,25 @@
         "Supply-side policy on the Keynesian AS curve"
       ],
       "hl": [],
-      "trap": "Supply-side policies are the only ones that can lower inflation and unemployment together. That makes them a strong closing evaluation in almost any macro policy question."
+      "trap": "Supply-side policies are the only ones that can lower inflation and unemployment together. That makes them a strong closing evaluation in almost any macro policy question.",
+      "terms": [
+        {
+          "term": "Supply-side policy",
+          "definition": "Policy aimed at increasing the productive capacity of the economy by shifting long-run aggregate supply rightward."
+        },
+        {
+          "term": "Market-based supply-side policy",
+          "definition": "Policy that increases capacity by reducing government interference, such as deregulation, privatisation and lower marginal tax rates."
+        },
+        {
+          "term": "Interventionist supply-side policy",
+          "definition": "Policy that increases capacity through direct government investment in education, healthcare, infrastructure or research."
+        },
+        {
+          "term": "Human capital",
+          "definition": "The stock of skills, knowledge and health embodied in the workforce that raises productivity."
+        }
+      ]
     },
     {
       "code": "4.1",
@@ -508,7 +1014,25 @@
         "Calculating opportunity costs from output or input data to identify comparative advantage",
         "Deriving the terms of trade at which both parties gain"
       ],
-      "trap": "Comparative advantage rests on opportunity cost, not on who produces more. A country can hold absolute advantage in everything and still gain from trade."
+      "trap": "Comparative advantage rests on opportunity cost, not on who produces more. A country can hold absolute advantage in everything and still gain from trade.",
+      "terms": [
+        {
+          "term": "Absolute advantage",
+          "definition": "The ability of a country to produce more of a good than another using the same resources."
+        },
+        {
+          "term": "Comparative advantage",
+          "definition": "The ability of a country to produce a good at a lower opportunity cost than another country."
+        },
+        {
+          "term": "Terms of trade",
+          "definition": "The ratio of an index of export prices to an index of import prices, multiplied by one hundred."
+        },
+        {
+          "term": "Specialisation",
+          "definition": "Concentrating production on the goods in which a country has a comparative advantage."
+        }
+      ]
     },
     {
       "code": "4.2",
@@ -531,7 +1055,29 @@
         "Calculating from a tariff diagram: revenue, welfare loss, changes in domestic production, consumption and imports",
         "Calculating the effects of a quota and of a subsidy"
       ],
-      "trap": "On a tariff diagram there are TWO welfare loss triangles — production inefficiency and consumption inefficiency. Shading only one loses the calculation mark."
+      "trap": "On a tariff diagram there are TWO welfare loss triangles — production inefficiency and consumption inefficiency. Shading only one loses the calculation mark.",
+      "terms": [
+        {
+          "term": "Tariff",
+          "definition": "A tax on imported goods, raising their price and reducing the quantity imported."
+        },
+        {
+          "term": "Quota",
+          "definition": "A physical limit on the quantity of a good that may be imported in a given period."
+        },
+        {
+          "term": "Production subsidy",
+          "definition": "A payment to domestic producers that lowers their costs and lets them undercut imports."
+        },
+        {
+          "term": "Administrative barrier",
+          "definition": "A non-tariff obstacle to trade such as a standard, licence or customs procedure that raises the cost of importing."
+        },
+        {
+          "term": "Quota rent",
+          "definition": "The extra revenue captured by importers who hold the right to sell within a quota at the raised domestic price."
+        }
+      ]
     },
     {
       "code": "4.3",
@@ -545,7 +1091,21 @@
       ],
       "diagrams": [],
       "hl": [],
-      "trap": "The infant industry argument requires a credible exit. Protection with no timetable for removal becomes permanent inefficiency — say this and you have your evaluation."
+      "trap": "The infant industry argument requires a credible exit. Protection with no timetable for removal becomes permanent inefficiency — say this and you have your evaluation.",
+      "terms": [
+        {
+          "term": "Infant industry argument",
+          "definition": "The case for protecting a new domestic industry until it achieves the economies of scale needed to compete internationally."
+        },
+        {
+          "term": "Dumping",
+          "definition": "Selling exports below cost of production, or below the price charged at home, in order to capture a foreign market."
+        },
+        {
+          "term": "Trade war",
+          "definition": "An escalating exchange of protectionist measures between countries in retaliation for each other's barriers."
+        }
+      ]
     },
     {
       "code": "4.4",
@@ -563,7 +1123,33 @@
         "Trade creation and trade diversion"
       ],
       "hl": [],
-      "trap": "A customs union adds a common external tariff to a free trade area. Getting the ladder of stages in order is a straightforward mark you should never drop."
+      "trap": "A customs union adds a common external tariff to a free trade area. Getting the ladder of stages in order is a straightforward mark you should never drop.",
+      "terms": [
+        {
+          "term": "Free trade area",
+          "definition": "An agreement in which members remove trade barriers between themselves but keep their own external tariffs."
+        },
+        {
+          "term": "Customs union",
+          "definition": "A free trade area whose members also adopt a common external tariff against non-members."
+        },
+        {
+          "term": "Common market",
+          "definition": "A customs union that additionally allows free movement of factors of production between members."
+        },
+        {
+          "term": "Monetary union",
+          "definition": "A common market whose members share a single currency and a single monetary policy."
+        },
+        {
+          "term": "Trade creation",
+          "definition": "The replacement of higher-cost domestic production with lower-cost imports from a member of a trading bloc."
+        },
+        {
+          "term": "Trade diversion",
+          "definition": "The replacement of lower-cost imports from a non-member with higher-cost imports from a member of a trading bloc."
+        }
+      ]
     },
     {
       "code": "4.5",
@@ -584,7 +1170,29 @@
       "hl": [
         "Calculating exchange rates and converting values between currencies"
       ],
-      "trap": "Label the axes 'price of currency A in terms of currency B' and 'quantity of currency A'. Unlabelled forex axes are the fastest way to lose the diagram marks in Unit 4."
+      "trap": "Label the axes 'price of currency A in terms of currency B' and 'quantity of currency A'. Unlabelled forex axes are the fastest way to lose the diagram marks in Unit 4.",
+      "terms": [
+        {
+          "term": "Exchange rate",
+          "definition": "The price of one currency expressed in terms of another."
+        },
+        {
+          "term": "Appreciation",
+          "definition": "A rise in the value of a currency against another under a floating exchange rate system."
+        },
+        {
+          "term": "Depreciation",
+          "definition": "A fall in the value of a currency against another under a floating exchange rate system."
+        },
+        {
+          "term": "Devaluation",
+          "definition": "A deliberate reduction in the value of a currency by the authorities under a fixed exchange rate system."
+        },
+        {
+          "term": "Managed exchange rate",
+          "definition": "A system in which the rate floats but the central bank intervenes to limit its movement."
+        }
+      ]
     },
     {
       "code": "4.6",
@@ -606,7 +1214,33 @@
         "Calculating the balance on the current account and its components from data",
         "Applying the Marshall-Lerner condition"
       ],
-      "trap": "The Marshall-Lerner condition is that the sum of PED for exports and imports exceeds 1. Only then does depreciation improve the current account — which is exactly why the J-curve dips first."
+      "trap": "The Marshall-Lerner condition is that the sum of PED for exports and imports exceeds 1. Only then does depreciation improve the current account — which is exactly why the J-curve dips first.",
+      "terms": [
+        {
+          "term": "Balance of payments",
+          "definition": "A record of all transactions between residents of a country and the rest of the world over a period."
+        },
+        {
+          "term": "Current account",
+          "definition": "The part of the balance of payments recording trade in goods and services, primary income and secondary income."
+        },
+        {
+          "term": "Financial account",
+          "definition": "The part of the balance of payments recording transactions in financial assets, including direct and portfolio investment."
+        },
+        {
+          "term": "Current account deficit",
+          "definition": "A situation in which the outflows recorded on the current account exceed the inflows."
+        },
+        {
+          "term": "Marshall-Lerner condition",
+          "definition": "The condition that a depreciation improves the current account only if the sum of the price elasticities of demand for exports and imports exceeds one."
+        },
+        {
+          "term": "J-curve effect",
+          "definition": "The pattern by which a depreciation worsens the current account before improving it, as elasticities rise over time."
+        }
+      ]
     },
     {
       "code": "4.7",
@@ -623,7 +1257,17 @@
       "hl": [
         "Sustainability constraints on long-run growth"
       ],
-      "trap": "Sustainable development is broader than environmental protection — it includes economic and social sustainability. Treating it as only 'green' narrows your answer."
+      "trap": "Sustainable development is broader than environmental protection — it includes economic and social sustainability. Treating it as only 'green' narrows your answer.",
+      "terms": [
+        {
+          "term": "Sustainable development",
+          "definition": "Development that meets the needs of the present without compromising the ability of future generations to meet their own needs."
+        },
+        {
+          "term": "Sustainable Development Goals",
+          "definition": "The set of global objectives adopted by the United Nations covering poverty, health, education, equality and the environment."
+        }
+      ]
     },
     {
       "code": "4.8",
@@ -638,7 +1282,25 @@
       ],
       "diagrams": [],
       "hl": [],
-      "trap": "HDI combines income, health and education. A country can post strong GDP growth and a flat HDI — that gap is usually the most interesting thing to say."
+      "trap": "HDI combines income, health and education. A country can post strong GDP growth and a flat HDI — that gap is usually the most interesting thing to say.",
+      "terms": [
+        {
+          "term": "Economic growth",
+          "definition": "An increase in real output, usually measured as the percentage change in real GDP."
+        },
+        {
+          "term": "Economic development",
+          "definition": "A broad improvement in living standards, including health, education, income and freedom of choice."
+        },
+        {
+          "term": "Human Development Index (HDI)",
+          "definition": "A composite index combining life expectancy, education and gross national income per capita at purchasing power parity."
+        },
+        {
+          "term": "Composite indicator",
+          "definition": "A measure that combines several separate indicators into a single number."
+        }
+      ]
     },
     {
       "code": "4.9",
@@ -655,7 +1317,25 @@
         "Poverty cycle"
       ],
       "hl": [],
-      "trap": "Name the mechanism, not the label. 'Corruption is a barrier' scores little; 'corruption raises the effective cost of investment, deterring FDI and lowering the capital stock' is analysis."
+      "trap": "Name the mechanism, not the label. 'Corruption is a barrier' scores little; 'corruption raises the effective cost of investment, deterring FDI and lowering the capital stock' is analysis.",
+      "terms": [
+        {
+          "term": "Poverty cycle",
+          "definition": "A self-reinforcing pattern in which low income causes low saving and investment, which keeps productivity and income low."
+        },
+        {
+          "term": "Capital flight",
+          "definition": "The movement of financial assets out of a country, reducing the funds available for domestic investment."
+        },
+        {
+          "term": "Primary export dependence",
+          "definition": "Reliance on a narrow range of primary commodity exports, exposing a country to volatile prices and adverse terms of trade."
+        },
+        {
+          "term": "Property rights",
+          "definition": "Legally enforceable rights to own, use and transfer assets, without which investment is discouraged."
+        }
+      ]
     },
     {
       "code": "4.10",
@@ -673,7 +1353,33 @@
       ],
       "diagrams": [],
       "hl": [],
-      "trap": "There is no universally best strategy — the top band belongs to answers that say what the right strategy depends on: the country's institutions, factor endowments and stage of development."
+      "trap": "There is no universally best strategy — the top band belongs to answers that say what the right strategy depends on: the country's institutions, factor endowments and stage of development.",
+      "terms": [
+        {
+          "term": "Import substitution",
+          "definition": "A strategy of replacing imports with domestically produced goods behind protective barriers."
+        },
+        {
+          "term": "Export promotion",
+          "definition": "A strategy of growth through producing for world markets and competing internationally."
+        },
+        {
+          "term": "Foreign direct investment (FDI)",
+          "definition": "Investment by a firm in productive assets in another country, giving it lasting control."
+        },
+        {
+          "term": "Microfinance",
+          "definition": "The provision of small loans and financial services to people excluded from the conventional banking system."
+        },
+        {
+          "term": "Foreign aid",
+          "definition": "The transfer of funds or resources from one country to another on concessional terms, for humanitarian or development purposes."
+        },
+        {
+          "term": "Debt relief",
+          "definition": "The cancellation or rescheduling of a country's external debt to free resources for development."
+        }
+      ]
     }
   ]
 }

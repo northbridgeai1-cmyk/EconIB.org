@@ -1,0 +1,272 @@
+- generic [ref=f3e1]:
+  - link "Skip to content" [ref=f3e2] [cursor=pointer]:
+    - /url: "#view"
+  - banner [ref=f3e3]:
+    - generic [ref=f3e4]:
+      - link "EconIB" [ref=f3e5] [cursor=pointer]:
+        - /url: /app#/
+      - navigation "Main" [ref=f3e6]:
+        - link "Dashboard" [ref=f3e7] [cursor=pointer]:
+          - /url: "#/"
+        - link "Syllabus" [ref=f3e8] [cursor=pointer]:
+          - /url: "#/syllabus"
+        - link "IA portfolio" [ref=f3e9] [cursor=pointer]:
+          - /url: "#/ia"
+        - link "Exam answers" [ref=f3e10] [cursor=pointer]:
+          - /url: "#/papers"
+        - link "Reference" [ref=f3e11] [cursor=pointer]:
+          - /url: "#/reference"
+        - link "Grade calculator" [ref=f3e12] [cursor=pointer]:
+          - /url: "#/grades"
+      - generic [ref=f3e13]:
+        - link "Account" [ref=f3e14] [cursor=pointer]:
+          - /url: "#/account"
+        - button "Search the syllabus" [ref=f3e15] [cursor=pointer]:
+          - generic [ref=f3e16]: Search
+        - 'button "Colour theme: Dark. Click to change." [ref=f3e17] [cursor=pointer]': Dark
+  - main [active] [ref=f3e18]:
+    - generic [ref=f3e26]:
+      - navigation "Syllabus" [ref=f3e27]:
+        - generic [ref=f3e28]:
+          - generic [ref=f3e29]:
+            - generic [ref=f3e31]: Unit 1
+            - generic [ref=f3e32]: 0/2
+          - img "0 of 2 topics confident" [ref=f3e33]
+          - link "1.1 What is economics? Not rated" [ref=f3e34] [cursor=pointer]:
+            - /url: "#/syllabus/1.1"
+            - generic [ref=f3e35]: "1.1"
+            - generic [ref=f3e36]: What is economics?
+            - generic "Not rated" [ref=f3e37]
+          - link "1.2 How do economists approach the world? Not rated" [ref=f3e38] [cursor=pointer]:
+            - /url: "#/syllabus/1.2"
+            - generic [ref=f3e39]: "1.2"
+            - generic [ref=f3e40]: How do economists approach the world?
+            - generic "Not rated" [ref=f3e41]
+        - generic [ref=f3e42]:
+          - generic [ref=f3e43]:
+            - generic [ref=f3e45]: Unit 2
+            - generic [ref=f3e46]: 0/12
+          - img "0 of 12 topics confident" [ref=f3e47]
+          - link "2.1 Demand Not rated" [ref=f3e48] [cursor=pointer]:
+            - /url: "#/syllabus/2.1"
+            - generic [ref=f3e49]: "2.1"
+            - generic [ref=f3e50]: Demand
+            - generic "Not rated" [ref=f3e51]
+          - link "2.2 Supply Not rated" [ref=f3e52] [cursor=pointer]:
+            - /url: "#/syllabus/2.2"
+            - generic [ref=f3e53]: "2.2"
+            - generic [ref=f3e54]: Supply
+            - generic "Not rated" [ref=f3e55]
+          - link "2.3 Competitive market equilibrium Not rated" [ref=f3e56] [cursor=pointer]:
+            - /url: "#/syllabus/2.3"
+            - generic [ref=f3e57]: "2.3"
+            - generic [ref=f3e58]: Competitive market equilibrium
+            - generic "Not rated" [ref=f3e59]
+          - link "2.4 Critique of the maximizing behaviour of consumers and producers Not rated" [ref=f3e60] [cursor=pointer]:
+            - /url: "#/syllabus/2.4"
+            - generic [ref=f3e61]: "2.4"
+            - generic [ref=f3e62]: Critique of the maximizing behaviour of consumers and producers
+            - generic "Not rated" [ref=f3e63]
+          - link "2.5 Elasticity of demand Not rated" [ref=f3e64] [cursor=pointer]:
+            - /url: "#/syllabus/2.5"
+            - generic [ref=f3e65]: "2.5"
+            - generic [ref=f3e66]: Elasticity of demand
+            - generic "Not rated" [ref=f3e67]
+          - link "2.6 Elasticity of supply Not rated" [ref=f3e68] [cursor=pointer]:
+            - /url: "#/syllabus/2.6"
+            - generic [ref=f3e69]: "2.6"
+            - generic [ref=f3e70]: Elasticity of supply
+            - generic "Not rated" [ref=f3e71]
+          - link "2.7 Role of government in microeconomics Not rated" [ref=f3e72] [cursor=pointer]:
+            - /url: "#/syllabus/2.7"
+            - generic [ref=f3e73]: "2.7"
+            - generic [ref=f3e74]: Role of government in microeconomics
+            - generic "Not rated" [ref=f3e75]
+          - link "2.8 Market failure — externalities and common pool resources Not rated" [ref=f3e76] [cursor=pointer]:
+            - /url: "#/syllabus/2.8"
+            - generic [ref=f3e77]: "2.8"
+            - generic [ref=f3e78]: Market failure — externalities and common pool resources
+            - generic "Not rated" [ref=f3e79]
+          - link "2.9 Market failure — public goods Not rated" [ref=f3e80] [cursor=pointer]:
+            - /url: "#/syllabus/2.9"
+            - generic [ref=f3e81]: "2.9"
+            - generic [ref=f3e82]: Market failure — public goods
+            - generic "Not rated" [ref=f3e83]
+          - link "2.10 Market failure — asymmetric information Not rated" [ref=f3e84] [cursor=pointer]:
+            - /url: "#/syllabus/2.10"
+            - generic [ref=f3e85]: "2.10"
+            - generic [ref=f3e86]: Market failure — asymmetric information
+            - generic "Not rated" [ref=f3e87]
+          - link "2.11 Market failure — market power Not rated" [ref=f3e88] [cursor=pointer]:
+            - /url: "#/syllabus/2.11"
+            - generic [ref=f3e89]: "2.11"
+            - generic [ref=f3e90]: Market failure — market power
+            - generic "Not rated" [ref=f3e91]
+          - link "2.12 The market's inability to achieve equity Not rated" [ref=f3e92] [cursor=pointer]:
+            - /url: "#/syllabus/2.12"
+            - generic [ref=f3e93]: "2.12"
+            - generic [ref=f3e94]: The market's inability to achieve equity
+            - generic "Not rated" [ref=f3e95]
+        - generic [ref=f3e96]:
+          - generic [ref=f3e97]:
+            - generic [ref=f3e99]: Unit 3
+            - generic [ref=f3e100]: 0/7
+          - img "0 of 7 topics confident" [ref=f3e101]
+          - link "3.1 Measuring economic activity and illustrating its variations Not rated" [ref=f3e102] [cursor=pointer]:
+            - /url: "#/syllabus/3.1"
+            - generic [ref=f3e103]: "3.1"
+            - generic [ref=f3e104]: Measuring economic activity and illustrating its variations
+            - generic "Not rated" [ref=f3e105]
+          - link "3.2 Variations in economic activity — aggregate demand and aggregate supply Not rated" [ref=f3e106] [cursor=pointer]:
+            - /url: "#/syllabus/3.2"
+            - generic [ref=f3e107]: "3.2"
+            - generic [ref=f3e108]: Variations in economic activity — aggregate demand and aggregate supply
+            - generic "Not rated" [ref=f3e109]
+          - link "3.3 Macroeconomic objectives Not rated" [ref=f3e110] [cursor=pointer]:
+            - /url: "#/syllabus/3.3"
+            - generic [ref=f3e111]: "3.3"
+            - generic [ref=f3e112]: Macroeconomic objectives
+            - generic "Not rated" [ref=f3e113]
+          - link "3.4 Economics of inequality and poverty Not rated" [ref=f3e114] [cursor=pointer]:
+            - /url: "#/syllabus/3.4"
+            - generic [ref=f3e115]: "3.4"
+            - generic [ref=f3e116]: Economics of inequality and poverty
+            - generic "Not rated" [ref=f3e117]
+          - link "3.5 Demand management — monetary policy Not rated" [ref=f3e118] [cursor=pointer]:
+            - /url: "#/syllabus/3.5"
+            - generic [ref=f3e119]: "3.5"
+            - generic [ref=f3e120]: Demand management — monetary policy
+            - generic "Not rated" [ref=f3e121]
+          - link "3.6 Demand management — fiscal policy Not rated" [ref=f3e122] [cursor=pointer]:
+            - /url: "#/syllabus/3.6"
+            - generic [ref=f3e123]: "3.6"
+            - generic [ref=f3e124]: Demand management — fiscal policy
+            - generic "Not rated" [ref=f3e125]
+          - link "3.7 Supply-side policies Not rated" [ref=f3e126] [cursor=pointer]:
+            - /url: "#/syllabus/3.7"
+            - generic [ref=f3e127]: "3.7"
+            - generic [ref=f3e128]: Supply-side policies
+            - generic "Not rated" [ref=f3e129]
+        - generic [ref=f3e130]:
+          - generic [ref=f3e131]:
+            - generic [ref=f3e133]: Unit 4
+            - generic [ref=f3e134]: 0/10
+          - img "0 of 10 topics confident" [ref=f3e135]
+          - link "4.1 Benefits of international trade Not rated" [ref=f3e136] [cursor=pointer]:
+            - /url: "#/syllabus/4.1"
+            - generic [ref=f3e137]: "4.1"
+            - generic [ref=f3e138]: Benefits of international trade
+            - generic "Not rated" [ref=f3e139]
+          - link "4.2 Types of trade protection Not rated" [ref=f3e140] [cursor=pointer]:
+            - /url: "#/syllabus/4.2"
+            - generic [ref=f3e141]: "4.2"
+            - generic [ref=f3e142]: Types of trade protection
+            - generic "Not rated" [ref=f3e143]
+          - link "4.3 Arguments for and against trade control/protection Not rated" [ref=f3e144] [cursor=pointer]:
+            - /url: "#/syllabus/4.3"
+            - generic [ref=f3e145]: "4.3"
+            - generic [ref=f3e146]: Arguments for and against trade control/protection
+            - generic "Not rated" [ref=f3e147]
+          - link "4.4 Economic integration Not rated" [ref=f3e148] [cursor=pointer]:
+            - /url: "#/syllabus/4.4"
+            - generic [ref=f3e149]: "4.4"
+            - generic [ref=f3e150]: Economic integration
+            - generic "Not rated" [ref=f3e151]
+          - link "4.5 Exchange rates Not rated" [ref=f3e152] [cursor=pointer]:
+            - /url: "#/syllabus/4.5"
+            - generic [ref=f3e153]: "4.5"
+            - generic [ref=f3e154]: Exchange rates
+            - generic "Not rated" [ref=f3e155]
+          - link "4.6 Balance of payments Not rated" [ref=f3e156] [cursor=pointer]:
+            - /url: "#/syllabus/4.6"
+            - generic [ref=f3e157]: "4.6"
+            - generic [ref=f3e158]: Balance of payments
+            - generic "Not rated" [ref=f3e159]
+          - link "4.7 Sustainable development Not rated" [ref=f3e160] [cursor=pointer]:
+            - /url: "#/syllabus/4.7"
+            - generic [ref=f3e161]: "4.7"
+            - generic [ref=f3e162]: Sustainable development
+            - generic "Not rated" [ref=f3e163]
+          - link "4.8 Measuring development Not rated" [ref=f3e164] [cursor=pointer]:
+            - /url: "#/syllabus/4.8"
+            - generic [ref=f3e165]: "4.8"
+            - generic [ref=f3e166]: Measuring development
+            - generic "Not rated" [ref=f3e167]
+          - link "4.9 Barriers to economic growth and/or economic development Not rated" [ref=f3e168] [cursor=pointer]:
+            - /url: "#/syllabus/4.9"
+            - generic [ref=f3e169]: "4.9"
+            - generic [ref=f3e170]: Barriers to economic growth and/or economic development
+            - generic "Not rated" [ref=f3e171]
+          - link "4.10 Economic growth and/or economic development strategies Not rated" [ref=f3e172] [cursor=pointer]:
+            - /url: "#/syllabus/4.10"
+            - generic [ref=f3e173]: "4.10"
+            - generic [ref=f3e174]: Economic growth and/or economic development strategies
+            - generic "Not rated" [ref=f3e175]
+      - generic [ref=f3e176]:
+        - generic [ref=f3e177]:
+          - heading "Syllabus" [level=1] [ref=f3e178]
+          - paragraph [ref=f3e179]: 31 topics and 161 key terms for HL. Pick a topic from the tree, or start with whatever you have marked shaky.
+        - generic [ref=f3e180]:
+          - generic [ref=f3e181]:
+            - generic [ref=f3e182]:
+              - paragraph [ref=f3e183]: Unit 1
+              - heading "Introduction to economics" [level=2] [ref=f3e184]
+            - paragraph [ref=f3e185]: 2 topics · 10 teaching hours · 0 marked solid
+            - paragraph [ref=f3e187]:
+              - link "1.1" [ref=f3e188] [cursor=pointer]:
+                - /url: "#/syllabus/1.1"
+              - text: ·
+              - link "1.2" [ref=f3e189] [cursor=pointer]:
+                - /url: "#/syllabus/1.2"
+          - generic [ref=f3e190]:
+            - generic [ref=f3e191]:
+              - paragraph [ref=f3e192]: Unit 2
+              - heading "Microeconomics" [level=2] [ref=f3e193]
+            - paragraph [ref=f3e194]: 12 topics · 70 teaching hours · 0 marked solid
+            - paragraph [ref=f3e196]:
+              - link "2.1" [ref=f3e197] [cursor=pointer]:
+                - /url: "#/syllabus/2.1"
+              - text: ·
+              - link "2.2" [ref=f3e198] [cursor=pointer]:
+                - /url: "#/syllabus/2.2"
+              - text: ·
+              - link "2.3" [ref=f3e199] [cursor=pointer]:
+                - /url: "#/syllabus/2.3"
+              - text: …
+          - generic [ref=f3e200]:
+            - generic [ref=f3e201]:
+              - paragraph [ref=f3e202]: Unit 3
+              - heading "Macroeconomics" [level=2] [ref=f3e203]
+            - paragraph [ref=f3e204]: 7 topics · 75 teaching hours · 0 marked solid
+            - paragraph [ref=f3e206]:
+              - link "3.1" [ref=f3e207] [cursor=pointer]:
+                - /url: "#/syllabus/3.1"
+              - text: ·
+              - link "3.2" [ref=f3e208] [cursor=pointer]:
+                - /url: "#/syllabus/3.2"
+              - text: ·
+              - link "3.3" [ref=f3e209] [cursor=pointer]:
+                - /url: "#/syllabus/3.3"
+              - text: …
+          - generic [ref=f3e210]:
+            - generic [ref=f3e211]:
+              - paragraph [ref=f3e212]: Unit 4
+              - heading "The global economy" [level=2] [ref=f3e213]
+            - paragraph [ref=f3e214]: 10 topics · 65 teaching hours · 0 marked solid
+            - paragraph [ref=f3e216]:
+              - link "4.1" [ref=f3e217] [cursor=pointer]:
+                - /url: "#/syllabus/4.1"
+              - text: ·
+              - link "4.2" [ref=f3e218] [cursor=pointer]:
+                - /url: "#/syllabus/4.2"
+              - text: ·
+              - link "4.3" [ref=f3e219] [cursor=pointer]:
+                - /url: "#/syllabus/4.3"
+              - text: …
+        - paragraph [ref=f3e220]: Study content written by EconIB. Always check the official subject guide and your teacher's material.
+  - contentinfo [ref=f3e23]:
+    - paragraph [ref=f3e24]:
+      - link "Terms and privacy" [ref=f3e25] [cursor=pointer]:
+        - /url: /terms
+      - text: · Marks here are not official. EconIB is not affiliated with the IB.
+  - button "Back to top"

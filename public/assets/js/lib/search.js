@@ -76,7 +76,12 @@ export async function search(query) {
 /** The overlay. Opens on click or Cmd/Ctrl+K, closes on Escape. */
 export function mountSearch(host, navigate) {
   const button = el("button", { class: "search-btn", type: "button", "aria-label": "Search the syllabus" });
-  button.innerHTML = `<span>Search</span><kbd>${navigator.platform.includes("Mac") ? "⌘" : "Ctrl"}K</kbd>`;
+  // The magnifier stays at every width; the word and the shortcut are what get
+  // dropped on a narrow screen, so the control is never a blank box.
+  button.innerHTML = `<svg class="search-icon" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+      <circle cx="6" cy="6" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      <path d="M9.2 9.2 L12.5 12.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    </svg><span class="search-label">Search</span><kbd>${navigator.platform.includes("Mac") ? "⌘" : "Ctrl"}K</kbd>`;
   button.addEventListener("click", open);
   host.append(button);
 

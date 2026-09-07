@@ -81,11 +81,25 @@ const hlHours = syllabus.units.reduce((n, u) => n + u.hours.hl, 0) + 20;
 check("SL teaching hours total 150", slHours === 150, `got ${slHours}`);
 check("HL teaching hours total 240", hlHours === 240, `got ${hlHours}`);
 check("topic codes are unique", new Set(syllabus.topics.map((t) => t.code)).size === 31);
+{
+  const seen = new Map();
+  const dupes = [];
+  for (const t of syllabus.topics) for (const x of t.terms || []) {
+    if (seen.has(x.term)) dupes.push(`${x.term} in ${seen.get(x.term)} and ${t.code}`);
+    else seen.set(x.term, t.code);
+  }
+  check("no key term is defined twice", dupes.length === 0, dupes.slice(0, 3).join("; "));
+}
 check("HL-only topics are 2.10, 2.11, 2.12",
   syllabus.topics.filter((t) => t.hlOnly).map((t) => t.code).join(",") === "2.10,2.11,2.12");
 for (const t of syllabus.topics) {
   check(`topic ${t.code} has study content`, t.essentials?.length > 0);
   check(`topic ${t.code} has a trap note`, Boolean(t.trap));
+  check(`topic ${t.code} has key terms`, t.terms?.length > 0);
+  for (const term of t.terms || []) {
+    check(`term "${term.term}" (${t.code}) has a real definition`,
+      Boolean(term.definition) && term.definition.length >= 25);
+  }
   check(`topic ${t.code} code matches its unit`, t.code.split(".")[0] === String(t.unit));
 }
 

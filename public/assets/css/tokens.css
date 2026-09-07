@@ -62,6 +62,20 @@
   --bad: #A03226;         --bad-wash: #F8E9E6;
 
   --focus: #12507A;
+
+  /* --- unit colours: wayfinding, not decoration ---
+     Each syllabus unit keeps one hue everywhere it appears, so a student learns
+     "green means macro" and can find things by colour before reading a word. */
+  --u1: #6B5B95;  --u1-wash: #EFECF5;
+  --u2: #12507A;  --u2-wash: #E6EEF4;
+  --u3: #1C6B4A;  --u3-wash: #E4F0EA;
+  --u4: #A05A1E;  --u4-wash: #F7EDE2;
+
+  /* --- motion: one duration scale, one curve --- */
+  --ease: cubic-bezier(0.2, 0, 0.1, 1);
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+  --dur-slow: 260ms;
 }
 
 /* Dark redefines tokens only. No colour is defined for the first time here. */
@@ -80,6 +94,10 @@
     --warn: #D7A44E;        --warn-wash: #2C2416;
     --bad: #E58B7B;         --bad-wash: #33201D;
     --focus: #6FB2DC;
+    --u1: #A99BC9;  --u1-wash: #241F33;
+    --u2: #6FB2DC;  --u2-wash: #12283A;
+    --u3: #5FC098;  --u3-wash: #102C22;
+    --u4: #D9A166;  --u4-wash: #2E2318;
     --e-1: 0 1px 2px rgb(0 0 0 / 0.40);
     --e-2: 0 4px 16px rgb(0 0 0 / 0.50);
   }
@@ -99,6 +117,10 @@
   --warn: #D7A44E;        --warn-wash: #2C2416;
   --bad: #E58B7B;         --bad-wash: #33201D;
   --focus: #6FB2DC;
+  --u1: #A99BC9;  --u1-wash: #241F33;
+  --u2: #6FB2DC;  --u2-wash: #12283A;
+  --u3: #5FC098;  --u3-wash: #102C22;
+  --u4: #D9A166;  --u4-wash: #2E2318;
   --e-1: 0 1px 2px rgb(0 0 0 / 0.40);
   --e-2: 0 4px 16px rgb(0 0 0 / 0.50);
 }

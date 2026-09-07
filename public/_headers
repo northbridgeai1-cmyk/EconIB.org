@@ -24,8 +24,12 @@
   Cache-Control: public, max-age=0, must-revalidate
 
 # The worker must always be revalidated, or a broken one cannot be replaced.
+# The service worker script must NEVER be cached. If a stale sw.js is served,
+# the browser reinstalls the OLD worker, which then serves the old cache — and
+# there is no way to ship a fix, because the fix is the file that is cached.
+# Observed in testing: a deleted econib-v1 cache reappeared after a reload.
 /sw.js
-  Cache-Control: no-cache
+  Cache-Control: no-cache, no-store, must-revalidate
   Service-Worker-Allowed: /
 
 # Content that genuinely does not change can be cached hard.

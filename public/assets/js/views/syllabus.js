@@ -1,154 +1,269 @@
 import { mount, esc, toast, emptyState } from "../lib/dom.js";
 import { data, state, loadProgress, setProgress, topicsFor } from "../lib/store.js";
 
+/**
+ * The syllabus, laid out like a textbook rather than a settings screen: the
+ * unit tree stays on the left so a student always knows where they are, and
+ * the reading pane changes. Each unit keeps one colour everywhere it appears,
+ * so the tree can be navigated by colour before a word is read.
+ */
+
 const STATES = [
   { value: 0, label: "—", title: "Not rated" },
   { value: 1, label: "Shaky", title: "Needs work" },
   { value: 2, label: "Solid", title: "Confident" },
 ];
 
+const TABS = [
+  { id: "learn", label: "What to know" },
+  { id: "terms", label: "Key terms" },
+  { id: "exam", label: "Diagrams & traps" },
+];
+
 export default async function syllabus({ view, parts }) {
-  const [data_, progress] = await Promise.all([data.syllabus(), loadProgress()]);
-  if (parts[0]) return topicDetail(view, data_, parts[0], progress);
-  return topicList(view, data_, progress);
-}
+  const [syl, progress] = await Promise.all([data.syllabus(), loadProgress()]);
+  const mine = topicsFor(syl, state.user.level);
+  const topic = parts[0] ? syl.topics.find((t) => t.code === parts[0]) : null;
 
-function sidebar(units, activeUnit) {
-  return `<aside class="sidebar">
-    <div class="sidebar-group">
-      <h3>Units</h3>
-      ${units.map((u) => `<a href="#/syllabus" data-unit="${u.unit}"
-          aria-current="${String(u.unit) === String(activeUnit)}">${esc(u.unit)}. ${esc(u.title)}</a>`).join("")}
-    </div>
-  </aside>`;
-}
+  if (parts[0] && !topic) {
+    return mount(view, emptyState({
+      title: "No such topic",
+      body: `There is no topic ${parts[0]} in the syllabus.`,
+      action: { href: "#/syllabus", label: "Back to the syllabus" },
+    }));
+  }
+  // An SL student following a link to an HL-only topic should be told, not
+  // shown a page that is not on their course.
+  if (topic && topic.hlOnly && state.user.level !== "HL") {
+    return mount(view, emptyState({
+      title: "That topic is HL only",
+      body: `${topic.code} ${topic.title} is not on the SL course. If you take HL, change your level in your account.`,
+      action: { href: "#/syllabus", label: "Back to the syllabus" },
+    }));
+  }
 
-function topicList(view, syl, progress) {
-  const level = state.user.level;
-  const mine = topicsFor(syl, level);
-
-  const byUnit = syl.units.map((u) => ({
-    ...u,
-    topics: mine.filter((t) => t.unit === u.unit),
-  }));
+  const tab = TABS.some((t) => t.id === parts[1]) ? parts[1] : "learn";
 
   mount(view, `
+    <div class="study">
+      ${renderTree(syl, mine, progress, topic)}
+      <div>${topic ? renderTopic(topic, progress, tab) : renderOverview(syl, mine, progress)}</div>
+    </div>`);
+
+  // Widths are set here rather than inline in the markup, so the stylesheet
+  // stays the only place that knows how a bar looks.
+  for (const bar of view.querySelectorAll(".unit-progress span[data-width]")) {
+    bar.style.width = `${bar.dataset.width}%`;
+  }
+
+  view.addEventListener("click", (event) => {
+    const stateBtn = event.target.closest(".state-btn");
+    if (stateBtn) return onStateClick(stateBtn, view, syl, mine, progress, topic);
+    const tabBtn = event.target.closest(".tabs button");
+    if (tabBtn && topic) location.hash = `#/syllabus/${topic.code}/${tabBtn.dataset.tab}`;
+  });
+}
+
+// ---------------------------------------------------------------------- tree
+
+function renderTree(syl, mine, progress, current) {
+  return `<nav class="tree" aria-label="Syllabus">
+    ${syl.units.map((u) => {
+      const topics = mine.filter((t) => t.unit === u.unit);
+      if (!topics.length) return "";
+      const solid = topics.filter((t) => progress[t.code] === 2).length;
+      const pct = topics.length ? Math.round((solid / topics.length) * 100) : 0;
+      return `<div class="tree-unit" style="--unit-colour: var(--u${u.unit}); --unit-wash: var(--u${u.unit}-wash)">
+        <div class="tree-unit-head">
+          <span class="tree-dot"></span>
+          <span class="tree-unit-name">Unit ${esc(u.unit)}</span>
+          <span class="tree-unit-count">${esc(solid)}/${esc(topics.length)}</span>
+        </div>
+        <div class="unit-progress" role="img" aria-label="${esc(solid)} of ${esc(topics.length)} topics confident">
+          <span data-width="${pct}"></span>
+        </div>
+        ${topics.map((t) => `
+          <a href="#/syllabus/${esc(t.code)}" ${current?.code === t.code ? 'aria-current="page"' : ""}>
+            <span class="tree-code">${esc(t.code)}</span>
+            <span>${esc(t.title)}</span>
+            <span class="tree-state" data-state="${esc(progress[t.code] || 0)}"
+                  title="${esc(STATES[progress[t.code] || 0].title)}"></span>
+          </a>`).join("")}
+      </div>`;
+    }).join("")}
+  </nav>`;
+}
+
+// ------------------------------------------------------------------ overview
+
+function renderOverview(syl, mine, progress) {
+  const solid = mine.filter((t) => progress[t.code] === 2).length;
+  const shaky = mine.filter((t) => progress[t.code] === 1).length;
+  const terms = mine.reduce((n, t) => n + (t.terms?.length || 0), 0);
+
+  return `
     <div class="view-head">
       <h1>Syllabus</h1>
       <p class="lede">
-        ${esc(mine.length)} topics for ${esc(level)}${level === "SL" ? " — the three HL-only topics are hidden" : ""}.
-        Rate each one and the list becomes a revision order.
+        ${esc(mine.length)} topics and ${esc(terms)} key terms for ${esc(state.user.level)}${
+          state.user.level === "SL" ? " — the three HL-only topics are hidden" : ""}.
+        Pick a topic from the tree, or start with whatever you have marked shaky.
       </p>
     </div>
-    ${byUnit.map((u) => `
-      <section class="mt-4">
-        <h2>Unit ${esc(u.unit)} · ${esc(u.title)}</h2>
-        <p class="small">${esc(u.topics.length)} topics · ${esc(level === "HL" ? u.hours.hl : u.hours.sl)} teaching hours</p>
-        <div class="card card-tight mt-4">
-          ${u.topics.map((t) => topicRow(t, progress[t.code] || 0)).join("")}
-        </div>
-      </section>`).join("")}
-  `);
 
-  view.addEventListener("click", onStateClick, { once: false });
+    ${shaky ? `<div class="note note-warn">
+      <b>Your revision list</b>
+      <p>${esc(shaky)} topic${shaky === 1 ? "" : "s"} marked shaky:
+      ${mine.filter((t) => progress[t.code] === 1).map((t) =>
+        `<a href="#/syllabus/${esc(t.code)}">${esc(t.code)}</a>`).join(", ")}.</p>
+    </div>` : ""}
+
+    <div class="grid-2 mt-4">
+      ${syl.units.map((u) => {
+        const topics = mine.filter((t) => t.unit === u.unit);
+        if (!topics.length) return "";
+        const done = topics.filter((t) => progress[t.code] === 2).length;
+        return `<section class="card" style="--unit-colour: var(--u${u.unit}); --unit-wash: var(--u${u.unit}-wash)">
+          <div class="unit-banner">
+            <p class="eyebrow">Unit ${esc(u.unit)}</p>
+            <h2>${esc(u.title)}</h2>
+          </div>
+          <p class="small">
+            ${esc(topics.length)} topics · ${esc(state.user.level === "HL" ? u.hours.hl : u.hours.sl)} teaching hours ·
+            ${esc(done)} marked solid
+          </p>
+          <div class="unit-progress"><span data-width="${topics.length ? Math.round((done / topics.length) * 100) : 0}"></span></div>
+          <p class="small mt-4">${topics.slice(0, 3).map((t) =>
+            `<a href="#/syllabus/${esc(t.code)}">${esc(t.code)}</a>`).join(" · ")}${topics.length > 3 ? " …" : ""}</p>
+        </section>`;
+      }).join("")}
+    </div>
+
+    <p class="small mt-4">
+      Study content written by EconIB. Always check the official subject guide and
+      your teacher's material.
+    </p>`;
 }
 
-function topicRow(topic, current) {
-  return `<div class="topic" data-topic="${esc(topic.code)}">
-      <span class="topic-code">${esc(topic.code)}</span>
-      <span class="topic-title">
-        <a href="#/syllabus/${esc(topic.code)}">${esc(topic.title)}</a>
-        ${topic.hlOnly ? ' <span class="chip chip-accent">HL only</span>' : ""}
-      </span>
-      <span class="state-btns">
-        ${STATES.map((s) => `<button class="state-btn" data-state="${s.value}" title="${esc(s.title)}"
-            aria-pressed="${s.value === current}"
-            aria-label="${esc(topic.code)}: ${esc(s.title)}">${esc(s.label)}</button>`).join("")}
-      </span>
-    </div>`;
+// --------------------------------------------------------------------- topic
+
+function renderTopic(topic, progress, tab) {
+  const current = progress[topic.code] || 0;
+  const unitVars = `--unit-colour: var(--u${topic.unit}); --unit-wash: var(--u${topic.unit}-wash)`;
+
+  return `<div style="${unitVars}">
+    <div class="unit-banner">
+      <p class="eyebrow"><a href="#/syllabus">Syllabus</a> · Unit ${esc(topic.unit)}</p>
+      <h1>${esc(topic.code)} ${esc(topic.title)}</h1>
+    </div>
+
+    <div class="row-between mb-4">
+      <div class="row">
+        <span class="small">How confident are you?</span>
+        <span class="state-btns" data-topic="${esc(topic.code)}">
+          ${STATES.map((s) => `<button class="state-btn" data-state="${s.value}"
+              aria-pressed="${s.value === current}" title="${esc(s.title)}"
+              aria-label="${esc(topic.code)}: ${esc(s.title)}">${esc(s.label)}</button>`).join("")}
+        </span>
+      </div>
+      ${topic.hlOnly ? '<span class="chip chip-accent">HL only</span>' : ""}
+    </div>
+
+    <div class="tabs" role="tablist">
+      ${TABS.map((t) => `<button role="tab" data-tab="${t.id}"
+          aria-selected="${t.id === tab}">${esc(t.label)}${
+            t.id === "terms" ? ` <span class="tree-unit-count">${esc(topic.terms?.length || 0)}</span>` : ""}</button>`).join("")}
+    </div>
+
+    ${tab === "learn" ? learnPanel(topic) : tab === "terms" ? termsPanel(topic) : examPanel(topic)}
+  </div>`;
 }
 
-async function onStateClick(event) {
-  const button = event.target.closest(".state-btn");
-  if (!button) return;
-  const row = button.closest(".topic");
-  const code = row.dataset.topic;
+function learnPanel(topic) {
+  const showHl = topic.hl?.length && state.user.level === "HL";
+  return `
+    <section class="prose">
+      <h2>What you need to know</h2>
+      <ul>${topic.essentials.map((e) => `<li>${esc(e)}</li>`).join("")}</ul>
+      ${showHl ? `<h2 class="mt-4">HL extension</h2>
+        <ul>${topic.hl.map((e) => `<li>${esc(e)}</li>`).join("")}</ul>` : ""}
+    </section>`;
+}
+
+function termsPanel(topic) {
+  if (!topic.terms?.length) {
+    return `<div class="empty"><h3>No key terms yet for this topic</h3>
+      <p>Terms are being written for every topic.</p></div>`;
+  }
+  return `
+    <section>
+      <p class="lede">
+        Criterion B of the IA is terminology, and every Paper 1 part (a) opens by
+        defining. These are the definitions worth knowing word for word.
+      </p>
+      <dl class="mt-4">
+        ${topic.terms.map((t) => `<div class="define">
+          <span class="define-label">Definition</span>
+          <dt>${esc(t.term)}</dt>
+          <dd>${esc(t.definition)}</dd>
+        </div>`).join("")}
+      </dl>
+    </section>`;
+}
+
+function examPanel(topic) {
+  return `
+    <section>
+      ${topic.diagrams.length ? `
+        <h2>Diagrams you must be able to draw</h2>
+        <ul class="prose">${topic.diagrams.map((d) => `<li>${esc(d)}</li>`).join("")}</ul>`
+        : `<div class="empty"><h3>No diagram is required for this topic</h3>
+             <p>Not every topic is examined with a diagram. This one is not.</p></div>`}
+
+      <div class="note note-warn mt-4">
+        <b>Where marks go missing</b>
+        <p>${esc(topic.trap)}</p>
+      </div>
+    </section>`;
+}
+
+// -------------------------------------------------------------------- rating
+
+async function onStateClick(button, view, syl, mine, progress, topic) {
+  const holder = button.closest("[data-topic]") || button.closest(".topic");
+  const code = holder?.dataset.topic;
+  if (!code) return;
   const next = Number(button.dataset.state);
 
-  const buttons = [...row.querySelectorAll(".state-btn")];
+  const buttons = [...holder.querySelectorAll(".state-btn")];
   const previous = buttons.map((b) => b.getAttribute("aria-pressed"));
   for (const b of buttons) b.setAttribute("aria-pressed", String(Number(b.dataset.state) === next));
 
+  // Update the tree dot and the unit bar straight away, so rating feels
+  // immediate rather than waiting on the round trip.
+  const dot = view.querySelector(`.tree a[href="#/syllabus/${CSS.escape(code)}"] .tree-state`);
+  if (dot) dot.dataset.state = String(next);
+  progress[code] = next;
+  repaintUnitBars(view, syl, mine, progress);
+
   try {
     await setProgress(code, next);
-  } catch (err) {
-    // Put the buttons back rather than leaving the screen showing a state the
-    // server never accepted.
+  } catch {
     buttons.forEach((b, i) => b.setAttribute("aria-pressed", previous[i]));
     toast("Could not save that. Check your connection.", "error");
   }
 }
 
-function topicDetail(view, syl, code, progress) {
-  const topic = syl.topics.find((t) => t.code === code);
-  if (!topic) {
-    return mount(view, emptyState({
-      title: "No such topic",
-      body: `There is no topic ${code} in the syllabus.`,
-      action: { href: "#/syllabus", label: "Back to the syllabus" },
-    }));
-  }
-  const unit = syl.units.find((u) => u.unit === topic.unit);
-  const current = progress[topic.code] || 0;
-
-  mount(view, `
-    <div class="view-head">
-      <p class="eyebrow"><a href="#/syllabus">Syllabus</a> · Unit ${esc(topic.unit)} ${esc(unit.title)}</p>
-      <h1>${esc(topic.code)} ${esc(topic.title)}</h1>
-      ${topic.hlOnly ? '<p><span class="chip chip-accent">HL only</span></p>' : ""}
-    </div>
-
-    <div class="split">
-      <aside class="sidebar">
-        <div class="sidebar-group">
-          <h3>Your rating</h3>
-          <div class="topic" data-topic="${esc(topic.code)}">
-            <span class="state-btns">
-              ${STATES.map((s) => `<button class="state-btn" data-state="${s.value}"
-                  aria-pressed="${s.value === current}" title="${esc(s.title)}">${esc(s.label)}</button>`).join("")}
-            </span>
-          </div>
-        </div>
-        ${topic.diagrams.length ? `
-        <div class="sidebar-group">
-          <h3>Diagrams to know</h3>
-          <ul class="small">${topic.diagrams.map((d) => `<li>${esc(d)}</li>`).join("")}</ul>
-        </div>` : ""}
-      </aside>
-
-      <div>
-        <section class="card">
-          <h2>What you need to know</h2>
-          <ul>${topic.essentials.map((e) => `<li>${esc(e)}</li>`).join("")}</ul>
-        </section>
-
-        ${topic.hl.length && state.user.level === "HL" ? `
-        <section class="card mt-4">
-          <h2>HL extension</h2>
-          <ul>${topic.hl.map((e) => `<li>${esc(e)}</li>`).join("")}</ul>
-        </section>` : ""}
-
-        <div class="note note-warn mt-4">
-          <b>Where marks go missing</b>
-          <p>${esc(topic.trap)}</p>
-        </div>
-
-        <p class="small mt-4">
-          Study content written by EconIB. Always check the official subject guide
-          and your teacher's material.
-        </p>
-      </div>
-    </div>
-  `);
-  view.addEventListener("click", onStateClick);
+function repaintUnitBars(view, syl, mine, progress) {
+  syl.units.forEach((u, i) => {
+    const topics = mine.filter((t) => t.unit === u.unit);
+    if (!topics.length) return;
+    const solid = topics.filter((t) => progress[t.code] === 2).length;
+    const unit = view.querySelectorAll(".tree-unit")[i];
+    if (!unit) return;
+    const bar = unit.querySelector(".unit-progress span");
+    const count = unit.querySelector(".tree-unit-count");
+    if (bar) bar.style.width = `${Math.round((solid / topics.length) * 100)}%`;
+    if (count) count.textContent = `${solid}/${topics.length}`;
+  });
 }

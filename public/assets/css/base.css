@@ -43,7 +43,9 @@ li { margin-bottom: var(--s-1); max-width: 68ch; }
   border: 1px solid var(--rule); border-radius: var(--r-md);
   background: var(--raised); color: var(--ink);
   cursor: pointer; text-decoration: none;
-  transition: transform 90ms ease, background-color 90ms ease, border-color 90ms ease;
+  transition: transform var(--motion-fast) var(--ease),
+              background-color var(--motion-fast) var(--ease),
+              border-color var(--motion-fast) var(--ease);
 }
 .btn:hover:not(:disabled) { border-color: var(--muted); }
 .btn:active:not(:disabled) { transform: scale(0.97); }
@@ -80,7 +82,7 @@ input[aria-invalid="true"], textarea[aria-invalid="true"] { border-color: var(--
 .chip {
   display: inline-block; font-family: var(--f-mono); font-size: var(--t-xs);
   font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
-  padding: 2px 7px; border-radius: var(--r-sm); white-space: nowrap;
+  padding: 2px 9px; border-radius: var(--r-full); white-space: nowrap;
   background: var(--sunken); color: var(--muted);
 }
 .chip-good { background: var(--good-wash); color: var(--good); }
@@ -145,9 +147,68 @@ details[open] summary { color: var(--ink); margin-bottom: var(--s-2); }
   .grid-2, .grid-3 { grid-template-columns: 1fr; }
 }
 
+/* --- skip to content: first thing a keyboard reaches, invisible until focused */
+.skip-link {
+  position: absolute; left: var(--s-3); top: -100px; z-index: 100;
+  background: var(--accent); color: var(--on-accent);
+  padding: var(--s-2) var(--s-4); border-radius: var(--r-md);
+  font-size: var(--t-sm); font-weight: 500; text-decoration: none;
+  transition: top var(--motion) var(--ease);
+}
+.skip-link:focus { top: var(--s-3); }
+
+/* --- entrance: a short, small rise. Enough to signal "this is new", not enough
+   to make navigating the app feel slow. --- */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+.enter { animation: rise var(--motion-slow) var(--ease-out) both; }
+
+/* Staggered only for short lists; a long list would finish late and read as lag. */
+.enter-stagger > * { animation: rise var(--motion-slow) var(--ease-out) both; }
+.enter-stagger > *:nth-child(1) { animation-delay: 0ms; }
+.enter-stagger > *:nth-child(2) { animation-delay: 40ms; }
+.enter-stagger > *:nth-child(3) { animation-delay: 80ms; }
+.enter-stagger > *:nth-child(n+4) { animation-delay: 120ms; }
+
+/* --- back to top: only appears once there is a page worth returning up --- */
+.to-top {
+  position: fixed; right: var(--s-5); bottom: var(--s-5); z-index: 30;
+  width: 40px; height: 40px; display: grid; place-items: center;
+  background: var(--raised); color: var(--muted);
+  border: 1px solid var(--rule); border-radius: var(--r-md);
+  box-shadow: var(--e-1); cursor: pointer;
+  opacity: 0; pointer-events: none;
+  transition: opacity var(--motion) var(--ease), transform var(--motion) var(--ease);
+  transform: translateY(6px);
+}
+.to-top.is-visible { opacity: 1; pointer-events: auto; transform: none; }
+.to-top:hover { color: var(--ink); border-color: var(--muted); }
+.to-top:active { transform: scale(0.94); }
+
 @media (prefers-reduced-motion: reduce) {
-  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
   .btn:active:not(:disabled) { transform: none; }
+  .enter, .enter-stagger > * { animation: none; opacity: 1; transform: none; }
+}
+
+/* --- print: a marked commentary is something students take to a teacher --- */
+@media print {
+  .masthead, .to-top, .skip-link, #toast-host, .offline,
+  .state-btns, .btn, form .field-hint, .sidebar { display: none !important; }
+  body { background: #fff; color: #000; font-size: 11pt; }
+  .card, .note { border: 1px solid #bbb; box-shadow: none; break-inside: avoid; }
+  .criterion { break-inside: avoid; }
+  .split { display: block; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 9pt; color: #555; }
+  .chip { border: 1px solid #999; }
+  h1, h2, h3 { break-after: avoid; }
 }
 
 /* Touch sizing is gated on the pointer, not the viewport: a narrow desktop
@@ -155,7 +216,11 @@ details[open] summary { color: var(--ink); margin-bottom: var(--s-2); }
    add no specificity — anything after them would win. */
 @media (pointer: coarse) {
   .btn { min-height: 44px; }
-  .btn-sm { min-height: 38px; }
+  .btn-sm { min-height: 40px; }
+  .state-btn { min-height: 44px; min-width: 52px; }
+  .pw-toggle { min-height: 40px; }
+  .brand { display: inline-flex; align-items: center; min-height: 44px; }
+  .nav a { min-height: 44px; display: inline-flex; align-items: center; }
   input[type="text"], input[type="email"], input[type="password"], input[type="date"],
   input[type="number"], input[type="url"], select { min-height: 44px; }
   summary { padding: var(--s-2) 0; }

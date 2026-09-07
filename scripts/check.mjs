@@ -127,7 +127,12 @@ check("no colour is defined only in a dark block", orphan.length === 0, orphan.j
 for (const file of ["public/assets/css/base.css", "public/assets/css/app.css"]) {
   let css;
   try { css = text(file); } catch { continue; }
-  const literalSizes = [...css.matchAll(/font-size:\s*([^;]+);/g)]
+  // The screen type scale must come from tokens. Print is a different medium
+  // with physical units, so pt inside an @media print block is allowed — the
+  // rule exists to stop the SCREEN scale accumulating, not to ban print CSS.
+  const printBlocks = [...css.matchAll(/@media print\s*\{[\s\S]*?\n\}/g)].map((m) => m[0]).join("\n");
+  const screenCss = printBlocks ? css.replace(printBlocks, "") : css;
+  const literalSizes = [...screenCss.matchAll(/font-size:\s*([^;]+);/g)]
     .map((m) => m[1].trim())
     .filter((v) => !v.startsWith("var(") && v !== "inherit" && !v.endsWith("em"));
   check(`${path.basename(file)} uses only token font sizes`, literalSizes.length === 0, [...new Set(literalSizes)].join(", "));

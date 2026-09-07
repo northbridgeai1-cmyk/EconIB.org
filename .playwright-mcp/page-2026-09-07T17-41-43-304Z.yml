@@ -1,0 +1,55 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "EconIB" [ref=e4] [cursor=pointer]:
+        - /url: /
+      - navigation "Main"
+      - generic [ref=e5]:
+        - link "Sign in" [ref=e6] [cursor=pointer]:
+          - /url: /login
+        - link "Create account" [ref=e7] [cursor=pointer]:
+          - /url: /login?mode=signup
+  - main [ref=e8]:
+    - generic [ref=e9]:
+      - paragraph [ref=e10]: IB Diploma Economics · SL and HL · First assessment 2022
+      - heading "Find out which criterion is costing you the grade." [level=1] [ref=e11]
+      - paragraph [ref=e12]: EconIB marks your IA commentaries and exam answers against each assessment criterion separately, then tells you which one is holding the rest down and what is missing from it. Not a score out of 45 with no explanation.
+      - generic [ref=e13]:
+        - link "Create an account" [ref=e14] [cursor=pointer]:
+          - /url: /login?mode=signup
+        - link "Sign in" [ref=e15] [cursor=pointer]:
+          - /url: /login
+    - generic [ref=e17]:
+      - heading "The IA portfolio" [level=2] [ref=e18]
+      - generic [ref=e19]:
+        - paragraph [ref=e20]: Three commentaries, marked one criterion at a time out of 14, plus criterion F across the portfolio for 45 in total.
+        - paragraph [ref=e21]:
+          - strong [ref=e22]: Criterion F is not guessed.
+          - text: Whether your three articles use different units, come from different sources, and were each published within a year of writing is decided by dates and metadata, so EconIB computes it — the same answer every time. It also catches the expensive mistake of reusing a key concept across two commentaries, which scores zero on criterion D.
+    - generic [ref=e24]:
+      - heading "Exam answers" [level=2] [ref=e25]
+      - generic [ref=e26]:
+        - paragraph [ref=e27]: Paper 1 part (a) and (b), Paper 2 part (g), and Paper 3 part (b) at HL — the four parts of the exam that are marked on markbands rather than a markscheme.
+        - paragraph [ref=e28]: "Each is scored on its separate strands: theory, terminology, diagrams, evaluation, use of the data, real-world example. A markband answer is held down by its weakest strand, not lifted by its strongest, so EconIB names the strand that is capping you and shows the rung above it."
+    - generic [ref=e30]:
+      - heading "The syllabus" [level=2] [ref=e31]
+      - paragraph [ref=e33]: All 31 topics across the four units, with the HL-only material marked, the diagrams each topic expects you to be able to draw, and the mistake most often made in it. Mark each topic as shaky or confident and the list tells you where the gaps are.
+    - generic [ref=e35]:
+      - heading "What it will not do" [level=2] [ref=e36]
+      - generic [ref=e37]:
+        - paragraph [ref=e38]:
+          - strong [ref=e39]: EconIB will not write your coursework.
+          - text: It has no feature that drafts a sentence for you to paste in, and the marker is instructed never to supply replacement prose. It tells you what is missing and what it needs to do; writing it is your job.
+        - paragraph [ref=e40]: This is not squeamishness. Your IA is assessed work that must be your own, and a tool that writes it for you is a tool for failing the diploma the expensive way.
+    - generic [ref=e42]:
+      - heading "Honest limits" [level=2] [ref=e43]
+      - generic [ref=e44]:
+        - paragraph [ref=e45]: EconIB is not the IB and its marks are not official. A mark here is a considered second opinion to work from, not a prediction — your teacher marks your IA and a moderator samples it.
+        - paragraph [ref=e46]: The marker reads text only. It cannot see an attached diagram, so criterion A is judged on how your writing refers to and explains one. Grade boundaries move every session, so EconIB shows your weighted percentage and does not invent a grade.
+        - paragraph [ref=e47]: EconIB is an independent study tool. It is not affiliated with, endorsed by, or connected to the International Baccalaureate Organization. All assessment guidance here is written by EconIB; always check the official subject guide and your teacher.
+  - contentinfo [ref=e48]:
+    - paragraph [ref=e49]:
+      - text: EconIB ·
+      - link "Sign in" [ref=e50] [cursor=pointer]:
+        - /url: /login
+      - text: · Built for IB1 and IB2 Economics students.

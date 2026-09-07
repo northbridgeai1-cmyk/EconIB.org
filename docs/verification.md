@@ -174,3 +174,73 @@ re-tested with a password containing both spaces and quote characters.
 `shared/email.js` is not HTTPS, or points at localhost. Both files were pointed
 at local mocks during this testing; the check exists so that a debugging patch
 cannot reach a deployment.
+
+---
+
+# Round four: Playwright audit, design system, offline
+
+## Pass / fail
+
+| Check | Result |
+|---|---|
+| All 10 app views render, no dead links, no stranded skeletons | PASS |
+| Overflow at 375 / 768 / 1200px across every view | PASS — zero elements, zero horizontal page scroll |
+| Card overlap at 768px | PASS — none |
+| Signup: submit empty | **FAIL → fixed** |
+| Signup: submit garbage | PASS |
+| Signup: submit correct | PASS |
+| Touch targets ≥ 44px under a coarse pointer | **FAIL → fixed** |
+| Skip-to-content link | **FAIL → added** |
+| Delete account button | PASS — removes user, sessions and commentaries |
+| Console JS errors | PASS — only expected 4xx network log lines, no script errors |
+
+### The empty-submit failure
+
+Submitting the signup form empty showed **nothing at all** — no field error, no
+banner. The server returned `field: "Email"` (capitalised, a display label)
+while the input is `id="email"`, so the client set `errors["Email"]`, the
+template looked for `errors.email`, and the message was silently swallowed.
+
+Fixed twice over: the validators now return the form's own field name, and the
+client only attaches an error to a field that exists on the form, falling back
+to a banner otherwise. An error can no longer disappear because a name did not
+match.
+
+### The touch-target failure
+
+`.state-btn` (the syllabus confidence buttons — the most-tapped control on
+mobile) measured 26px, and `.pw-toggle` 27px. Both were missing from the
+`pointer: coarse` block, so a real phone got desktop-sized targets. Now 44px and
+40px, along with the brand and nav links.
+
+## Design system: structure from DESIGN.md, none of the skin
+
+Applied: the radius tiering (chips 4px, buttons and inputs 8px, cards 12px, pill
+reserved for status badges only — never buttons), and a motion scale of three
+durations and two curves in place of the single hard-coded 90ms.
+
+Deliberately not applied: its colours, its typeface, its 80px hero and 96px
+section rhythm, and its 14-size type scale. That scale is built for a marketing
+page; this is a dense tool anchored on a 15px body, and adopting the anchor
+rather than the ratios is exactly how a design system wrecks an application.
+The type scale stays at seven sizes and the check still enforces it.
+
+## Offline
+
+A versioned service worker precaches the shell and the syllabus data.
+
+- `/api/` is **never** cached. Those responses contain a student's coursework
+  and marks, and caching them would leave personal work in the browser cache
+  after sign-out on a shared school computer.
+- HTML is network-first, so a cached shell can never run against a newer API.
+- On activate, every cache but the current version is deleted.
+- `/sw.js` is served `no-cache`, or a broken worker could not be replaced.
+
+## Verified in the browser after the changes
+
+Skip link present and hidden at -100px until focused; theme toggle cycles
+Light → Dark → Auto and stamps `data-theme`; search opens on click and ⌘K,
+auto-focuses, matches topics by code and title, command terms and key concepts,
+shows distinct empty and too-short states, moves with arrow keys and navigates
+on Enter; back-to-top mounts; entrance animation applies per navigation; motion
+resolves to 170ms and card radius to 12px; the service worker registers.

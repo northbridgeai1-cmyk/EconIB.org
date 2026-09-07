@@ -20,11 +20,21 @@
   --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px;
   --s-5: 24px; --s-6: 32px; --s-7: 48px; --s-8: 64px;
 
-  /* --- radii: 4 --- */
-  --r-sm: 2px;
-  --r-md: 4px;
-  --r-lg: 8px;
-  --r-circle: 50%;
+  /* --- radii: 4. Buttons sit at 8px, cards at 12px, and the pill is reserved
+     for status badges — a pill button is one of the surest AI-site tells. --- */
+  --r-sm: 4px;    /* chips, code, small tags */
+  --r-md: 8px;    /* buttons, inputs */
+  --r-lg: 12px;   /* cards, panels */
+  --r-full: 9999px; /* status badges ONLY, never buttons */
+
+  /* --- motion: 3 durations, 2 curves ---
+     Anything faster than ~120ms reads as a jump; anything past ~260ms reads as
+     lag. Entrances ease out; state changes use the standard curve. --- */
+  --motion-fast: 120ms;
+  --motion: 170ms;
+  --motion-slow: 260ms;
+  --ease: cubic-bezier(0.2, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 
   /* --- elevation: 2 --- */
   --e-1: 0 1px 2px rgb(20 25 30 / 0.06);

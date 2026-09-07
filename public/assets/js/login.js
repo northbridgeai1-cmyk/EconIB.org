@@ -131,12 +131,12 @@ async function submit(event) {
   } catch (err) {
     const errors = {};
     let banner = err instanceof ApiError ? err.message : "Something went wrong. Try again.";
-    if (err instanceof ApiError && err.status === 400 && err.code) {
-      const field = errorField(err);
-      if (field) { errors[field] = err.message; banner = null; }
-    }
-    if (err instanceof ApiError && err.code === "email_taken") {
-      errors.email = err.message;
+    const field = err instanceof ApiError ? errorField(err) : null;
+    // Only attach to a field that actually exists on this form. Attaching to a
+    // name with no matching input silently swallowed the message — an empty
+    // submit showed nothing at all until this was caught by testing.
+    if (field && form.querySelector(`[name="${CSS.escape(field)}"]`)) {
+      errors[field] = err.message;
       banner = null;
     }
     const kept = { ...values };
@@ -148,7 +148,7 @@ async function submit(event) {
 function errorField(err) {
   // The server names the offending field; fall back to a banner if it did not.
   return err.field || (err.code === "weak_password" ? "password"
-    : err.code === "bad_email" ? "email" : null);
+    : err.code === "bad_email" || err.code === "email_taken" ? "email" : null);
 }
 
 render(mode === "signup" ? { yearGroup: "IB1", level: "SL" } : {});

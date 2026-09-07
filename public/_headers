@@ -7,6 +7,7 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
   Cross-Origin-Opener-Policy: same-origin
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
   Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'; object-src 'none'
 
 # There is no build step, so filenames carry no content hash and a long cache
@@ -21,6 +22,11 @@
 
 /assets/data/*
   Cache-Control: public, max-age=0, must-revalidate
+
+# The worker must always be revalidated, or a broken one cannot be replaced.
+/sw.js
+  Cache-Control: no-cache
+  Service-Worker-Allowed: /
 
 # Content that genuinely does not change can be cached hard.
 /assets/favicon.svg

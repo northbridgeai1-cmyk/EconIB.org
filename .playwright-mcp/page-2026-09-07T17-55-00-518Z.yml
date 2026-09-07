@@ -1,0 +1,266 @@
+- generic [ref=f4e1]:
+  - banner [ref=f4e2]:
+    - generic [ref=f4e3]:
+      - link "EconIB" [ref=f4e4] [cursor=pointer]:
+        - /url: /app#/
+      - navigation "Main" [ref=f4e5]:
+        - link "Dashboard" [ref=f4e6] [cursor=pointer]:
+          - /url: "#/"
+        - link "Syllabus" [ref=f4e7] [cursor=pointer]:
+          - /url: "#/syllabus"
+        - link "IA portfolio" [ref=f4e8] [cursor=pointer]:
+          - /url: "#/ia"
+        - link "Exam answers" [ref=f4e9] [cursor=pointer]:
+          - /url: "#/papers"
+        - link "Reference" [ref=f4e10] [cursor=pointer]:
+          - /url: "#/reference"
+        - link "Grade calculator" [ref=f4e11] [cursor=pointer]:
+          - /url: "#/grades"
+      - generic [ref=f4e12]:
+        - generic [ref=f4e13]: IB1 · SL
+        - link "Account" [ref=f4e14] [cursor=pointer]:
+          - /url: "#/account"
+  - main [active] [ref=f4e15]:
+    - generic [ref=f4e16]:
+      - heading "Syllabus" [level=1] [ref=f4e17]
+      - paragraph [ref=f4e18]: 28 topics for SL — the three HL-only topics are hidden. Rate each one and the list becomes a revision order.
+    - generic [ref=f4e19]:
+      - heading "Unit 1 · Introduction to economics" [level=2] [ref=f4e20]
+      - paragraph [ref=f4e21]: 2 topics · 10 teaching hours
+      - generic [ref=f4e22]:
+        - generic [ref=f4e23]:
+          - generic [ref=f4e24]: "1.1"
+          - link "What is economics?" [ref=f4e26] [cursor=pointer]:
+            - /url: "#/syllabus/1.1"
+          - generic [ref=f4e27]:
+            - 'button "1.1: Not rated" [pressed] [ref=f4e28] [cursor=pointer]': —
+            - 'button "1.1: Needs work" [ref=f4e29] [cursor=pointer]': Shaky
+            - 'button "1.1: Confident" [ref=f4e30] [cursor=pointer]': Solid
+        - generic [ref=f4e31]:
+          - generic [ref=f4e32]: "1.2"
+          - link "How do economists approach the world?" [ref=f4e34] [cursor=pointer]:
+            - /url: "#/syllabus/1.2"
+          - generic [ref=f4e35]:
+            - 'button "1.2: Not rated" [pressed] [ref=f4e36] [cursor=pointer]': —
+            - 'button "1.2: Needs work" [ref=f4e37] [cursor=pointer]': Shaky
+            - 'button "1.2: Confident" [ref=f4e38] [cursor=pointer]': Solid
+    - generic [ref=f4e39]:
+      - heading "Unit 2 · Microeconomics" [level=2] [ref=f4e40]
+      - paragraph [ref=f4e41]: 9 topics · 35 teaching hours
+      - generic [ref=f4e42]:
+        - generic [ref=f4e43]:
+          - generic [ref=f4e44]: "2.1"
+          - link "Demand" [ref=f4e46] [cursor=pointer]:
+            - /url: "#/syllabus/2.1"
+          - generic [ref=f4e47]:
+            - 'button "2.1: Not rated" [pressed] [ref=f4e48] [cursor=pointer]': —
+            - 'button "2.1: Needs work" [ref=f4e49] [cursor=pointer]': Shaky
+            - 'button "2.1: Confident" [ref=f4e50] [cursor=pointer]': Solid
+        - generic [ref=f4e51]:
+          - generic [ref=f4e52]: "2.2"
+          - link "Supply" [ref=f4e54] [cursor=pointer]:
+            - /url: "#/syllabus/2.2"
+          - generic [ref=f4e55]:
+            - 'button "2.2: Not rated" [pressed] [ref=f4e56] [cursor=pointer]': —
+            - 'button "2.2: Needs work" [ref=f4e57] [cursor=pointer]': Shaky
+            - 'button "2.2: Confident" [ref=f4e58] [cursor=pointer]': Solid
+        - generic [ref=f4e59]:
+          - generic [ref=f4e60]: "2.3"
+          - link "Competitive market equilibrium" [ref=f4e62] [cursor=pointer]:
+            - /url: "#/syllabus/2.3"
+          - generic [ref=f4e63]:
+            - 'button "2.3: Not rated" [pressed] [ref=f4e64] [cursor=pointer]': —
+            - 'button "2.3: Needs work" [ref=f4e65] [cursor=pointer]': Shaky
+            - 'button "2.3: Confident" [ref=f4e66] [cursor=pointer]': Solid
+        - generic [ref=f4e67]:
+          - generic [ref=f4e68]: "2.4"
+          - link "Critique of the maximizing behaviour of consumers and producers" [ref=f4e70] [cursor=pointer]:
+            - /url: "#/syllabus/2.4"
+          - generic [ref=f4e71]:
+            - 'button "2.4: Not rated" [pressed] [ref=f4e72] [cursor=pointer]': —
+            - 'button "2.4: Needs work" [ref=f4e73] [cursor=pointer]': Shaky
+            - 'button "2.4: Confident" [ref=f4e74] [cursor=pointer]': Solid
+        - generic [ref=f4e75]:
+          - generic [ref=f4e76]: "2.5"
+          - link "Elasticity of demand" [ref=f4e78] [cursor=pointer]:
+            - /url: "#/syllabus/2.5"
+          - generic [ref=f4e79]:
+            - 'button "2.5: Not rated" [pressed] [ref=f4e80] [cursor=pointer]': —
+            - 'button "2.5: Needs work" [ref=f4e81] [cursor=pointer]': Shaky
+            - 'button "2.5: Confident" [ref=f4e82] [cursor=pointer]': Solid
+        - generic [ref=f4e83]:
+          - generic [ref=f4e84]: "2.6"
+          - link "Elasticity of supply" [ref=f4e86] [cursor=pointer]:
+            - /url: "#/syllabus/2.6"
+          - generic [ref=f4e87]:
+            - 'button "2.6: Not rated" [pressed] [ref=f4e88] [cursor=pointer]': —
+            - 'button "2.6: Needs work" [ref=f4e89] [cursor=pointer]': Shaky
+            - 'button "2.6: Confident" [ref=f4e90] [cursor=pointer]': Solid
+        - generic [ref=f4e91]:
+          - generic [ref=f4e92]: "2.7"
+          - link "Role of government in microeconomics" [ref=f4e94] [cursor=pointer]:
+            - /url: "#/syllabus/2.7"
+          - generic [ref=f4e95]:
+            - 'button "2.7: Not rated" [pressed] [ref=f4e96] [cursor=pointer]': —
+            - 'button "2.7: Needs work" [ref=f4e97] [cursor=pointer]': Shaky
+            - 'button "2.7: Confident" [ref=f4e98] [cursor=pointer]': Solid
+        - generic [ref=f4e99]:
+          - generic [ref=f4e100]: "2.8"
+          - link "Market failure — externalities and common pool resources" [ref=f4e102] [cursor=pointer]:
+            - /url: "#/syllabus/2.8"
+          - generic [ref=f4e103]:
+            - 'button "2.8: Not rated" [pressed] [ref=f4e104] [cursor=pointer]': —
+            - 'button "2.8: Needs work" [ref=f4e105] [cursor=pointer]': Shaky
+            - 'button "2.8: Confident" [ref=f4e106] [cursor=pointer]': Solid
+        - generic [ref=f4e107]:
+          - generic [ref=f4e108]: "2.9"
+          - link "Market failure — public goods" [ref=f4e110] [cursor=pointer]:
+            - /url: "#/syllabus/2.9"
+          - generic [ref=f4e111]:
+            - 'button "2.9: Not rated" [pressed] [ref=f4e112] [cursor=pointer]': —
+            - 'button "2.9: Needs work" [ref=f4e113] [cursor=pointer]': Shaky
+            - 'button "2.9: Confident" [ref=f4e114] [cursor=pointer]': Solid
+    - generic [ref=f4e115]:
+      - heading "Unit 3 · Macroeconomics" [level=2] [ref=f4e116]
+      - paragraph [ref=f4e117]: 7 topics · 40 teaching hours
+      - generic [ref=f4e118]:
+        - generic [ref=f4e119]:
+          - generic [ref=f4e120]: "3.1"
+          - link "Measuring economic activity and illustrating its variations" [ref=f4e122] [cursor=pointer]:
+            - /url: "#/syllabus/3.1"
+          - generic [ref=f4e123]:
+            - 'button "3.1: Not rated" [pressed] [ref=f4e124] [cursor=pointer]': —
+            - 'button "3.1: Needs work" [ref=f4e125] [cursor=pointer]': Shaky
+            - 'button "3.1: Confident" [ref=f4e126] [cursor=pointer]': Solid
+        - generic [ref=f4e127]:
+          - generic [ref=f4e128]: "3.2"
+          - link "Variations in economic activity — aggregate demand and aggregate supply" [ref=f4e130] [cursor=pointer]:
+            - /url: "#/syllabus/3.2"
+          - generic [ref=f4e131]:
+            - 'button "3.2: Not rated" [pressed] [ref=f4e132] [cursor=pointer]': —
+            - 'button "3.2: Needs work" [ref=f4e133] [cursor=pointer]': Shaky
+            - 'button "3.2: Confident" [ref=f4e134] [cursor=pointer]': Solid
+        - generic [ref=f4e135]:
+          - generic [ref=f4e136]: "3.3"
+          - link "Macroeconomic objectives" [ref=f4e138] [cursor=pointer]:
+            - /url: "#/syllabus/3.3"
+          - generic [ref=f4e139]:
+            - 'button "3.3: Not rated" [pressed] [ref=f4e140] [cursor=pointer]': —
+            - 'button "3.3: Needs work" [ref=f4e141] [cursor=pointer]': Shaky
+            - 'button "3.3: Confident" [ref=f4e142] [cursor=pointer]': Solid
+        - generic [ref=f4e143]:
+          - generic [ref=f4e144]: "3.4"
+          - link "Economics of inequality and poverty" [ref=f4e146] [cursor=pointer]:
+            - /url: "#/syllabus/3.4"
+          - generic [ref=f4e147]:
+            - 'button "3.4: Not rated" [pressed] [ref=f4e148] [cursor=pointer]': —
+            - 'button "3.4: Needs work" [ref=f4e149] [cursor=pointer]': Shaky
+            - 'button "3.4: Confident" [ref=f4e150] [cursor=pointer]': Solid
+        - generic [ref=f4e151]:
+          - generic [ref=f4e152]: "3.5"
+          - link "Demand management — monetary policy" [ref=f4e154] [cursor=pointer]:
+            - /url: "#/syllabus/3.5"
+          - generic [ref=f4e155]:
+            - 'button "3.5: Not rated" [pressed] [ref=f4e156] [cursor=pointer]': —
+            - 'button "3.5: Needs work" [ref=f4e157] [cursor=pointer]': Shaky
+            - 'button "3.5: Confident" [ref=f4e158] [cursor=pointer]': Solid
+        - generic [ref=f4e159]:
+          - generic [ref=f4e160]: "3.6"
+          - link "Demand management — fiscal policy" [ref=f4e162] [cursor=pointer]:
+            - /url: "#/syllabus/3.6"
+          - generic [ref=f4e163]:
+            - 'button "3.6: Not rated" [pressed] [ref=f4e164] [cursor=pointer]': —
+            - 'button "3.6: Needs work" [ref=f4e165] [cursor=pointer]': Shaky
+            - 'button "3.6: Confident" [ref=f4e166] [cursor=pointer]': Solid
+        - generic [ref=f4e167]:
+          - generic [ref=f4e168]: "3.7"
+          - link "Supply-side policies" [ref=f4e170] [cursor=pointer]:
+            - /url: "#/syllabus/3.7"
+          - generic [ref=f4e171]:
+            - 'button "3.7: Not rated" [pressed] [ref=f4e172] [cursor=pointer]': —
+            - 'button "3.7: Needs work" [ref=f4e173] [cursor=pointer]': Shaky
+            - 'button "3.7: Confident" [ref=f4e174] [cursor=pointer]': Solid
+    - generic [ref=f4e175]:
+      - heading "Unit 4 · The global economy" [level=2] [ref=f4e176]
+      - paragraph [ref=f4e177]: 10 topics · 45 teaching hours
+      - generic [ref=f4e178]:
+        - generic [ref=f4e179]:
+          - generic [ref=f4e180]: "4.1"
+          - link "Benefits of international trade" [ref=f4e182] [cursor=pointer]:
+            - /url: "#/syllabus/4.1"
+          - generic [ref=f4e183]:
+            - 'button "4.1: Not rated" [pressed] [ref=f4e184] [cursor=pointer]': —
+            - 'button "4.1: Needs work" [ref=f4e185] [cursor=pointer]': Shaky
+            - 'button "4.1: Confident" [ref=f4e186] [cursor=pointer]': Solid
+        - generic [ref=f4e187]:
+          - generic [ref=f4e188]: "4.2"
+          - link "Types of trade protection" [ref=f4e190] [cursor=pointer]:
+            - /url: "#/syllabus/4.2"
+          - generic [ref=f4e191]:
+            - 'button "4.2: Not rated" [pressed] [ref=f4e192] [cursor=pointer]': —
+            - 'button "4.2: Needs work" [ref=f4e193] [cursor=pointer]': Shaky
+            - 'button "4.2: Confident" [ref=f4e194] [cursor=pointer]': Solid
+        - generic [ref=f4e195]:
+          - generic [ref=f4e196]: "4.3"
+          - link "Arguments for and against trade control/protection" [ref=f4e198] [cursor=pointer]:
+            - /url: "#/syllabus/4.3"
+          - generic [ref=f4e199]:
+            - 'button "4.3: Not rated" [pressed] [ref=f4e200] [cursor=pointer]': —
+            - 'button "4.3: Needs work" [ref=f4e201] [cursor=pointer]': Shaky
+            - 'button "4.3: Confident" [ref=f4e202] [cursor=pointer]': Solid
+        - generic [ref=f4e203]:
+          - generic [ref=f4e204]: "4.4"
+          - link "Economic integration" [ref=f4e206] [cursor=pointer]:
+            - /url: "#/syllabus/4.4"
+          - generic [ref=f4e207]:
+            - 'button "4.4: Not rated" [pressed] [ref=f4e208] [cursor=pointer]': —
+            - 'button "4.4: Needs work" [ref=f4e209] [cursor=pointer]': Shaky
+            - 'button "4.4: Confident" [ref=f4e210] [cursor=pointer]': Solid
+        - generic [ref=f4e211]:
+          - generic [ref=f4e212]: "4.5"
+          - link "Exchange rates" [ref=f4e214] [cursor=pointer]:
+            - /url: "#/syllabus/4.5"
+          - generic [ref=f4e215]:
+            - 'button "4.5: Not rated" [pressed] [ref=f4e216] [cursor=pointer]': —
+            - 'button "4.5: Needs work" [ref=f4e217] [cursor=pointer]': Shaky
+            - 'button "4.5: Confident" [ref=f4e218] [cursor=pointer]': Solid
+        - generic [ref=f4e219]:
+          - generic [ref=f4e220]: "4.6"
+          - link "Balance of payments" [ref=f4e222] [cursor=pointer]:
+            - /url: "#/syllabus/4.6"
+          - generic [ref=f4e223]:
+            - 'button "4.6: Not rated" [pressed] [ref=f4e224] [cursor=pointer]': —
+            - 'button "4.6: Needs work" [ref=f4e225] [cursor=pointer]': Shaky
+            - 'button "4.6: Confident" [ref=f4e226] [cursor=pointer]': Solid
+        - generic [ref=f4e227]:
+          - generic [ref=f4e228]: "4.7"
+          - link "Sustainable development" [ref=f4e230] [cursor=pointer]:
+            - /url: "#/syllabus/4.7"
+          - generic [ref=f4e231]:
+            - 'button "4.7: Not rated" [pressed] [ref=f4e232] [cursor=pointer]': —
+            - 'button "4.7: Needs work" [ref=f4e233] [cursor=pointer]': Shaky
+            - 'button "4.7: Confident" [ref=f4e234] [cursor=pointer]': Solid
+        - generic [ref=f4e235]:
+          - generic [ref=f4e236]: "4.8"
+          - link "Measuring development" [ref=f4e238] [cursor=pointer]:
+            - /url: "#/syllabus/4.8"
+          - generic [ref=f4e239]:
+            - 'button "4.8: Not rated" [pressed] [ref=f4e240] [cursor=pointer]': —
+            - 'button "4.8: Needs work" [ref=f4e241] [cursor=pointer]': Shaky
+            - 'button "4.8: Confident" [ref=f4e242] [cursor=pointer]': Solid
+        - generic [ref=f4e243]:
+          - generic [ref=f4e244]: "4.9"
+          - link "Barriers to economic growth and/or economic development" [ref=f4e246] [cursor=pointer]:
+            - /url: "#/syllabus/4.9"
+          - generic [ref=f4e247]:
+            - 'button "4.9: Not rated" [pressed] [ref=f4e248] [cursor=pointer]': —
+            - 'button "4.9: Needs work" [ref=f4e249] [cursor=pointer]': Shaky
+            - 'button "4.9: Confident" [ref=f4e250] [cursor=pointer]': Solid
+        - generic [ref=f4e251]:
+          - generic [ref=f4e252]: "4.10"
+          - link "Economic growth and/or economic development strategies" [ref=f4e254] [cursor=pointer]:
+            - /url: "#/syllabus/4.10"
+          - generic [ref=f4e255]:
+            - 'button "4.10: Not rated" [pressed] [ref=f4e256] [cursor=pointer]': —
+            - 'button "4.10: Needs work" [ref=f4e257] [cursor=pointer]': Shaky
+            - 'button "4.10: Confident" [ref=f4e258] [cursor=pointer]': Solid

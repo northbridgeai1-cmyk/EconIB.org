@@ -38,7 +38,7 @@ export function str(value, field, { max, required = true, trim = true, name } = 
 const EMAIL_RE = /^[^\s@]+@[^\s@.]+\.[^\s@]{2,}$/;
 
 export function email(value) {
-  const s = str(value, "Email", { max: LIMITS.email }).toLowerCase();
+  const s = str(value, "Email", { max: LIMITS.email, name: "email" }).toLowerCase();
   if (!EMAIL_RE.test(s)) throw badRequest("That does not look like an email address.", "bad_email", { field: "email" });
   return s;
 }
@@ -80,7 +80,7 @@ export function optionalDate(value, field) {
 
 export function optionalUrl(value) {
   if (!value) return "";
-  const s = str(value, "Article link", { max: LIMITS.url, required: false });
+  const s = str(value, "Article link", { max: LIMITS.url, required: false, name: "articleUrl" });
   if (!s) return "";
   let u;
   try { u = new URL(s); } catch { throw badRequest("That article link is not a valid URL.", "bad_url", { field: "articleUrl" }); }

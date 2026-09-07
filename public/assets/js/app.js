@@ -1,6 +1,8 @@
 import { $, $$, mount, emptyState, toast } from "./lib/dom.js";
 import { ApiError } from "./lib/api.js";
-import { loadUser, state } from "./lib/store.js";
+import { loadUser, state, data } from "./lib/store.js";
+import { mountThemeToggle, mountBackToTop, registerServiceWorker } from "./lib/chrome.js";
+import { mountSearch } from "./lib/search.js";
 
 import dashboard from "./views/dashboard.js";
 import syllabus from "./views/syllabus.js";
@@ -55,7 +57,12 @@ async function render() {
     await handler({ view, parts, navigate });
     // A slower earlier render must not overwrite a newer one.
     if (token !== renderToken) return;
+    // Re-trigger the entrance animation on every navigation.
+    view.classList.remove("enter");
+    void view.offsetWidth;
+    view.classList.add("enter");
     view.focus({ preventScroll: true });
+    backToTop?.update();
   } catch (err) {
     if (token !== renderToken) return;
     if (err instanceof ApiError && err.status === 401) return redirectToLogin();
@@ -95,8 +102,22 @@ function watchConnection() {
   paint();
 }
 
+let backToTop = null;
+
 async function start() {
   watchConnection();
+  registerServiceWorker();
+
+  const meta = $("#masthead-meta");
+  mountSearch(meta, navigate);
+  mountThemeToggle(meta);
+  backToTop = mountBackToTop();
+
+  // Warm the static data before the first view needs it, so a fresh sign-in
+  // does not open onto an empty screen while three files are fetched.
+  data.syllabus().catch(() => {});
+  data.keyConcepts().catch(() => {});
+
   try {
     await loadUser();
   } catch (err) {

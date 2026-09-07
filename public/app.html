@@ -12,6 +12,8 @@
 </head>
 <body>
 
+<a class="skip-link" href="#view">Skip to content</a>
+
 <div id="offline-banner" class="offline" hidden>
   You are offline. Your syllabus and saved work still open; marking and saving need a connection.
 </div>
@@ -27,20 +29,27 @@
       <a href="#/reference" data-route="reference">Reference</a>
       <a href="#/grades" data-route="grades">Grade calculator</a>
     </nav>
-    <div class="masthead-meta">
+    <div class="masthead-meta" id="masthead-meta">
       <span id="user-chip" class="small"></span>
       <a class="btn btn-quiet btn-sm" href="#/account">Account</a>
     </div>
   </div>
 </header>
 
-<main id="view" class="wrap view" tabindex="-1">
+<main id="view" class="wrap view" tabindex="-1" role="main">
   <div class="stack">
     <div class="skeleton skeleton-line"></div>
     <div class="skeleton skeleton-line"></div>
     <div class="skeleton skeleton-block"></div>
   </div>
 </main>
+
+<footer class="wrap page-foot">
+  <p class="small">
+    <a href="/terms">Terms and privacy</a> ·
+    Marks here are not official. EconIB is not affiliated with the IB.
+  </p>
+</footer>
 
 <script type="module" src="/assets/js/app.js"></script>
 </body>

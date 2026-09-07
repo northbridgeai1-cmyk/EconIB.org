@@ -1,0 +1,2 @@
+[   11720ms] [ERROR] Failed to load resource: the server responded with a status of 400 (Bad Request) @ http://localhost:8788/api/auth/signup:0
+[   12854ms] [ERROR] Failed to load resource: the server responded with a status of 400 (Bad Request) @ http://localhost:8788/api/auth/signup:0

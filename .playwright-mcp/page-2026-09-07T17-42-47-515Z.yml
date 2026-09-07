@@ -1,0 +1,45 @@
+- generic [ref=f2e2]:
+  - complementary [ref=f2e3]:
+    - link "EconIB" [ref=f2e4] [cursor=pointer]:
+      - /url: /
+    - heading "Your IB Economics workspace" [level=2] [ref=f2e5]
+    - paragraph [ref=f2e6]: Your IA portfolio, your marked exam answers and your topic progress, kept together and available on any device you sign in on.
+    - paragraph [ref=f2e7]: Tell us whether you are in IB1 or IB2 and whether you take SL or HL, and EconIB shows the right syllabus and the right papers. You can change it later.
+  - main [ref=f2e8]:
+    - generic [ref=f2e10]:
+      - heading "Create your account" [level=1] [ref=f2e11]
+      - paragraph [ref=f2e12]: You will need this to save your IA portfolio and marked answers.
+      - generic [ref=f2e13]:
+        - generic [ref=f2e14]:
+          - generic [ref=f2e15]: Your name
+          - textbox "Your name" [active] [ref=f2e16]
+        - generic [ref=f2e17]:
+          - generic [ref=f2e18]: Email
+          - textbox "Email" [ref=f2e19]
+        - generic [ref=f2e20]:
+          - generic [ref=f2e21]: Password
+          - generic [ref=f2e22]:
+            - textbox "Password" [ref=f2e23]
+            - button "Show password" [ref=f2e24] [cursor=pointer]: Show
+          - paragraph [ref=f2e25]: At least 10 characters. Length beats complexity — a short phrase you will remember is stronger than a mangled word. Use Show to check it before you continue.
+        - generic [ref=f2e26]:
+          - generic [ref=f2e27]:
+            - generic [ref=f2e28]: Year
+            - combobox "Year" [ref=f2e29]:
+              - option "IB1 — first year" [selected]
+              - option "IB2 — final year"
+          - generic [ref=f2e30]:
+            - generic [ref=f2e31]: Level
+            - combobox "Level" [ref=f2e32]:
+              - option "Standard Level" [selected]
+              - option "Higher Level"
+        - generic [ref=f2e33]:
+          - generic [ref=f2e34]: Exam session (optional)
+          - textbox "Exam session (optional)" [ref=f2e35]:
+            - /placeholder: May 2027
+        - button "Create account" [ref=f2e36] [cursor=pointer]
+      - paragraph [ref=f2e37]:
+        - text: Already have an account?
+        - link "Sign in" [ref=f2e38] [cursor=pointer]:
+          - /url: "#"
+        - text: .

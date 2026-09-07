@@ -1,0 +1,31 @@
+name = "econib"
+compatibility_date = "2025-01-01"
+pages_build_output_dir = "public"
+
+# D1 binding. Create the database once with:
+#   wrangler d1 create econib
+# then paste the returned database_id below.
+[[d1_databases]]
+binding = "DB"
+database_name = "econib"
+database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+
+[vars]
+# Origin allowed to call the API. Must be the exact scheme + host with NO
+# trailing slash — the browser compares character for character.
+# There is deliberately no wildcard fallback: an unset value denies
+# cross-origin reads rather than quietly allowing every origin.
+ALLOWED_ORIGIN = "https://econib.org"
+
+# PBKDF2 work factor. 600000 follows current OWASP guidance for
+# PBKDF2-HMAC-SHA256. It costs roughly 300ms of CPU, which exceeds the
+# Workers FREE plan limit of 10ms per request — password login requires the
+# Workers Paid plan. See docs/deploy.md.
+PW_ITERATIONS = "600000"
+
+# Spend caps for AI grading. Per user per day, and across all users per day.
+AI_DAILY_LIMIT_PER_USER = "25"
+AI_DAILY_LIMIT_GLOBAL = "1000"
+
+# Secrets are NEVER set here. Set them with:
+#   wrangler pages secret put ANTHROPIC_API_KEY

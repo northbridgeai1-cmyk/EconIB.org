@@ -4,7 +4,9 @@
   "version": "0.1.0",
   "description": "IB Economics study and self-assessment tool for econib.org",
   "type": "module",
-  "engines": { "node": ">=20" },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "test": "node --test tests/*.test.mjs",
     "check": "node scripts/check.mjs",
@@ -13,5 +15,8 @@
     "db:local": "wrangler d1 execute econib --local --file=./schema.sql",
     "db:remote": "wrangler d1 execute econib --remote --file=./schema.sql"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.71.0"
+  }
 }

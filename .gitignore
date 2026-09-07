@@ -1,0 +1,10 @@
+# Never commit IB copyrighted source material. The extractor reads a locally
+# supplied guide PDF; neither the PDF nor its extracted text belongs in git.
+scripts/_guide-source.*
+*.pdf
+
+node_modules/
+.dev.vars
+.wrangler/
+.DS_Store
+dist/

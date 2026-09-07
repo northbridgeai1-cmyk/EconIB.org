@@ -1,0 +1,80 @@
+{
+  "syllabus": "IB Diploma Programme Economics, first assessment 2022",
+  "note": "Durations, mark totals, part structures and weightings are factual details of the assessment model. Verified against the official subject guide.",
+  "levels": {
+    "SL": { "teachingHours": 150, "externalWeight": 70, "internalWeight": 30 },
+    "HL": { "teachingHours": 240, "externalWeight": 80, "internalWeight": 20 }
+  },
+  "components": [
+    {
+      "id": "p1",
+      "name": "Paper 1",
+      "subtitle": "Extended response",
+      "levels": ["SL", "HL"],
+      "minutes": 75,
+      "readingMinutes": 5,
+      "maxMarks": 25,
+      "weight": { "SL": 30, "HL": 20 },
+      "calculators": false,
+      "choice": "Answer one question from a choice of three.",
+      "parts": [
+        { "ref": "a", "marks": 10, "ao": ["AO1", "AO2", "AO4"], "marked": "markband" },
+        { "ref": "b", "marks": 15, "ao": ["AO1", "AO2", "AO3", "AO4"], "marked": "markband" }
+      ]
+    },
+    {
+      "id": "p2",
+      "name": "Paper 2",
+      "subtitle": "Data response",
+      "levels": ["SL", "HL"],
+      "minutes": 105,
+      "readingMinutes": 5,
+      "maxMarks": 40,
+      "weight": { "SL": 40, "HL": 30 },
+      "calculators": true,
+      "choice": "Answer one question from a choice of two.",
+      "parts": [
+        { "ref": "a", "marks": 4, "note": "Two subparts (i) and (ii), 2 marks each.", "marked": "markscheme" },
+        { "ref": "b", "marks": 5, "note": "May be split into (i) and (ii) as 3 + 2 or 2 + 3.", "marked": "markscheme" },
+        { "ref": "c", "marks": 4, "marked": "markscheme" },
+        { "ref": "d", "marks": 4, "marked": "markscheme" },
+        { "ref": "e", "marks": 4, "marked": "markscheme" },
+        { "ref": "f", "marks": 4, "marked": "markscheme" },
+        { "ref": "g", "marks": 15, "ao": ["AO1", "AO2", "AO3", "AO4"], "marked": "markband" }
+      ]
+    },
+    {
+      "id": "p3",
+      "name": "Paper 3",
+      "subtitle": "Policy paper",
+      "levels": ["HL"],
+      "minutes": 105,
+      "readingMinutes": 5,
+      "maxMarks": 60,
+      "weight": { "HL": 30 },
+      "calculators": true,
+      "choice": "Answer both questions. Each is worth 30 marks.",
+      "parts": [
+        { "ref": "a", "marks": 20, "note": "Has subparts; largely quantitative.", "marked": "markscheme" },
+        { "ref": "b", "marks": 10, "note": "Policy recommendation.", "ao": ["AO1", "AO2", "AO3", "AO4"], "marked": "markband" }
+      ]
+    },
+    {
+      "id": "ia",
+      "name": "Internal assessment",
+      "subtitle": "Portfolio of three commentaries",
+      "levels": ["SL", "HL"],
+      "teachingHours": 20,
+      "maxMarks": 45,
+      "weight": { "SL": 30, "HL": 20 },
+      "wordLimitEach": 800,
+      "commentaries": 3
+    }
+  ],
+  "assessmentObjectives": [
+    { "id": "AO1", "name": "Knowledge and understanding" },
+    { "id": "AO2", "name": "Application and analysis" },
+    { "id": "AO3", "name": "Synthesis and evaluation" },
+    { "id": "AO4", "name": "Use and application of appropriate skills" }
+  ]
+}

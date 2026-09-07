@@ -1,0 +1,94 @@
+/* EconIB design tokens.
+   Deliberately small. If either of these counts grows past what is here, that
+   is an accumulation, not a system — see tests/design.test.mjs, which fails
+   the build if the counts drift.
+     type sizes: 7      radii: 4      elevations: 2      accent hues: 4 */
+
+:root {
+  color-scheme: light dark;
+
+  /* --- type scale: 7 sizes, anchored on 15px body --- */
+  --t-xs:   0.75rem;   /* 12 - labels, chips, table headers */
+  --t-sm:   0.8125rem; /* 13 - secondary text, captions */
+  --t-base: 0.9375rem; /* 15 - body */
+  --t-md:   1.0625rem; /* 17 - lead paragraphs */
+  --t-lg:   1.3125rem; /* 21 - section headings */
+  --t-xl:   1.6875rem; /* 27 - page headings */
+  --t-2xl:  2.5rem;    /* 40 - display */
+
+  /* --- spacing: 4px base unit --- */
+  --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px;
+  --s-5: 24px; --s-6: 32px; --s-7: 48px; --s-8: 64px;
+
+  /* --- radii: 4 --- */
+  --r-sm: 2px;
+  --r-md: 4px;
+  --r-lg: 8px;
+  --r-circle: 50%;
+
+  /* --- elevation: 2 --- */
+  --e-1: 0 1px 2px rgb(20 25 30 / 0.06);
+  --e-2: 0 4px 16px rgb(20 25 30 / 0.10);
+
+  /* --- families --- */
+  --f-serif: Charter, "Bitstream Charter", "Iowan Old Style", "Source Serif Pro", Georgia, serif;
+  --f-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  --f-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+
+  /* --- surface + ink --- */
+  --paper: #FBFAF7;
+  --raised: #FFFFFF;
+  --sunken: #F4F2ED;
+  --ink: #16191D;
+  --muted: #5A6470;
+  --rule: #E2E1DC;
+  --rule-soft: #EFEEE9;
+
+  /* --- 4 semantic hues, each with a wash --- */
+  --accent: #12507A;      --accent-wash: #E6EEF4;
+  --on-accent: #FFFFFF;   /* text on an --accent fill */
+  --good: #17614A;        --good-wash: #E3EFEA;
+  --warn: #8A5A08;        --warn-wash: #F8EFDC;
+  --bad: #A03226;         --bad-wash: #F8E9E6;
+
+  --focus: #12507A;
+}
+
+/* Dark redefines tokens only. No colour is defined for the first time here. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #12151A;
+    --raised: #191D24;
+    --sunken: #0D1015;
+    --ink: #E6E9EC;
+    --muted: #98A2AE;
+    --rule: #2A313A;
+    --rule-soft: #1E242B;
+    --accent: #6FB2DC;      --accent-wash: #12283A;
+    --on-accent: #0D1015;
+    --good: #55C79E;        --good-wash: #102C24;
+    --warn: #D7A44E;        --warn-wash: #2C2416;
+    --bad: #E58B7B;         --bad-wash: #33201D;
+    --focus: #6FB2DC;
+    --e-1: 0 1px 2px rgb(0 0 0 / 0.40);
+    --e-2: 0 4px 16px rgb(0 0 0 / 0.50);
+  }
+}
+
+:root[data-theme="dark"] {
+  --paper: #12151A;
+  --raised: #191D24;
+  --sunken: #0D1015;
+  --ink: #E6E9EC;
+  --muted: #98A2AE;
+  --rule: #2A313A;
+  --rule-soft: #1E242B;
+  --accent: #6FB2DC;      --accent-wash: #12283A;
+  --on-accent: #0D1015;
+  --good: #55C79E;        --good-wash: #102C24;
+  --warn: #D7A44E;        --warn-wash: #2C2416;
+  --bad: #E58B7B;         --bad-wash: #33201D;
+  --focus: #6FB2DC;
+  --e-1: 0 1px 2px rgb(0 0 0 / 0.40);
+  --e-2: 0 4px 16px rgb(0 0 0 / 0.50);
+}

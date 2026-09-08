@@ -114,6 +114,11 @@
       ],
       "diagramIds": [
         "ppc"
+      ],
+      "lesson": [
+        "Economics starts from one awkward fact: there is not enough of anything to go round. Not enough land, hours, machines or trained people to satisfy everything everyone wants. That is scarcity, and it is not a temporary problem to be solved — it is the permanent condition that makes the subject necessary.",
+        "Because resources are scarce, every choice is also a refusal. Use a field for housing and you cannot use it for farming. The value of the best thing you gave up is the opportunity cost, and it is what economists mean by the real cost of anything. Note the wording: the NEXT BEST alternative, not the sum of everything forgone.",
+        "The production possibilities curve draws this. Every point on the curve uses all resources efficiently; inside it, something is idle or wasted; outside it is currently impossible. The curve bows outward because resources are not equally good at both jobs — move a specialist chip factory to making burgers and you lose a lot of chips for very few burgers. That is increasing opportunity cost, and it is why the line curves rather than running straight."
       ]
     },
     {
@@ -148,6 +153,11 @@
           "term": "Economic model",
           "definition": "A simplified representation of economic behaviour that isolates the relationships being studied."
         }
+      ],
+      "lesson": [
+        "Economics is a social science, which means it studies people who do not behave like billiard balls. To get anywhere, economists build models — deliberate simplifications that hold everything else still while they examine one relationship. That assumption has a name you must use: ceteris paribus, other things equal.",
+        "The distinction that earns marks is between positive and normative. A positive statement claims something about the world that could in principle be tested: raising interest rates reduces investment. A normative statement contains a value judgment: the government SHOULD raise interest rates. Watch for should, ought, fair and too much — they signal that someone has smuggled a preference in as a fact.",
+        "This matters because most policy questions are a mix of both, and the top evaluation marks go to answers that separate them. You can be certain about a mechanism and still disagree about whether it is worth doing."
       ]
     },
     {
@@ -200,6 +210,11 @@
       "diagramIds": [
         "demand",
         "demand-shift"
+      ],
+      "lesson": [
+        "Demand is not desire. It is the quantity people are both willing AND able to buy at each price. Wanting a Ferrari is not demand; wanting one with the money to pay is.",
+        "The demand curve slopes down for two reasons worth naming. The income effect: when a price falls, your money goes further, so you can buy more. The substitution effect: when a price falls relative to alternatives, the good becomes better value and people switch to it.",
+        "Now the distinction that costs more marks than any other in this course. A change in the good's OWN price moves you ALONG the curve — that is a change in quantity demanded. A change in anything else — income, tastes, the price of a substitute, expectations, the number of buyers — SHIFTS the whole curve, and that is a change in demand. If you write that a price rise reduced demand, you have said the wrong thing, and an examiner will take the mark."
       ]
     },
     {
@@ -246,6 +261,11 @@
       ],
       "diagramIds": [
         "supply"
+      ],
+      "lesson": [
+        "Supply is the quantity producers are willing and able to sell at each price. It slopes upward, and the reason is worth knowing rather than asserting: as a firm pushes output higher with a fixed factory, each extra unit costs more to make. Higher prices are needed to make that extra production worth doing.",
+        "The shift rule mirrors demand exactly. Price changes move you along the curve. Everything else shifts it: the cost of factors of production, technology, the number of firms, expectations, and taxes or subsidies.",
+        "Indirect taxes and subsidies are the two that appear constantly. A tax is a cost to the producer, so supply shifts left, or upward by the tax per unit. A subsidy lowers costs, so supply shifts right. Students routinely draw a tax as a demand shift, which turns the whole answer into the wrong story."
       ]
     },
     {
@@ -299,6 +319,11 @@
       "diagramIds": [
         "equilibrium",
         "surplus"
+      ],
+      "lesson": [
+        "Equilibrium is the price at which the quantity buyers want equals the quantity sellers offer. Nothing is left over, nobody is turned away, and there is no pressure on price to move. That last clause is the definition — equilibrium is not where the lines happen to cross on your paper, it is where the market has no reason to change.",
+        "Away from it, the market pushes back. Above equilibrium, supply exceeds demand and unsold stock forces sellers to cut prices. Below it, buyers compete for too few goods and price is bid up. That self-correcting movement is the price mechanism, and it does three jobs: it signals where resources are wanted, it gives an incentive to move them there, and it rations what is scarce.",
+        "At the competitive equilibrium something stronger is true. Consumer surplus and producer surplus together — community surplus — are at their maximum, and marginal benefit equals marginal cost. That is allocative efficiency. Say the condition, not just the word."
       ]
     },
     {
@@ -332,6 +357,11 @@
           "term": "Corporate social responsibility",
           "definition": "A firm's pursuit of social and environmental objectives alongside, or instead of, profit maximisation."
         }
+      ],
+      "lesson": [
+        "Standard theory assumes people are rational: they have full information, know their own preferences, and choose whatever maximises their satisfaction. It is a useful assumption because it makes prediction possible. It is also, plainly, not true.",
+        "Behavioural economics catalogues the ways it fails. People have bounded rationality — limited information and limited capacity to process it, so they use rough rules rather than optimising. They have bounded self-control, choosing what feels good now over what serves them later. They are influenced by how a choice is presented, not just what it contains.",
+        "That last point is choice architecture, and it gives governments a cheap policy tool. Making pension enrolment the default rather than an opt-in raises saving dramatically without banning anything or changing a single price. Firms too may not maximise profit: they may pursue market share, growth, or corporate social responsibility. Whenever a question assumes rational behaviour, questioning that assumption is legitimate, well-credited evaluation."
       ]
     },
     {
@@ -378,6 +408,12 @@
           "term": "Total revenue",
           "definition": "Price multiplied by quantity sold."
         }
+      ],
+      "lesson": [
+        "Elasticity answers a question the demand curve alone cannot: not which way quantity moves, but by how much. Price elasticity of demand is the percentage change in quantity demanded divided by the percentage change in price. Ignore the minus sign and read the size.",
+        "Above one, demand is elastic: quantity responds proportionately more than price. Below one it is inelastic: quantity barely moves. What decides it is mostly substitutes. Fuel has few, so demand is inelastic; one brand of crisps has many, so demand is elastic. Necessity, the share of income spent, and time all matter too — almost everything is more elastic in the long run, once people can adjust.",
+        "The practical payoff is revenue. If demand is inelastic, raising price raises total revenue, because quantity falls proportionately less. If it is elastic, raising price cuts revenue. This is why governments tax fuel and tobacco, and why a struggling restaurant discounting may be doing exactly the right thing.",
+        "One warning: PED is not the slope. A single straight demand curve is elastic at the top, unit elastic in the middle and inelastic at the bottom."
       ]
     },
     {
@@ -407,6 +443,11 @@
           "term": "Spare capacity",
           "definition": "Unused productive capability that allows a firm to raise output quickly, making supply more elastic."
         }
+      ],
+      "lesson": [
+        "Price elasticity of supply measures how much quantity supplied responds to a price change. The logic differs from demand: it is about whether producers CAN react, not whether they want to.",
+        "Time dominates everything. Given an hour, a farmer cannot grow more wheat at any price, so supply is almost perfectly inelastic. Given a season, they can plant more. Given a decade, they can buy land. Spare capacity works the same way: a factory running at half capacity can expand output quickly; one already at full stretch cannot.",
+        "Whether stock can be stored matters too, as does how easily workers and machines can be moved between uses. This is why primary commodities tend to have low PES and manufactured goods higher — and why commodity prices swing so violently when demand moves."
       ]
     },
     {
@@ -463,6 +504,11 @@
         "subsidy",
         "price-ceiling",
         "price-floor"
+      ],
+      "lesson": [
+        "Governments intervene in markets for two broad reasons: to change what gets produced, and to change who can afford it. The tools are taxes, subsidies and price controls, and each has a diagram you must be able to draw and explain.",
+        "An indirect tax shifts supply up by the tax per unit. Price rises, quantity falls, and the gap between what consumers pay and what producers keep is the tax. Who actually bears it is decided by elasticity, not by who writes the cheque: the side less able to respond absorbs more. Tax fuel, whose demand is inelastic, and consumers pay most of it. A subsidy works in reverse, shifting supply down, lowering the price paid and raising the price received, with the difference costing the government.",
+        "Price controls are blunter. A maximum price below equilibrium protects consumers but creates a shortage — and shortages get rationed somehow, often by queues or parallel markets. A minimum price above equilibrium protects producers but creates a surplus someone must buy or destroy. Both only bite if set on the correct side of equilibrium; a maximum price above equilibrium changes nothing at all, and examiners set that deliberately."
       ]
     },
     {
@@ -520,6 +566,11 @@
       "diagramIds": [
         "negative-production-externality",
         "positive-consumption-externality"
+      ],
+      "lesson": [
+        "Sometimes a market clears perfectly and still gets the answer wrong, because the price does not include every cost. A factory that pollutes a river pays for its labour and materials but not for the fishing it destroys downstream. That uncounted cost falls on a third party, and it is called an externality.",
+        "Draw it as two cost curves. Marginal private cost is what the firm pays. Marginal social cost includes the damage as well, so it sits above. The market produces where private cost meets demand, which is beyond the socially optimal quantity — so society gets too much of the good and too much pollution. The triangle between the two quantities is the welfare loss, and you must shade it. Most answers describe the externality perfectly and never draw the loss, which caps the diagram mark.",
+        "Common pool resources fail the same way. A fish stock is rivalrous but nobody can be excluded, so each boat takes the full benefit of one more catch while the cost of depletion is shared by all. Everyone acting sensibly destroys the thing everyone depends on. The policy responses — taxes, tradable permits, regulation, education, collective self-governance — all try to make the private decision reflect the social one."
       ]
     },
     {
@@ -552,6 +603,11 @@
           "term": "Free rider problem",
           "definition": "The tendency for people to consume a non-excludable good without paying, so the market fails to supply it."
         }
+      ],
+      "lesson": [
+        "A public good is defined by two properties, and you must test both. Non-rivalrous: one person consuming it does not reduce what is left for anyone else. Non-excludable: you cannot stop people who have not paid from benefiting.",
+        "A lighthouse is the classic case. Its beam is not used up by the ship that sees it, and no ship can be prevented from seeing it. Now consider running one as a business: every captain benefits whether or not they pay, so the rational move is to wait for someone else to pay. That is the free rider problem, and it means the private market provides too little or nothing at all.",
+        "Be careful with the label. A public good is not simply a good the government provides. Healthcare and education are usually rivalrous and excludable — they are merit goods, under-consumed rather than un-providable. Getting this wrong turns a definition question into a lost mark."
       ]
     },
     {
@@ -592,6 +648,12 @@
           "term": "Screening",
           "definition": "Action by the uninformed party to draw information out of the informed party."
         }
+      ],
+      "lesson": [
+        "Markets assume both sides know what they are trading. Often one side knows far more, and that asymmetry breaks the market in two distinct ways you must not confuse.",
+        "Adverse selection happens BEFORE the transaction. A seller of a used car knows whether it is a lemon; the buyer does not, so offers only an average price. Owners of good cars refuse that price and withdraw, leaving worse cars, so buyers offer less still. Quality spirals down. The same logic explains why insurers fear that only the sickest people want health cover.",
+        "Moral hazard happens AFTER. Once insured, a driver takes more risks, because someone else now bears the cost. Nothing was hidden at signing; behaviour changed afterwards.",
+        "Both have responses. The informed party can signal — a warranty, a qualification — and the uninformed can screen, offering deals that sort people by their own choices. Governments legislate for disclosure and provide information directly."
       ]
     },
     {
@@ -663,6 +725,12 @@
       ],
       "diagramIds": [
         "monopoly"
+      ],
+      "lesson": [
+        "Market power is the ability to set price rather than accept it, and everything in this topic follows from that one difference.",
+        "A perfectly competitive firm is a price taker: many rivals, an identical product, free entry. It can sell all it wants at the market price, so average revenue equals marginal revenue and the demand curve it faces is horizontal. In the long run, free entry competes away abnormal profit and the firm ends up producing at lowest average cost — productively and allocatively efficient.",
+        "A monopolist faces the whole market demand curve, which slopes down. To sell one more unit it must cut price on every unit, so marginal revenue falls faster than price and lies below it — twice as steep, meeting the horizontal axis halfway along. It produces where marginal cost equals marginal revenue and charges what demand will bear, which means output is lower and price higher than under competition. The gap is welfare loss.",
+        "Between the two sit monopolistic competition, where differentiation gives limited pricing power that entry erodes, and oligopoly, where a few large firms are interdependent and each one's best move depends on what rivals do — which is why collusion is tempting and cartels are unstable."
       ]
     },
     {
@@ -697,6 +765,11 @@
           "term": "Equity",
           "definition": "Fairness in the distribution of income, wealth or opportunity — a normative concept, distinct from equality."
         }
+      ],
+      "lesson": [
+        "Markets allocate by ability to pay. That is efficient in a specific technical sense and says nothing at all about whether the outcome is fair. Someone with no income exerts no demand, however urgent their need.",
+        "So markets under-provide merit goods, whose private benefits people undervalue — vaccination, education, insurance — and over-provide demerit goods whose private costs they undervalue. The market is not making an arithmetic error; it is answering a different question from the one society is asking.",
+        "Correcting this means accepting a trade-off. Redistribution through progressive taxes and transfers reduces inequality but can blunt incentives to work and invest. That tension between equity and efficiency is the substance of the topic, and the top-band answers are the ones that name whose idea of fairness they are applying — because equity is normative, and saying so is the evaluation."
       ]
     },
     {
@@ -747,6 +820,12 @@
           "term": "Business cycle",
           "definition": "The short-run fluctuation of real GDP around its long-term growth trend, through expansion, peak, contraction and trough."
         }
+      ],
+      "lesson": [
+        "Macroeconomics needs a number for the size of an economy, and that number is GDP: the market value of everything final produced inside a country in a period. Final matters — count the bread and the flour and you have counted the flour twice.",
+        "It can be measured three ways that must give the same answer: what was produced, what was earned making it, and what was spent buying it. Output equals income equals expenditure. That identity is why the circular flow diagram works: money leaves households as spending and returns as wages, with injections from investment, government and exports, and leakages into saving, tax and imports.",
+        "Two corrections turn GDP into something meaningful. Adjust for prices to get REAL GDP, or growth is just inflation in disguise. Divide by population to get GDP per capita, or a big poor country looks rich. For comparisons across countries add purchasing power parity, since the same money buys different amounts in different places.",
+        "Even then it is a poor measure of welfare. It ignores unpaid work, the informal economy, environmental damage and the distribution of income entirely. A country can grow while most people get poorer."
       ]
     },
     {
@@ -802,6 +881,12 @@
       "diagramIds": [
         "ad-as-deflationary-gap",
         "keynesian-as"
+      ],
+      "lesson": [
+        "Aggregate demand is total planned spending on domestic output: consumption plus investment plus government spending plus net exports. Investment here means firms buying physical capital — machinery, buildings — not someone buying shares, which just changes who owns what.",
+        "Aggregate supply is what producers will supply at each price level, and here economists genuinely disagree. The monetarist view draws long-run supply as vertical at full employment: in the long run output is set by resources and technology, so demand only moves prices. The Keynesian view draws it flat when there is spare capacity, sloping as the economy tightens, and vertical only at full employment.",
+        "That disagreement is the whole evaluation. On the flat Keynesian section, extra demand raises output with almost no inflation, so stimulus works. On a vertical curve, the same stimulus only raises prices. Say which model you are using and how the answer changes under the other, and you are writing top-band evaluation rather than describing a diagram.",
+        "One more mechanism: the multiplier. An injection is spent, becomes someone's income, and is partly spent again. How far it circulates depends on how much leaks into saving, tax and imports at each round."
       ]
     },
     {
@@ -875,6 +960,12 @@
           "term": "Phillips curve",
           "definition": "A curve showing the short-run inverse relationship between the rate of inflation and the rate of unemployment."
         }
+      ],
+      "lesson": [
+        "Governments chase four things at once: low unemployment, low and stable inflation, economic growth, and a sustainable external position. The interesting part is that these conflict.",
+        "Unemployment comes in kinds that need different cures. Frictional is people between jobs and is fairly harmless. Structural is a mismatch — skills or location no longer match the jobs available — and is the hardest to fix, because retraining takes years. Cyclical is caused by a fall in aggregate demand and is the one demand-side policy can actually reach.",
+        "Inflation also comes in two flavours, and the distinction decides the policy. Demand-pull is too much spending against limited capacity: cool demand and it eases. Cost-push is rising production costs shifting supply left, which raises prices AND cuts output at the same time. Raising interest rates against cost-push inflation works only by crushing demand further — which is why it is such a reliable evaluation point.",
+        "Keep deflation and disinflation apart. Deflation is prices falling. Disinflation is prices still rising, just more slowly. Confusing them reverses your argument."
       ]
     },
     {
@@ -932,6 +1023,12 @@
       ],
       "diagramIds": [
         "lorenz-curve"
+      ],
+      "lesson": [
+        "Income inequality is not the same as poverty, and neither is the same as unfairness. Inequality is about the spread; poverty is about the floor.",
+        "The Lorenz curve plots the cumulative share of income against the cumulative share of population. Perfect equality is the 45-degree line, where the poorest 20% earn 20% of income. Real economies bow below it, and the further the bow, the greater the inequality. The Gini coefficient turns that gap into one number between 0 and 1 — and remember, HIGHER means MORE unequal.",
+        "Poverty splits into absolute, where income cannot meet basic needs, and relative, where income is far below the norm for that society. Both depend on where you draw the line, which is why moving the line changes the count without changing anyone's life.",
+        "Redistribution uses progressive taxes, transfer payments and provision of merit goods. Each reduces inequality and each has a cost — in incentives, in administration, or in the taxes needed to fund it. Naming the cost is what separates description from evaluation."
       ]
     },
     {
@@ -982,6 +1079,11 @@
           "term": "Quantitative easing",
           "definition": "Central bank purchase of financial assets to increase the money supply when interest rates are already near zero."
         }
+      ],
+      "lesson": [
+        "Monetary policy is the central bank changing the price of borrowing to steer aggregate demand. The tool is the interest rate; the target is usually an inflation figure.",
+        "Follow the transmission. Cut rates and borrowing is cheaper, so households buy more on credit and firms find more investment projects worth doing. Saving becomes less attractive, so more income is spent. The currency tends to weaken as capital seeks better returns elsewhere, which helps exports. All four routes raise aggregate demand.",
+        "Its strengths are practical: it can be adjusted in small steps, reversed quickly, and set by an independent bank insulated from elections. Its weaknesses are equally practical. It works with long and variable lags. In a deep recession rates hit the zero lower bound and cannot fall further, which is when quantitative easing appears and when fiscal policy becomes the stronger tool. And confidence can defeat it entirely: if firms expect no customers, no interest rate makes a new factory worth building."
       ]
     },
     {
@@ -1027,6 +1129,12 @@
           "term": "Crowding out",
           "definition": "The reduction in private investment caused by government borrowing raising interest rates."
         }
+      ],
+      "lesson": [
+        "Fiscal policy is government spending and taxation used to influence aggregate demand. Spend more or tax less and demand rises; the reverse cools it.",
+        "Some of this happens without any decision at all. In a downturn, incomes fall so tax receipts fall, and unemployment benefits rise automatically. These automatic stabilisers damp the cycle before any politician acts.",
+        "Deliberate fiscal policy has a real advantage over monetary policy: it can be targeted at the regions or groups that need it, and infrastructure spending raises long-run capacity as well as current demand. It also has real limits. It is politically hard to reverse, because cutting spending loses votes. It works with lags — recognising the problem, deciding, and implementing all take time. Government borrowing may crowd out private investment by pushing up interest rates.",
+        "Keep the flow and the stock straight. The deficit is this year's shortfall; the debt is the accumulated total. A government can cut its deficit while its debt still rises, and confusing the two is a common and costly slip."
       ]
     },
     {
@@ -1064,6 +1172,12 @@
           "term": "Human capital",
           "definition": "The stock of skills, knowledge and health embodied in the workforce that raises productivity."
         }
+      ],
+      "lesson": [
+        "Demand-side policies move aggregate demand along the supply curve. Supply-side policies try to move the supply curve itself — to raise what the economy is capable of producing.",
+        "The market-based version works by sharpening incentives and removing obstacles: deregulation, privatisation, labour market reform, lower marginal tax rates, trade liberalisation. The interventionist version works by building capacity directly: education and training, healthcare, infrastructure, research and development.",
+        "The attraction is that supply-side policy can improve several objectives at once. Shift long-run supply right and you get more output, lower unemployment AND lower prices — something no demand-side policy can do, since raising demand raises prices too.",
+        "The catch is time and cost. Educating a workforce takes a decade and the benefits are hard to measure. Market-based reforms often raise inequality even where they raise efficiency. Saying that supply-side policy is the only lever that improves inflation and unemployment together, then naming the lag and the equity cost, is a complete evaluation in two sentences."
       ]
     },
     {
@@ -1102,6 +1216,12 @@
           "term": "Specialisation",
           "definition": "Concentrating production on the goods in which a country has a comparative advantage."
         }
+      ],
+      "lesson": [
+        "Countries trade for the same reason people do: they are better at different things. The surprising part is that trade still pays even when one country is better at everything.",
+        "Absolute advantage means producing more with the same resources. Comparative advantage means producing at a lower OPPORTUNITY COST, and it is comparative advantage that drives trade. A surgeon may type faster than their secretary, but every hour typing costs an hour of surgery, so both gain when each specialises. Countries work the same way.",
+        "So specialise where opportunity cost is lowest, trade, and both parties consume beyond what they could produce alone. The gains show up as lower prices, more choice, larger scale, sharper competition and access to resources you do not have.",
+        "The model is a simplification and saying how is legitimate evaluation. It assumes costs stay constant, ignores transport, assumes factors can move between industries at home, and takes no account of environmental damage or who inside a country actually gains."
       ]
     },
     {
@@ -1150,6 +1270,12 @@
       ],
       "diagramIds": [
         "tariff"
+      ],
+      "lesson": [
+        "Protection means making imports less competitive, and the tools differ in who captures the benefit.",
+        "A tariff is a tax on imports. Domestic price rises, domestic producers expand, consumers buy less, imports shrink and the government collects revenue on what still comes in. On the diagram there are TWO welfare loss triangles — production inefficiency where high-cost domestic output replaces cheaper imports, and consumption inefficiency where buyers priced out lose surplus. Shading only one loses the calculation mark.",
+        "A quota caps quantity instead of raising price directly. The price effect is similar, but the extra revenue goes to whoever holds the right to import rather than to the government. That quota rent is the key evaluative difference from a tariff.",
+        "Subsidies to domestic producers lower their costs so they can undercut imports without any visible price rise, which makes them politically attractive and fiscally expensive. Administrative barriers — standards, licensing, slow customs — do the same job while being harder to challenge as protectionism."
       ]
     },
     {
@@ -1178,6 +1304,12 @@
           "term": "Trade war",
           "definition": "An escalating exchange of protectionist measures between countries in retaliation for each other's barriers."
         }
+      ],
+      "lesson": [
+        "Every argument for protection is an argument about something other than efficiency, which is why they are worth taking seriously and worth testing.",
+        "The infant industry case says a new industry needs shelter until it reaches the scale to compete. It is theoretically sound and practically dangerous: protection with no timetable becomes permanent inefficiency, and the industry lobbies to keep it. National security, health and safety standards, environmental standards and anti-dumping measures are similarly legitimate in principle and routinely abused as disguised protection.",
+        "Protecting employment is the most emotionally powerful and economically weakest: it saves visible jobs in the protected industry at the cost of diffuse losses everywhere else, including in exporters hit by retaliation.",
+        "Against all of it: higher prices, less choice, protected inefficiency, and the risk of a trade war in which everyone ends up worse off than before. The strongest answers do not pick a side in the abstract — they say what the answer depends on."
       ]
     },
     {
@@ -1222,6 +1354,12 @@
           "term": "Trade diversion",
           "definition": "The replacement of lower-cost imports from a non-member with higher-cost imports from a member of a trading bloc."
         }
+      ],
+      "lesson": [
+        "Economic integration is countries agreeing to treat each other differently from everyone else, and it comes in a ladder you should be able to recite in order.",
+        "A free trade area removes barriers between members but each keeps its own external tariffs. A customs union adds a common external tariff. A common market adds free movement of factors — labour and capital. A monetary union adds a shared currency and therefore a single monetary policy. Full economic union adds harmonised fiscal policy.",
+        "The economics is not automatically positive. Trade creation is good: high-cost domestic production is replaced by cheaper production from a member. Trade diversion is not: cheaper production from a non-member is replaced by more expensive production from a member, purely because of the tariff wall.",
+        "Monetary union carries the sharpest trade-off. Members gain price transparency and lose exchange rate risk, but give up the ability to set interest rates or devalue in response to a shock that hits them and not their partners."
       ]
     },
     {
@@ -1265,6 +1403,12 @@
           "term": "Managed exchange rate",
           "definition": "A system in which the rate floats but the central bank intervenes to limit its movement."
         }
+      ],
+      "lesson": [
+        "An exchange rate is just the price of one currency in another, set — under a float — by supply and demand in the foreign exchange market.",
+        "Demand for a currency comes from foreigners buying its exports, investing in its assets, or speculating that it will rise. Supply comes from residents doing the same abroad. So higher interest rates tend to attract capital and push the currency up; higher relative inflation pushes it down.",
+        "A rise is an appreciation, a fall a depreciation. Under a fixed system the equivalent deliberate moves are revaluation and devaluation. The effects run in opposite directions and both are examinable: a depreciation makes exports cheaper abroad and imports dearer at home, helping the trade balance and employment but importing inflation. An appreciation does the reverse — it helps hold inflation down and hurts exporters.",
+        "When you draw the market, label the axes properly: price of currency A in terms of currency B, and quantity of currency A. Unlabelled forex axes are the quickest way to lose the diagram marks in this unit."
       ]
     },
     {
@@ -1313,6 +1457,12 @@
           "term": "J-curve effect",
           "definition": "The pattern by which a depreciation worsens the current account before improving it, as elasticities rise over time."
         }
+      ],
+      "lesson": [
+        "The balance of payments records every transaction between a country's residents and the rest of the world, and it always balances. That is not an economic result; it is bookkeeping. Money that leaves one account arrives in another.",
+        "The current account covers trade in goods and services, primary income such as profits and wages from abroad, and secondary income such as remittances and aid. The financial account covers transactions in assets — direct investment, portfolio flows, reserves. A current account deficit is therefore matched by a financial account surplus: a country buying more than it sells is financing the gap by borrowing or selling assets.",
+        "Whether a persistent deficit matters depends on what the borrowing bought. Financing productive investment is very different from financing consumption.",
+        "Correcting one uses expenditure switching — a depreciation, or protection — or expenditure reducing, meaning cutting demand overall. Depreciation only works if the Marshall-Lerner condition holds: the elasticities of demand for exports and imports must sum to more than one. In the short run they rarely do, which is why the current account often worsens before it improves. That is the J-curve."
       ]
     },
     {
@@ -1340,6 +1490,12 @@
           "term": "Sustainable Development Goals",
           "definition": "The set of global objectives adopted by the United Nations covering poverty, health, education, equality and the environment."
         }
+      ],
+      "lesson": [
+        "Sustainable development means meeting the needs of the present without compromising the ability of future generations to meet theirs. The definition is worth learning exactly, because the marks are in the intergenerational clause.",
+        "The tension is real. Growth uses resources and produces waste, and a lot of what counts as income today is drawn from natural capital that will not be there tomorrow. GDP treats cutting down a forest as production and records no loss when the forest is gone.",
+        "Poverty makes this harder, not easier. People with no margin cannot prioritise the long run: they farm marginal land and burn what they can find, degrading the resources they depend on. Environmental sustainability and development are therefore entangled rather than opposed.",
+        "Sustainability is broader than the environment: it also means economic sustainability, not building growth on unsustainable debt, and social sustainability. Treating the topic as purely green narrows your answer."
       ]
     },
     {
@@ -1373,6 +1529,12 @@
           "term": "Composite indicator",
           "definition": "A measure that combines several separate indicators into a single number."
         }
+      ],
+      "lesson": [
+        "Growth and development are different claims. Growth is more output — a bigger real GDP. Development is a broader improvement in how people live: health, education, security, and the freedom to make choices.",
+        "They usually move together and sometimes do not, which is exactly what makes the comparison interesting. A country can grow fast on oil revenue while life expectancy and schooling stand still, if the income reaches few people.",
+        "Single indicators each capture one dimension: GNI per capita at PPP for income, life expectancy for health, mean and expected years of schooling for education. Composite indicators combine them, and the Human Development Index is the one to know — income, health and education in a single figure between 0 and 1.",
+        "Every measure hides something. HDI averages away distribution, which is why the inequality-adjusted HDI exists. The Gender Inequality Index captures what the others miss entirely. The strongest answers name what a chosen indicator cannot see."
       ]
     },
     {
@@ -1408,6 +1570,12 @@
           "term": "Property rights",
           "definition": "Legally enforceable rights to own, use and transfer assets, without which investment is discouraged."
         }
+      ],
+      "lesson": [
+        "Barriers to development reinforce one another, which is why they are so hard to break.",
+        "The poverty cycle is the core mechanism: low income means low saving, which means low investment, which means low productivity, which means low income. Nothing in that loop breaks on its own.",
+        "Around it sit economic barriers — poor infrastructure, low human capital, dependence on a narrow range of primary exports whose prices swing violently, adverse terms of trade, capital flight, and debt whose interest absorbs the budget. And institutional ones — weak rule of law, corruption, insecure property rights, gender inequality, and conflict.",
+        "The examiner's test is whether you name the MECHANISM. Writing that corruption is a barrier earns little. Writing that corruption raises the effective cost of investing, deters foreign direct investment and so holds down the capital stock is analysis, and it is the same sentence length."
       ]
     },
     {
@@ -1452,6 +1620,13 @@
           "term": "Debt relief",
           "definition": "The cancellation or rescheduling of a country's external debt to free resources for development."
         }
+      ],
+      "lesson": [
+        "Strategies for development divide roughly into trade, market-based, interventionist and institutional, and none of them works everywhere.",
+        "Trade strategies: import substitution builds domestic industry behind protection, which risks permanent inefficiency; export promotion competes in world markets, which demands competitiveness the country may not yet have. Diversification away from primary commodities reduces exposure to price swings.",
+        "Market-based approaches — liberalisation, privatisation, deregulation, attracting foreign direct investment — aim to let the price mechanism allocate resources. Interventionist approaches invest directly in education, health, infrastructure and industrial policy. Foreign aid and debt relief can free resources, or entrench dependency and prop up bad governments.",
+        "Institutional change is the least glamorous and often the most decisive: property and land rights, reducing corruption, women's empowerment, microfinance and mobile banking that reach people banks never did.",
+        "There is no universally best strategy, and saying so is not a cop-out if you say what it depends on: institutional quality, factor endowments, and the stage of development the country has actually reached."
       ]
     }
   ]

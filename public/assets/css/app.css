@@ -469,3 +469,7 @@
 .option.is-muted { opacity: 0.55; cursor: default; }
 .criterion-id.is-right { color: var(--good); }
 .criterion-id.is-wrong { color: var(--bad); }
+
+/* Lesson prose is for reading, so it gets reading measure and rhythm. */
+.lesson p { max-width: 66ch; margin-bottom: var(--s-4); }
+.lesson p:first-child { font-size: var(--t-md); }

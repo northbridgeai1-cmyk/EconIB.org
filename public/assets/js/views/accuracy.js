@@ -60,7 +60,22 @@ function paint(view, data) {
         </div>
 
         <div id="ia-fields">
-          <div class="grid-3">
+          <div class="field">
+            <label for="iaMode">How was it marked</label>
+            <select id="iaMode" name="iaMode">
+              <option value="total">Just the final mark out of 14</option>
+              <option value="breakdown">Criterion by criterion (A–E)</option>
+            </select>
+            <p class="field-hint">A total is enough to see whether EconIB is generous
+            overall. The breakdown also shows which criterion it gets wrong.</p>
+          </div>
+
+          <div class="field" id="ia-total-field">
+            <label for="iaTotal">Total mark</label>
+            <input id="iaTotal" name="iaTotal" type="number" min="0" max="14" step="1" placeholder="/ 14">
+          </div>
+
+          <div class="grid-3" id="ia-breakdown" hidden>
             ${CRITERIA.map((c) => `
               <div class="field">
                 <label for="m-${c.id}">${esc(c.id)} — ${esc(c.name)}</label>
@@ -147,10 +162,12 @@ function renderCalibration(cal) {
 }
 
 function renderRecord(r) {
-  const marks = r.targetKind === "ia"
-    ? CRITERIA.filter((c) => r.marks[c.id] !== undefined)
-        .map((c) => `${c.id} ${r.marks[c.id]}/${c.max}`).join(" · ")
-    : `${r.marks.mark}/${r.maxMarks}`;
+  const marks = r.targetKind !== "ia"
+    ? `${r.marks.mark}/${r.maxMarks}`
+    : r.marks.total !== undefined
+      ? `${r.marks.total}/14 overall`
+      : CRITERIA.filter((c) => r.marks[c.id] !== undefined)
+          .map((c) => `${c.id} ${r.marks[c.id]}/${c.max}`).join(" · ");
   return `<div class="req">
       <span class="req-mark met">${r.targetKind === "ia" ? "IA" : "EX"}</span>
       <span class="req-text">
@@ -172,6 +189,13 @@ function wire(view) {
     paperFields.hidden = !isPaper;
   });
 
+  const mode = view.querySelector("#iaMode");
+  if (mode) mode.addEventListener("change", () => {
+    const breakdown = mode.value === "breakdown";
+    view.querySelector("#ia-breakdown").hidden = !breakdown;
+    view.querySelector("#ia-total-field").hidden = breakdown;
+  });
+
   view.querySelector("#fb-form").addEventListener("submit", async (event) => {
     event.preventDefault();
     const form = event.currentTarget;
@@ -187,9 +211,13 @@ function wire(view) {
     };
     if (v.targetKind === "ia") {
       payload.marks = {};
-      for (const c of CRITERIA) {
-        const raw = v[`m-${c.id}`];
-        if (raw !== "" && raw !== undefined) payload.marks[c.id] = Number(raw);
+      if (v.iaMode === "total") {
+        if (v.iaTotal !== "" && v.iaTotal !== undefined) payload.marks.total = Number(v.iaTotal);
+      } else {
+        for (const c of CRITERIA) {
+          const raw = v[`m-${c.id}`];
+          if (raw !== "" && raw !== undefined) payload.marks[c.id] = Number(raw);
+        }
       }
     } else {
       payload.rubricId = v.rubricId;

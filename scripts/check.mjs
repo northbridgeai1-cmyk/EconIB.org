@@ -96,6 +96,11 @@ for (const t of syllabus.topics) {
   check(`topic ${t.code} has study content`, t.essentials?.length > 0);
   check(`topic ${t.code} has a trap note`, Boolean(t.trap));
   check(`topic ${t.code} has key terms`, t.terms?.length > 0);
+  check(`topic ${t.code} has a lesson`, t.lesson?.length >= 2,
+    "a lesson is at least a couple of paragraphs of actual explanation");
+  check(`topic ${t.code} lesson is substantial`,
+    (t.lesson || []).join(" ").split(/\s+/).length >= 100,
+    `${(t.lesson || []).join(" ").split(/\s+/).length} words`);
   for (const term of t.terms || []) {
     check(`term "${term.term}" (${t.code}) has a real definition`,
       Boolean(term.definition) && term.definition.length >= 25);

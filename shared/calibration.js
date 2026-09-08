@@ -36,6 +36,23 @@ export function compare(record) {
   const econib = record.econib || {};
 
   if (record.targetKind === "ia") {
+    // A teacher often hands back one number. Accept that: a total still tells
+    // you whether EconIB is generous overall, even though it cannot say which
+    // criterion is off.
+    if (Number.isFinite(Number(teacher.total))) {
+      const econibTotal = IA_CRITERIA.every((c) => Number.isFinite(Number(econib[c.id])))
+        ? IA_CRITERIA.reduce((n, c) => n + Number(econib[c.id]), 0)
+        : null;
+      const t = Number(teacher.total);
+      return {
+        rows: [],
+        totalOnly: true,
+        teacherTotal: t,
+        econibTotal,
+        totalDiff: econibTotal === null ? null : econibTotal - t,
+      };
+    }
+
     const rows = IA_CRITERIA
       .filter((c) => Number.isFinite(Number(teacher[c.id])))
       .map((c) => ({

@@ -17,7 +17,8 @@ const STATES = [
 ];
 
 const TABS = [
-  { id: "learn", label: "What to know" },
+  { id: "lesson", label: "Lesson" },
+  { id: "learn", label: "Checklist" },
   { id: "terms", label: "Key terms" },
   { id: "exam", label: "Diagrams & traps" },
 ];
@@ -44,7 +45,7 @@ export default async function lessons({ view, parts }) {
     }));
   }
 
-  const tab = TABS.some((t) => t.id === parts[1]) ? parts[1] : "learn";
+  const tab = TABS.some((t) => t.id === parts[1]) ? parts[1] : "lesson";
 
   mount(view, `
     <div class="study">
@@ -187,8 +188,27 @@ function renderTopic(topic, progress, tab) {
             t.id === "terms" ? ` <span class="tree-unit-count">${esc(topic.terms?.length || 0)}</span>` : ""}</button>`).join("")}
     </div>
 
-    ${tab === "learn" ? learnPanel(topic) : tab === "terms" ? termsPanel(topic) : examPanel(topic)}
+    ${tab === "lesson" ? lessonPanel(topic)
+      : tab === "learn" ? learnPanel(topic)
+      : tab === "terms" ? termsPanel(topic)
+      : examPanel(topic)}
   </div>`;
+}
+
+function lessonPanel(topic) {
+  if (!topic.lesson?.length) {
+    return `<div class="empty"><h3>This lesson is still being written</h3>
+      <p>The checklist, key terms and diagrams for this topic are ready now.</p></div>`;
+  }
+  return `
+    <article class="lesson prose">
+      ${topic.lesson.map((p) => `<p>${esc(p)}</p>`).join("")}
+    </article>
+    <div class="row mt-4">
+      <a class="btn" href="#/lessons/${esc(topic.code)}/terms">Key terms (${esc(topic.terms?.length || 0)})</a>
+      <a class="btn" href="#/lessons/${esc(topic.code)}/exam">Diagrams & traps</a>
+      <a class="btn btn-primary" href="#/practice/${esc(topic.unit)}">Practise this unit</a>
+    </div>`;
 }
 
 function learnPanel(topic) {

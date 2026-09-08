@@ -127,3 +127,33 @@ test("different comments are all passed on, up to three", () => {
   assert.match(ctx, /Terminology is clustered/);
   assert.doesNotMatch(ctx, /fourth comment/, "the prompt is capped at three");
 });
+
+test("a teacher's single total mark is enough to compare overall", () => {
+  const c = compare({ targetKind: "ia", marks: { total: 9 },
+                      econib: { A: 3, B: 2, C: 3, D: 2, E: 2 } });
+  assert.equal(c.totalOnly, true);
+  assert.equal(c.teacherTotal, 9);
+  assert.equal(c.econibTotal, 12, "EconIB's total is summed from its criteria");
+  assert.equal(c.totalDiff, 3);
+  assert.deepEqual(c.rows, [], "a total says nothing about which criterion was off");
+});
+
+test("totals feed the overall figure without inventing per-criterion findings", () => {
+  const records = Array.from({ length: 3 }, () =>
+    ({ targetKind: "ia", marks: { total: 9 }, econib: { A: 3, B: 2, C: 3, D: 2, E: 2 }, comments: "" }));
+  const cal = calibrate(records);
+  assert.equal(cal.comparable, 3);
+  assert.match(cal.overall.text, /3\.0 marks more generous/);
+  for (const id of ["A", "B", "C", "D", "E"]) {
+    assert.equal(cal.criteria[id].samples, 0,
+      "a total mark must not be spread across criteria as if it were a breakdown");
+    assert.equal(cal.criteria[id].enough, false);
+  }
+  assert.equal(cal.headline, null, "no criterion-level claim can come from totals alone");
+});
+
+test("a total mark above 14 is impossible and must be refused upstream", () => {
+  const c = compare({ targetKind: "ia", marks: { total: 14 }, econib: { A: 3, B: 2, C: 3, D: 3, E: 3 } });
+  assert.equal(c.teacherTotal, 14);
+  assert.equal(c.totalDiff, 0, "a perfect 14 against EconIB's 14 is no difference");
+});

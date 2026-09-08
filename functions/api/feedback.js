@@ -44,14 +44,21 @@ export const onRequestPost = handler(async (ctx) => {
   let rubricId = null;
 
   if (kind === "ia") {
-    // Each criterion is optional — a teacher may only have commented on some.
-    for (const c of IA_CRITERIA) {
-      const v = body.marks?.[c.id];
-      if (v === undefined || v === null || v === "") continue;
-      marks[c.id] = intIn(v, 0, c.max, `Criterion ${c.id}`, `marks.${c.id}`);
-    }
-    if (!Object.keys(marks).length) {
-      throw badRequest("Enter at least one criterion mark.", "no_marks", { field: "marks" });
+    const total = body.marks?.total;
+    if (total !== undefined && total !== null && total !== "") {
+      // Just the final mark. Enough to see whether EconIB is generous overall.
+      marks = { total: intIn(total, 0, 14, "Total mark", "marks.total") };
+    } else {
+      // Or the breakdown. Each criterion is optional — a teacher may only have
+      // commented on some of them.
+      for (const c of IA_CRITERIA) {
+        const v = body.marks?.[c.id];
+        if (v === undefined || v === null || v === "") continue;
+        marks[c.id] = intIn(v, 0, c.max, `Criterion ${c.id}`, `marks.${c.id}`);
+      }
+      if (!Object.keys(marks).length) {
+        throw badRequest("Enter a total mark, or at least one criterion.", "no_marks", { field: "marks" });
+      }
     }
     maxMarks = 14;
 

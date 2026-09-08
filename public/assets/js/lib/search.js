@@ -22,7 +22,7 @@ async function build() {
       kind: "Topic",
       title: `${t.code} ${t.title}`,
       sub: `Unit ${t.unit}${t.hlOnly ? " · HL only" : ""}`,
-      href: `#/syllabus/${t.code}`,
+      href: `#/lessons/${t.code}`,
       hlOnly: t.hlOnly,
       key: `${t.code} ${t.title}`,
       body: [...t.essentials, ...t.diagrams, t.trap].join(" "),
@@ -75,7 +75,7 @@ export async function search(query) {
 
 /** The overlay. Opens on click or Cmd/Ctrl+K, closes on Escape. */
 export function mountSearch(host, navigate) {
-  const button = el("button", { class: "search-btn", type: "button", "aria-label": "Search the syllabus" });
+  const button = el("button", { class: "search-btn", type: "button", "aria-label": "Search lessons and terms" });
   // The magnifier stays at every width; the word and the shortcut are what get
   // dropped on a narrow screen, so the control is never a blank box.
   button.innerHTML = `<svg class="search-icon" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">

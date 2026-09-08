@@ -22,7 +22,7 @@ const TABS = [
   { id: "exam", label: "Diagrams & traps" },
 ];
 
-export default async function syllabus({ view, parts }) {
+export default async function lessons({ view, parts }) {
   const [syl, progress] = await Promise.all([data.syllabus(), loadProgress()]);
   const mine = topicsFor(syl, state.user.level);
   const topic = parts[0] ? syl.topics.find((t) => t.code === parts[0]) : null;
@@ -30,8 +30,8 @@ export default async function syllabus({ view, parts }) {
   if (parts[0] && !topic) {
     return mount(view, emptyState({
       title: "No such topic",
-      body: `There is no topic ${parts[0]} in the syllabus.`,
-      action: { href: "#/syllabus", label: "Back to the syllabus" },
+      body: `There is no topic ${parts[0]} on your course.`,
+      action: { href: "#/lessons", label: "Back to lessons" },
     }));
   }
   // An SL student following a link to an HL-only topic should be told, not
@@ -40,7 +40,7 @@ export default async function syllabus({ view, parts }) {
     return mount(view, emptyState({
       title: "That topic is HL only",
       body: `${topic.code} ${topic.title} is not on the SL course. If you take HL, change your level in your account.`,
-      action: { href: "#/syllabus", label: "Back to the syllabus" },
+      action: { href: "#/lessons", label: "Back to lessons" },
     }));
   }
 
@@ -62,14 +62,14 @@ export default async function syllabus({ view, parts }) {
     const stateBtn = event.target.closest(".state-btn");
     if (stateBtn) return onStateClick(stateBtn, view, syl, mine, progress, topic);
     const tabBtn = event.target.closest(".tabs button");
-    if (tabBtn && topic) location.hash = `#/syllabus/${topic.code}/${tabBtn.dataset.tab}`;
+    if (tabBtn && topic) location.hash = `#/lessons/${topic.code}/${tabBtn.dataset.tab}`;
   });
 }
 
 // ---------------------------------------------------------------------- tree
 
 function renderTree(syl, mine, progress, current) {
-  return `<nav class="tree" aria-label="Syllabus">
+  return `<nav class="tree" aria-label="Lessons">
     ${syl.units.map((u) => {
       const topics = mine.filter((t) => t.unit === u.unit);
       if (!topics.length) return "";
@@ -85,7 +85,7 @@ function renderTree(syl, mine, progress, current) {
           <span data-width="${pct}"></span>
         </div>
         ${topics.map((t) => `
-          <a href="#/syllabus/${esc(t.code)}" ${current?.code === t.code ? 'aria-current="page"' : ""}>
+          <a href="#/lessons/${esc(t.code)}" ${current?.code === t.code ? 'aria-current="page"' : ""}>
             <span class="tree-code">${esc(t.code)}</span>
             <span>${esc(t.title)}</span>
             <span class="tree-state" data-state="${esc(progress[t.code] || 0)}"
@@ -105,7 +105,7 @@ function renderOverview(syl, mine, progress) {
 
   return `
     <div class="view-head">
-      <h1>Syllabus</h1>
+      <h1>Lessons</h1>
       <p class="lede">
         ${esc(mine.length)} topics and ${esc(terms)} key terms for ${esc(state.user.level)}${
           state.user.level === "SL" ? " — the three HL-only topics are hidden" : ""}.
@@ -117,7 +117,7 @@ function renderOverview(syl, mine, progress) {
       <b>Your revision list</b>
       <p>${esc(shaky)} topic${shaky === 1 ? "" : "s"} marked shaky:
       ${mine.filter((t) => progress[t.code] === 1).map((t) =>
-        `<a href="#/syllabus/${esc(t.code)}">${esc(t.code)}</a>`).join(", ")}.</p>
+        `<a href="#/lessons/${esc(t.code)}">${esc(t.code)}</a>`).join(", ")}.</p>
     </div>` : ""}
 
     <div class="grid-2 mt-4">
@@ -136,7 +136,7 @@ function renderOverview(syl, mine, progress) {
           </p>
           <div class="unit-progress"><span data-width="${topics.length ? Math.round((done / topics.length) * 100) : 0}"></span></div>
           <p class="small mt-4">${topics.slice(0, 3).map((t) =>
-            `<a href="#/syllabus/${esc(t.code)}">${esc(t.code)}</a>`).join(" · ")}${topics.length > 3 ? " …" : ""}</p>
+            `<a href="#/lessons/${esc(t.code)}">${esc(t.code)}</a>`).join(" · ")}${topics.length > 3 ? " …" : ""}</p>
         </section>`;
       }).join("")}
     </div>
@@ -155,7 +155,7 @@ function renderTopic(topic, progress, tab) {
 
   return `<div style="${unitVars}">
     <div class="unit-banner">
-      <p class="eyebrow"><a href="#/syllabus">Syllabus</a> · Unit ${esc(topic.unit)}</p>
+      <p class="eyebrow"><a href="#/lessons">Lessons</a> · Unit ${esc(topic.unit)}</p>
       <h1>${esc(topic.code)} ${esc(topic.title)}</h1>
     </div>
 
@@ -270,7 +270,7 @@ async function onStateClick(button, view, syl, mine, progress, topic) {
 
   // Update the tree dot and the unit bar straight away, so rating feels
   // immediate rather than waiting on the round trip.
-  const dot = view.querySelector(`.tree a[href="#/syllabus/${CSS.escape(code)}"] .tree-state`);
+  const dot = view.querySelector(`.tree a[href="#/lessons/${CSS.escape(code)}"] .tree-state`);
   if (dot) dot.dataset.state = String(next);
   progress[code] = next;
   repaintUnitBars(view, syl, mine, progress);

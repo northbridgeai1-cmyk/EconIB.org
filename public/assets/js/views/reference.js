@@ -63,6 +63,6 @@ function renderConcepts(concepts) {
         <p>${esc(c.long)}</p>
         <p class="gap"><b>Using it in the IA</b>${esc(c.iaLens)}</p>
         <p class="small">Fits well with topics ${c.pairsWith.map((code) =>
-          `<a href="#/syllabus/${esc(code)}">${esc(code)}</a>`).join(", ")}</p>
+          `<a href="#/lessons/${esc(code)}">${esc(code)}</a>`).join(", ")}</p>
       </section>`).join("")}`;
 }

@@ -127,8 +127,8 @@ function pickNextAction({ portfolio, shaky, untouched, mine, stats }) {
   const cs = portfolio.commentaries;
 
   if (stats && !stats.activeToday && stats.streak > 0) {
-    return { title: `Keep your ${stats.streak}-day streak`, href: "#/syllabus",
-      label: "Open the syllabus",
+    return { title: `Keep your ${stats.streak}-day streak`, href: "#/lessons",
+      label: "Open lessons",
       text: "Anything counts — rate a topic, read a lesson, or get something marked." };
   }
   if (cs.length === 0) {
@@ -154,11 +154,11 @@ function pickNextAction({ portfolio, shaky, untouched, mine, stats }) {
       text: "Criterion F cannot be scored until all three exist." };
   }
   if (shaky > 0) {
-    return { title: `Review ${shaky} shaky topic${shaky === 1 ? "" : "s"}`, href: "#/syllabus",
-      label: "Open the syllabus", text: "You marked these yourself. They are your revision list." };
+    return { title: `Review ${shaky} shaky topic${shaky === 1 ? "" : "s"}`, href: "#/lessons",
+      label: "Open lessons", text: "You marked these yourself. They are your revision list." };
   }
   if (untouched > mine.length / 2) {
-    return { title: "Rate your topics", href: "#/syllabus", label: "Rate topics",
+    return { title: "Rate your topics", href: "#/lessons", label: "Rate topics",
       text: "Most are unrated, so there is nothing to prioritise from yet. Rating them turns this into a plan." };
   }
   return { title: "Write a timed exam answer", href: "#/papers", label: "Mark an exam answer",

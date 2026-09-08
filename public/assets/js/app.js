@@ -5,14 +5,15 @@ import { mountThemeToggle, mountBackToTop, registerServiceWorker } from "./lib/c
 import { mountSearch } from "./lib/search.js";
 
 import dashboard from "./views/dashboard.js";
-import syllabus from "./views/syllabus.js";
+import lessons from "./views/lessons.js";
 import ia from "./views/ia.js";
 import papers from "./views/papers.js";
 import reference from "./views/reference.js";
 import grades from "./views/grades.js";
 import account from "./views/account.js";
 
-const routes = { "": dashboard, syllabus, ia, papers, reference, grades, account };
+// "syllabus" is kept as an alias of "lessons" so older links do not break.
+const routes = { "": dashboard, lessons, syllabus: lessons, ia, papers, reference, grades, account };
 const view = $("#view");
 
 /** "#/syllabus/2.3" -> { name: "syllabus", parts: ["2.3"] } */
@@ -23,8 +24,9 @@ function parseHash() {
 }
 
 function markActiveNav(name) {
+  const active = name === "syllabus" ? "lessons" : name;
   for (const link of $$(".nav a")) {
-    if (link.dataset.route === name) link.setAttribute("aria-current", "page");
+    if (link.dataset.route === active) link.setAttribute("aria-current", "page");
     else link.removeAttribute("aria-current");
   }
 }

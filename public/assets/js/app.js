@@ -1,5 +1,6 @@
-import { $, $$, mount, emptyState, toast } from "./lib/dom.js";
-import { ApiError } from "./lib/api.js";
+import { $, $$, mount, emptyState, toast, esc } from "./lib/dom.js";
+import { avatarSvg } from "./lib/avatar.js";
+import { api, ApiError } from "./lib/api.js";
 import { loadUser, state, data } from "./lib/store.js";
 import { mountThemeToggle, mountBackToTop, registerServiceWorker } from "./lib/chrome.js";
 import { mountSearch } from "./lib/search.js";
@@ -10,10 +11,10 @@ import ia from "./views/ia.js";
 import papers from "./views/papers.js";
 import reference from "./views/reference.js";
 import grades from "./views/grades.js";
-import account from "./views/account.js";
+import settings from "./views/settings.js";
 
 // "syllabus" is kept as an alias of "lessons" so older links do not break.
-const routes = { "": dashboard, lessons, syllabus: lessons, ia, papers, reference, grades, account };
+const routes = { "": dashboard, lessons, syllabus: lessons, ia, papers, reference, grades, settings, account: settings };
 const view = $("#view");
 
 /** "#/syllabus/2.3" -> { name: "syllabus", parts: ["2.3"] } */
@@ -86,11 +87,33 @@ function redirectToLogin() {
   location.href = "/login";
 }
 
-function paintUserChip() {
-  const chip = $("#user-chip");
-  if (!state.user) { chip.textContent = ""; return; }
-  chip.textContent = `${state.user.yearGroup} · ${state.user.level}`;
+async function paintIdentity() {
+  const holder = $("#account-avatar");
+  if (state.user && holder) {
+    holder.innerHTML = avatarSvg(state.user.name, state.user.avatar, 30);
+  }
+  // The streak lives in the header so it is visible on every screen, not only
+  // on the dashboard — that is the whole point of a streak.
+  const chip = $("#streak-chip");
+  if (!chip) return;
+  try {
+    const { stats } = await api.getStats();
+    state.stats = stats;
+    chip.hidden = false;
+    chip.className = `streak-chip${stats.streak > 0 ? "" : " is-cold"}`;
+    chip.innerHTML = `${stats.streak > 0 ? "▲" : "·"} ${esc(stats.streak)} <span class="streak-word">day${stats.streak === 1 ? "" : "s"}</span>`;
+    chip.title = stats.activeToday
+      ? `${stats.streak} day streak, counted for today`
+      : "Do one thing today to keep your streak";
+  } catch (err) {
+    // Hide rather than show a stale number — but say why. A bare catch here
+    // silently swallowed a ReferenceError once, and the streak simply never
+    // appeared with nothing anywhere to explain it.
+    chip.hidden = true;
+    if (!(err instanceof ApiError)) console.error("streak could not be painted", err);
+  }
 }
+const paintUserChip = paintIdentity;
 
 /**
  * Offline is named, not implied. Losing signal otherwise looks like a hanging
@@ -131,7 +154,7 @@ async function start() {
     }));
     return;
   }
-  paintUserChip();
+  await paintIdentity();
   addEventListener("hashchange", render);
   await render();
 }

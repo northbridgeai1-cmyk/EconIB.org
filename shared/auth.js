@@ -197,6 +197,7 @@ export function publicUser(row) {
     yearGroup: row.year_group,
     level: row.level,
     examSession: row.exam_session || "",
+    avatar: row.avatar ?? 0,
     createdAt: row.created_at,
   };
 }

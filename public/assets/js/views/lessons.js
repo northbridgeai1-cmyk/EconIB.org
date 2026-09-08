@@ -69,18 +69,22 @@ export default async function lessons({ view, parts }) {
 // ---------------------------------------------------------------------- tree
 
 function renderTree(syl, mine, progress, current) {
+  // Units collapse so the tree stays navigable: 31 topics open at once is a
+  // wall. The unit containing whatever you are reading opens itself.
   return `<nav class="tree" aria-label="Lessons">
     ${syl.units.map((u) => {
       const topics = mine.filter((t) => t.unit === u.unit);
       if (!topics.length) return "";
       const solid = topics.filter((t) => progress[t.code] === 2).length;
       const pct = topics.length ? Math.round((solid / topics.length) * 100) : 0;
-      return `<div class="tree-unit" style="--unit-colour: var(--u${u.unit}); --unit-wash: var(--u${u.unit}-wash)">
-        <div class="tree-unit-head">
+      const open = current ? current.unit === u.unit : u.unit === 2;
+      return `<details class="tree-unit" ${open ? "open" : ""}
+                style="--unit-colour: var(--u${u.unit}); --unit-wash: var(--u${u.unit}-wash)">
+        <summary class="tree-unit-head">
           <span class="tree-dot"></span>
           <span class="tree-unit-name">Unit ${esc(u.unit)}</span>
           <span class="tree-unit-count">${esc(solid)}/${esc(topics.length)}</span>
-        </div>
+        </summary>
         <div class="unit-progress" role="img" aria-label="${esc(solid)} of ${esc(topics.length)} topics confident">
           <span data-width="${pct}"></span>
         </div>
@@ -91,7 +95,7 @@ function renderTree(syl, mine, progress, current) {
             <span class="tree-state" data-state="${esc(progress[t.code] || 0)}"
                   title="${esc(STATES[progress[t.code] || 0].title)}"></span>
           </a>`).join("")}
-      </div>`;
+      </details>`;
     }).join("")}
   </nav>`;
 }
@@ -120,23 +124,29 @@ function renderOverview(syl, mine, progress) {
         `<a href="#/lessons/${esc(t.code)}">${esc(t.code)}</a>`).join(", ")}.</p>
     </div>` : ""}
 
-    <div class="grid-2 mt-4">
+    <div class="stack mt-4">
       ${syl.units.map((u) => {
         const topics = mine.filter((t) => t.unit === u.unit);
         if (!topics.length) return "";
         const done = topics.filter((t) => progress[t.code] === 2).length;
+        const pct = topics.length ? Math.round((done / topics.length) * 100) : 0;
         return `<section class="card" style="--unit-colour: var(--u${u.unit}); --unit-wash: var(--u${u.unit}-wash)">
           <div class="unit-banner">
-            <p class="eyebrow">Unit ${esc(u.unit)}</p>
+            <p class="eyebrow">Unit ${esc(u.unit)} · ${esc(topics.length)} topics · ${esc(state.user.level === "HL" ? u.hours.hl : u.hours.sl)} hours</p>
             <h2>${esc(u.title)}</h2>
           </div>
-          <p class="small">
-            ${esc(topics.length)} topics · ${esc(state.user.level === "HL" ? u.hours.hl : u.hours.sl)} teaching hours ·
-            ${esc(done)} marked solid
-          </p>
-          <div class="unit-progress"><span data-width="${topics.length ? Math.round((done / topics.length) * 100) : 0}"></span></div>
-          <p class="small mt-4">${topics.slice(0, 3).map((t) =>
-            `<a href="#/lessons/${esc(t.code)}">${esc(t.code)}</a>`).join(" · ")}${topics.length > 3 ? " …" : ""}</p>
+          <p class="lede">${esc(u.blurb || "")}</p>
+          <div class="unit-progress"><span data-width="${pct}"></span></div>
+          <p class="small">${esc(done)} of ${esc(topics.length)} marked solid</p>
+
+          <details class="mt-4">
+            <summary>What this unit covers, and why it matters</summary>
+            <ul class="prose">${(u.covers || []).map((c) => `<li>${esc(c)}</li>`).join("")}</ul>
+            ${u.why ? `<p class="gap"><b>Where the marks are</b>${esc(u.why)}</p>` : ""}
+          </details>
+
+          <p class="small mt-4">${topics.map((t) =>
+            `<a href="#/lessons/${esc(t.code)}">${esc(t.code)}</a>`).join(" · ")}</p>
         </section>`;
       }).join("")}
     </div>

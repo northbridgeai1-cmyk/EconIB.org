@@ -20,7 +20,7 @@
 
 <header class="masthead">
   <div class="masthead-inner">
-    <a class="brand" href="/app#/">Econ<span>IB</span></a>
+    <a class="brand" href="/app#/"><img src="/assets/logo.svg" alt="" width="34" height="25" class="brand-mark">Econ<span>IB</span></a>
     <nav class="nav" aria-label="Main">
       <a href="#/" data-route="">Dashboard</a>
       <a href="#/lessons" data-route="lessons">Lessons</a>
@@ -30,8 +30,11 @@
       <a href="#/grades" data-route="grades">Grade calculator</a>
     </nav>
     <div class="masthead-meta" id="masthead-meta">
-      <span id="user-chip" class="small"></span>
-      <a class="btn btn-quiet btn-sm" href="#/account">Account</a>
+      <span id="streak-chip" class="streak-chip" hidden></span>
+    </div>
+    <a class="account-link" href="#/settings" id="account-link" aria-label="Account and settings">
+      <span id="account-avatar"></span>
+    </a>
     </div>
   </div>
 </header>

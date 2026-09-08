@@ -1,0 +1,256 @@
+- generic [ref=f1e1]:
+  - link "Skip to content" [ref=f1e2] [cursor=pointer]:
+    - /url: "#view"
+  - banner [ref=f1e3]:
+    - generic [ref=f1e4]:
+      - link "Econ IB" [ref=f1e5] [cursor=pointer]:
+        - /url: /app#/
+        - text: Econ
+        - generic [ref=f1e6]: IB
+      - navigation "Main" [ref=f1e7]:
+        - link "Dashboard" [ref=f1e8] [cursor=pointer]:
+          - /url: "#/"
+        - link "Lessons" [ref=f1e9] [cursor=pointer]:
+          - /url: "#/lessons"
+        - link "IA portfolio" [ref=f1e10] [cursor=pointer]:
+          - /url: "#/ia"
+        - link "Exam answers" [ref=f1e11] [cursor=pointer]:
+          - /url: "#/papers"
+        - link "Reference" [ref=f1e12] [cursor=pointer]:
+          - /url: "#/reference"
+        - link "Grade calculator" [ref=f1e13] [cursor=pointer]:
+          - /url: "#/grades"
+      - generic [ref=f1e14]:
+        - button "Search lessons and terms" [ref=f1e15] [cursor=pointer]:
+          - generic [ref=f1e19]: Search
+          - generic [ref=f1e20]: ⌘K
+        - 'button "Colour theme: Auto. Click to change." [ref=f1e21] [cursor=pointer]': Auto
+      - link "Account and settings" [ref=f1e30] [cursor=pointer]:
+        - /url: "#/settings"
+        - img "Pierce Tyrrell" [ref=f1e32]:
+          - generic [ref=f1e34]: PT
+  - main [active] [ref=f1e22]:
+    - generic [ref=f1e35]:
+      - navigation "Lessons" [ref=f1e36]:
+        - group [ref=f1e37]:
+          - generic "+ Unit 1 0/2 +" [ref=f1e38] [cursor=pointer]:
+            - text: +
+            - generic [ref=f1e40]: Unit 1
+            - generic [ref=f1e41]: 0/2
+            - text: +
+        - group [ref=f1e42]:
+          - generic "− Unit 2 0/12 −" [ref=f1e43] [cursor=pointer]:
+            - text: −
+            - generic [ref=f1e45]: Unit 2
+            - generic [ref=f1e46]: 0/12
+            - text: −
+          - img "0 of 12 topics confident" [ref=f1e47]
+          - link "2.1 Demand Not rated" [ref=f1e48] [cursor=pointer]:
+            - /url: "#/lessons/2.1"
+            - generic [ref=f1e49]: "2.1"
+            - generic [ref=f1e50]: Demand
+            - generic "Not rated" [ref=f1e51]
+          - link "2.2 Supply Not rated" [ref=f1e52] [cursor=pointer]:
+            - /url: "#/lessons/2.2"
+            - generic [ref=f1e53]: "2.2"
+            - generic [ref=f1e54]: Supply
+            - generic "Not rated" [ref=f1e55]
+          - link "2.3 Competitive market equilibrium Not rated" [ref=f1e56] [cursor=pointer]:
+            - /url: "#/lessons/2.3"
+            - generic [ref=f1e57]: "2.3"
+            - generic [ref=f1e58]: Competitive market equilibrium
+            - generic "Not rated" [ref=f1e59]
+          - link "2.4 Critique of the maximizing behaviour of consumers and producers Not rated" [ref=f1e60] [cursor=pointer]:
+            - /url: "#/lessons/2.4"
+            - generic [ref=f1e61]: "2.4"
+            - generic [ref=f1e62]: Critique of the maximizing behaviour of consumers and producers
+            - generic "Not rated" [ref=f1e63]
+          - link "2.5 Elasticity of demand Not rated" [ref=f1e64] [cursor=pointer]:
+            - /url: "#/lessons/2.5"
+            - generic [ref=f1e65]: "2.5"
+            - generic [ref=f1e66]: Elasticity of demand
+            - generic "Not rated" [ref=f1e67]
+          - link "2.6 Elasticity of supply Not rated" [ref=f1e68] [cursor=pointer]:
+            - /url: "#/lessons/2.6"
+            - generic [ref=f1e69]: "2.6"
+            - generic [ref=f1e70]: Elasticity of supply
+            - generic "Not rated" [ref=f1e71]
+          - link "2.7 Role of government in microeconomics Not rated" [ref=f1e72] [cursor=pointer]:
+            - /url: "#/lessons/2.7"
+            - generic [ref=f1e73]: "2.7"
+            - generic [ref=f1e74]: Role of government in microeconomics
+            - generic "Not rated" [ref=f1e75]
+          - link "2.8 Market failure — externalities and common pool resources Not rated" [ref=f1e76] [cursor=pointer]:
+            - /url: "#/lessons/2.8"
+            - generic [ref=f1e77]: "2.8"
+            - generic [ref=f1e78]: Market failure — externalities and common pool resources
+            - generic "Not rated" [ref=f1e79]
+          - link "2.9 Market failure — public goods Not rated" [ref=f1e80] [cursor=pointer]:
+            - /url: "#/lessons/2.9"
+            - generic [ref=f1e81]: "2.9"
+            - generic [ref=f1e82]: Market failure — public goods
+            - generic "Not rated" [ref=f1e83]
+          - link "2.10 Market failure — asymmetric information Not rated" [ref=f1e84] [cursor=pointer]:
+            - /url: "#/lessons/2.10"
+            - generic [ref=f1e85]: "2.10"
+            - generic [ref=f1e86]: Market failure — asymmetric information
+            - generic "Not rated" [ref=f1e87]
+          - link "2.11 Market failure — market power Not rated" [ref=f1e88] [cursor=pointer]:
+            - /url: "#/lessons/2.11"
+            - generic [ref=f1e89]: "2.11"
+            - generic [ref=f1e90]: Market failure — market power
+            - generic "Not rated" [ref=f1e91]
+          - link "2.12 The market's inability to achieve equity Not rated" [ref=f1e92] [cursor=pointer]:
+            - /url: "#/lessons/2.12"
+            - generic [ref=f1e93]: "2.12"
+            - generic [ref=f1e94]: The market's inability to achieve equity
+            - generic "Not rated" [ref=f1e95]
+        - group [ref=f1e96]:
+          - generic "+ Unit 3 0/7 +" [ref=f1e97] [cursor=pointer]:
+            - text: +
+            - generic [ref=f1e99]: Unit 3
+            - generic [ref=f1e100]: 0/7
+            - text: +
+        - group [ref=f1e101]:
+          - generic "+ Unit 4 0/10 +" [ref=f1e102] [cursor=pointer]:
+            - text: +
+            - generic [ref=f1e104]: Unit 4
+            - generic [ref=f1e105]: 0/10
+            - text: +
+      - generic [ref=f1e106]:
+        - generic [ref=f1e107]:
+          - heading "Lessons" [level=1] [ref=f1e108]
+          - paragraph [ref=f1e109]: 31 topics and 161 key terms for HL. Pick a topic from the tree, or start with whatever you have marked shaky.
+        - generic [ref=f1e110]:
+          - generic [ref=f1e111]:
+            - generic [ref=f1e112]:
+              - paragraph [ref=f1e113]: Unit 1 · 2 topics · 10 hours
+              - heading "Introduction to economics" [level=2] [ref=f1e114]
+            - paragraph
+            - paragraph [ref=f1e116]: 0 of 2 marked solid
+            - group [ref=f1e117]:
+              - generic "+What this unit covers, and why it matters" [ref=f1e118] [cursor=pointer]
+            - paragraph [ref=f1e119]:
+              - link "1.1" [ref=f1e120] [cursor=pointer]:
+                - /url: "#/lessons/1.1"
+              - text: ·
+              - link "1.2" [ref=f1e121] [cursor=pointer]:
+                - /url: "#/lessons/1.2"
+          - generic [ref=f1e122]:
+            - generic [ref=f1e123]:
+              - paragraph [ref=f1e124]: Unit 2 · 12 topics · 70 hours
+              - heading "Microeconomics" [level=2] [ref=f1e125]
+            - paragraph
+            - paragraph [ref=f1e127]: 0 of 12 marked solid
+            - group [ref=f1e128]:
+              - generic "+What this unit covers, and why it matters" [ref=f1e129] [cursor=pointer]
+            - paragraph [ref=f1e130]:
+              - link "2.1" [ref=f1e131] [cursor=pointer]:
+                - /url: "#/lessons/2.1"
+              - text: ·
+              - link "2.2" [ref=f1e132] [cursor=pointer]:
+                - /url: "#/lessons/2.2"
+              - text: ·
+              - link "2.3" [ref=f1e133] [cursor=pointer]:
+                - /url: "#/lessons/2.3"
+              - text: ·
+              - link "2.4" [ref=f1e134] [cursor=pointer]:
+                - /url: "#/lessons/2.4"
+              - text: ·
+              - link "2.5" [ref=f1e135] [cursor=pointer]:
+                - /url: "#/lessons/2.5"
+              - text: ·
+              - link "2.6" [ref=f1e136] [cursor=pointer]:
+                - /url: "#/lessons/2.6"
+              - text: ·
+              - link "2.7" [ref=f1e137] [cursor=pointer]:
+                - /url: "#/lessons/2.7"
+              - text: ·
+              - link "2.8" [ref=f1e138] [cursor=pointer]:
+                - /url: "#/lessons/2.8"
+              - text: ·
+              - link "2.9" [ref=f1e139] [cursor=pointer]:
+                - /url: "#/lessons/2.9"
+              - text: ·
+              - link "2.10" [ref=f1e140] [cursor=pointer]:
+                - /url: "#/lessons/2.10"
+              - text: ·
+              - link "2.11" [ref=f1e141] [cursor=pointer]:
+                - /url: "#/lessons/2.11"
+              - text: ·
+              - link "2.12" [ref=f1e142] [cursor=pointer]:
+                - /url: "#/lessons/2.12"
+          - generic [ref=f1e143]:
+            - generic [ref=f1e144]:
+              - paragraph [ref=f1e145]: Unit 3 · 7 topics · 75 hours
+              - heading "Macroeconomics" [level=2] [ref=f1e146]
+            - paragraph
+            - paragraph [ref=f1e148]: 0 of 7 marked solid
+            - group [ref=f1e149]:
+              - generic "+What this unit covers, and why it matters" [ref=f1e150] [cursor=pointer]
+            - paragraph [ref=f1e151]:
+              - link "3.1" [ref=f1e152] [cursor=pointer]:
+                - /url: "#/lessons/3.1"
+              - text: ·
+              - link "3.2" [ref=f1e153] [cursor=pointer]:
+                - /url: "#/lessons/3.2"
+              - text: ·
+              - link "3.3" [ref=f1e154] [cursor=pointer]:
+                - /url: "#/lessons/3.3"
+              - text: ·
+              - link "3.4" [ref=f1e155] [cursor=pointer]:
+                - /url: "#/lessons/3.4"
+              - text: ·
+              - link "3.5" [ref=f1e156] [cursor=pointer]:
+                - /url: "#/lessons/3.5"
+              - text: ·
+              - link "3.6" [ref=f1e157] [cursor=pointer]:
+                - /url: "#/lessons/3.6"
+              - text: ·
+              - link "3.7" [ref=f1e158] [cursor=pointer]:
+                - /url: "#/lessons/3.7"
+          - generic [ref=f1e159]:
+            - generic [ref=f1e160]:
+              - paragraph [ref=f1e161]: Unit 4 · 10 topics · 65 hours
+              - heading "The global economy" [level=2] [ref=f1e162]
+            - paragraph
+            - paragraph [ref=f1e164]: 0 of 10 marked solid
+            - group [ref=f1e165]:
+              - generic "+What this unit covers, and why it matters" [ref=f1e166] [cursor=pointer]
+            - paragraph [ref=f1e167]:
+              - link "4.1" [ref=f1e168] [cursor=pointer]:
+                - /url: "#/lessons/4.1"
+              - text: ·
+              - link "4.2" [ref=f1e169] [cursor=pointer]:
+                - /url: "#/lessons/4.2"
+              - text: ·
+              - link "4.3" [ref=f1e170] [cursor=pointer]:
+                - /url: "#/lessons/4.3"
+              - text: ·
+              - link "4.4" [ref=f1e171] [cursor=pointer]:
+                - /url: "#/lessons/4.4"
+              - text: ·
+              - link "4.5" [ref=f1e172] [cursor=pointer]:
+                - /url: "#/lessons/4.5"
+              - text: ·
+              - link "4.6" [ref=f1e173] [cursor=pointer]:
+                - /url: "#/lessons/4.6"
+              - text: ·
+              - link "4.7" [ref=f1e174] [cursor=pointer]:
+                - /url: "#/lessons/4.7"
+              - text: ·
+              - link "4.8" [ref=f1e175] [cursor=pointer]:
+                - /url: "#/lessons/4.8"
+              - text: ·
+              - link "4.9" [ref=f1e176] [cursor=pointer]:
+                - /url: "#/lessons/4.9"
+              - text: ·
+              - link "4.10" [ref=f1e177] [cursor=pointer]:
+                - /url: "#/lessons/4.10"
+        - paragraph [ref=f1e178]: Study content written by EconIB. Always check the official subject guide and your teacher's material.
+  - contentinfo [ref=f1e27]:
+    - paragraph [ref=f1e28]:
+      - link "Terms and privacy" [ref=f1e29] [cursor=pointer]:
+        - /url: /terms
+      - text: · Marks here are not official. EconIB is not affiliated with the IB.
+  - button "Back to top"

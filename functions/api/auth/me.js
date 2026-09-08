@@ -1,5 +1,5 @@
 import { json, handler, readJson, nowIso } from "../../../shared/http.js";
-import { str, oneOf, LIMITS } from "../../../shared/validate.js";
+import { str, oneOf, intIn, LIMITS } from "../../../shared/validate.js";
 import { requireUser, publicUser, readSessionToken, sessionCookie } from "../../../shared/auth.js";
 import { usageToday } from "../../../shared/spend.js";
 
@@ -19,10 +19,11 @@ export const onRequestPatch = handler(async (ctx) => {
   const examSession = body.examSession === undefined
     ? user.exam_session
     : str(body.examSession, "Exam session", { max: LIMITS.examSession, required: false, name: "examSession" });
+  const avatar = body.avatar === undefined ? (user.avatar ?? 0) : intIn(body.avatar, 0, 11, "Avatar", "avatar");
 
   await ctx.env.DB.prepare(
-    "UPDATE users SET name = ?, year_group = ?, level = ?, exam_session = ?, updated_at = ? WHERE id = ?"
-  ).bind(name, yearGroup, level, examSession, nowIso(), user.id).run();
+    "UPDATE users SET name = ?, year_group = ?, level = ?, exam_session = ?, avatar = ?, updated_at = ? WHERE id = ?"
+  ).bind(name, yearGroup, level, examSession, avatar, nowIso(), user.id).run();
 
   const row = await ctx.env.DB.prepare("SELECT * FROM users WHERE id = ?").bind(user.id).first();
   return json({ user: publicUser(row) }, { request: ctx.request, env: ctx.env });

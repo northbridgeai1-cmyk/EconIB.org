@@ -7,7 +7,16 @@
       "hours": {
         "sl": 10,
         "hl": 10
-      }
+      },
+      "blurb": "Why economics exists as a subject: resources are limited, so every choice costs something else.",
+      "covers": [
+        "Scarcity, choice and opportunity cost",
+        "The production possibilities curve",
+        "Factors of production and the circular flow",
+        "Positive versus normative statements",
+        "The nine key concepts"
+      ],
+      "why": "Two topics, ten hours, and almost no exam questions of its own — but the language here appears in every answer you write for the next two years. Opportunity cost and the positive/normative distinction turn up in Paper 1 evaluation constantly."
     },
     {
       "unit": 2,
@@ -15,7 +24,16 @@
       "hours": {
         "sl": 35,
         "hl": 70
-      }
+      },
+      "blurb": "How individual markets set prices and quantities, and what happens when they get it wrong.",
+      "covers": [
+        "Demand, supply and equilibrium",
+        "Elasticity: PED, YED and PES",
+        "Government intervention: taxes, subsidies, price controls",
+        "Market failure: externalities, public goods, common pool resources",
+        "HL only: asymmetric information, market power, equity"
+      ],
+      "why": "The biggest unit and the one most IA commentaries are written about, because news articles about prices are everywhere. Nearly every diagram you must be able to draw lives here."
     },
     {
       "unit": 3,
@@ -23,7 +41,16 @@
       "hours": {
         "sl": 40,
         "hl": 75
-      }
+      },
+      "blurb": "The economy as a whole: output, jobs, prices, and what governments can do about them.",
+      "covers": [
+        "Measuring activity: GDP, GNI, real versus nominal",
+        "Aggregate demand and aggregate supply",
+        "Unemployment, inflation and the objectives that conflict",
+        "Inequality, poverty and the Lorenz curve",
+        "Monetary, fiscal and supply-side policy"
+      ],
+      "why": "Where evaluation marks are won. Almost every policy has a cost, a time lag and a group who loses — say which, and you are in the top band."
     },
     {
       "unit": 4,
@@ -31,7 +58,16 @@
       "hours": {
         "sl": 45,
         "hl": 65
-      }
+      },
+      "blurb": "Trade between countries, exchange rates, and why some economies develop and others do not.",
+      "covers": [
+        "Comparative advantage and the gains from trade",
+        "Protection: tariffs, quotas, subsidies",
+        "Economic integration and the WTO",
+        "Exchange rates and the balance of payments",
+        "Development: measuring it, barriers to it, strategies for it"
+      ],
+      "why": "The most current unit — trade disputes and exchange rate moves are in the news every week, which makes it the easiest place to find a genuinely recent IA article."
     }
   ],
   "topics": [

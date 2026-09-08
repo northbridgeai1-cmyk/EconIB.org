@@ -1,4 +1,4 @@
-import { SECURITY_HEADERS, corsHeaders, allowedOrigin } from "../shared/http.js";
+import { SECURITY_HEADERS, corsHeaders, isAllowedOrigin } from "../shared/http.js";
 
 /** Preflight, security headers on every API response, and a same-origin guard. */
 export const onRequest = async (ctx) => {
@@ -24,12 +24,10 @@ export const onRequest = async (ctx) => {
   // means such a request carries no session, but refusing early is clearer than
   // letting it through to fail as "not signed in".
   if (isApi && !["GET", "HEAD", "OPTIONS"].includes(request.method)) {
-    const origin = request.headers.get("origin");
-    const allowed = allowedOrigin(env);
     // Fail closed: a state-changing request with NO Origin header was
     // previously waved through. SameSite=Strict already carries the real
     // defence, but requiring the header is free and removes the gap.
-    if (!origin || !allowed || origin.replace(/\/+$/, "") !== allowed) {
+    if (!isAllowedOrigin(env, request.headers.get("origin"))) {
       return new Response(JSON.stringify({ error: "Cross-origin requests are not allowed.", code: "bad_origin" }), {
         status: 403,
         headers: { "content-type": "application/json", ...SECURITY_HEADERS },

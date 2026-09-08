@@ -20,19 +20,32 @@ export const SECURITY_HEADERS = {
  * the state a fresh deployment is in — cross-origin requests are denied. A
  * permissive default would make the misconfiguration invisible.
  */
+export function allowedOrigins(env) {
+  // A deployment legitimately answers on more than one origin: the pages.dev
+  // URL exists from the first deploy, and the custom domain is added later.
+  // Accepting a list avoids a window where the site blocks its own requests.
+  // There is still no wildcard — an unset value denies everything.
+  return String(env.ALLOWED_ORIGIN || "")
+    .split(",")
+    .map((o) => o.trim().replace(/\/+$/, ""))
+    .filter(Boolean);
+}
+
+/** The first configured origin, used when building absolute links. */
 export function allowedOrigin(env) {
-  const raw = (env.ALLOWED_ORIGIN || "").trim();
-  if (!raw) return null;
-  return raw.replace(/\/+$/, ""); // a trailing slash never matches an Origin header
+  return allowedOrigins(env)[0] || null;
+}
+
+export function isAllowedOrigin(env, origin) {
+  if (!origin) return false;
+  return allowedOrigins(env).includes(origin.replace(/\/+$/, ""));
 }
 
 export function corsHeaders(request, env) {
-  const allowed = allowedOrigin(env);
   const origin = request.headers.get("origin");
-  if (!allowed || !origin) return {};
-  if (origin.replace(/\/+$/, "") !== allowed) return {};
+  if (!isAllowedOrigin(env, origin)) return {};
   return {
-    "access-control-allow-origin": allowed,
+    "access-control-allow-origin": origin.replace(/\/+$/, ""),
     "access-control-allow-credentials": "true",
     "vary": "origin",
   };

@@ -8,14 +8,16 @@ pages_build_output_dir = "public"
 [[d1_databases]]
 binding = "DB"
 database_name = "econib"
-database_id = "00000000-0000-0000-0000-000000000000"  # replaced by the real id on deploy
+database_id = "6c5076d0-24fd-4868-b910-4284e72511ea"  # replaced by the real id on deploy
 
 [vars]
-# Origin allowed to call the API. Must be the exact scheme + host with NO
-# trailing slash — the browser compares character for character.
+# Origins allowed to call the API, comma separated. Each must be the exact
+# scheme + host with NO trailing slash — the browser compares character for
+# character. Both are listed because the pages.dev URL exists from the first
+# deploy and the custom domain is added afterwards.
 # There is deliberately no wildcard fallback: an unset value denies
 # cross-origin reads rather than quietly allowing every origin.
-ALLOWED_ORIGIN = "https://econib.org"
+ALLOWED_ORIGIN = "https://econib.org,https://econib.pages.dev"
 
 # Google sign-in. Optional: without a client id the Google button does not
 # appear at all, rather than appearing and failing.

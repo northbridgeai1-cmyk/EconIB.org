@@ -333,3 +333,75 @@
   .dg-card h3, .dg-card .dg-what, .dg-card .dg-technique { grid-column: 2; }
   .dg-figure { grid-column: 1; grid-row: 1 / span 3; padding: 0; }
 }
+
+/* ================================================================= motion
+   Every animation here is doing a job: showing that something arrived, that a
+   number changed, or that an action registered. None of it is scroll-triggered
+   decoration, and all of it is off under prefers-reduced-motion. */
+
+@keyframes dg-rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes dg-pop { 0% { transform: scale(0.86); opacity: 0; } 60% { transform: scale(1.04); } 100% { transform: scale(1); opacity: 1; } }
+@keyframes dg-float-up { 0% { transform: translateY(0); opacity: 0; } 15% { opacity: 1; } 100% { transform: translateY(-46px); opacity: 0; } }
+@keyframes dg-flame { 0%,100% { transform: scale(1) rotate(-2deg); } 50% { transform: scale(1.12) rotate(2deg); } }
+@keyframes dg-shine { from { background-position: -200% 0; } to { background-position: 200% 0; } }
+@keyframes dg-ring { from { stroke-dashoffset: var(--ring-circumference); } }
+
+/* Views arrive rather than blink into place. Staggered so the eye follows. */
+.view > * { animation: dg-rise var(--dur-slow) var(--ease) both; }
+.view > *:nth-child(2) { animation-delay: 40ms; }
+.view > *:nth-child(3) { animation-delay: 80ms; }
+.view > *:nth-child(4) { animation-delay: 120ms; }
+
+.card, .dg-card, .define { animation: dg-rise var(--dur-base) var(--ease) both; }
+
+/* ------------------------------------------------------------- streak + xp */
+.stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-3); }
+@media (max-width: 640px) { .stat-row { grid-template-columns: 1fr 1fr; } }
+
+.stat {
+  border: 1px solid var(--rule); border-radius: var(--r-lg); background: var(--raised);
+  padding: var(--s-4); position: relative; overflow: hidden;
+  transition: transform var(--dur-base) var(--ease), border-color var(--dur-base) var(--ease);
+}
+.stat:hover { transform: translateY(-2px); border-color: var(--muted); }
+.stat-value { font-family: var(--f-mono); font-size: var(--t-xl); font-weight: 600;
+  line-height: 1; font-variant-numeric: tabular-nums; display: block; }
+.stat-label { font-size: var(--t-sm); color: var(--muted); margin-top: var(--s-1); display: block; }
+.stat-sub { font-size: var(--t-xs); color: var(--muted); margin-top: var(--s-1); display: block; }
+
+.streak-flame { display: inline-block; animation: dg-flame 1.8s ease-in-out infinite; }
+.stat-hot .stat-value { color: var(--warn); }
+
+/* The level ring: a real fraction of a circle, drawn once and animated in. */
+.ring { --ring-circumference: 176; display: block; }
+.ring circle { fill: none; stroke-width: 6; }
+.ring .ring-track { stroke: var(--rule); }
+.ring .ring-fill { stroke: var(--accent); stroke-linecap: round;
+  stroke-dasharray: var(--ring-circumference);
+  transform: rotate(-90deg); transform-origin: 50% 50%;
+  animation: dg-ring var(--dur-slow) var(--ease) both; }
+.ring-wrap { position: relative; width: 68px; height: 68px; flex: none; }
+.ring-text { position: absolute; inset: 0; display: grid; place-items: center;
+  font-family: var(--f-mono); font-size: var(--t-md); font-weight: 600; }
+
+/* ------------------------------------------------------- reward feedback */
+#reward-host { position: fixed; inset: 0; pointer-events: none; z-index: 120;
+  display: grid; place-items: center; }
+.reward-pop { font-family: var(--f-mono); font-size: var(--t-lg); font-weight: 600;
+  color: var(--good); animation: dg-float-up 1.4s var(--ease) both; }
+.level-up { pointer-events: auto; background: var(--raised); border: 1px solid var(--good);
+  border-radius: var(--r-lg); padding: var(--s-5) var(--s-6); box-shadow: var(--e-2);
+  text-align: center; animation: dg-pop var(--dur-slow) var(--ease) both; max-width: 320px; }
+.level-up h3 { font-size: var(--t-lg); margin-bottom: var(--s-2); }
+.level-up .lv { font-family: var(--f-mono); font-size: var(--t-2xl); color: var(--good);
+  display: block; line-height: 1; margin-bottom: var(--s-2); }
+
+/* A skeleton that shimmers reads as loading; a static one reads as broken. */
+.skeleton { background: linear-gradient(90deg, var(--sunken) 25%, var(--rule-soft) 50%, var(--sunken) 75%);
+  background-size: 200% 100%; animation: dg-shine 1.4s linear infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .view > *, .card, .dg-card, .define, .ring .ring-fill,
+  .reward-pop, .level-up, .streak-flame, .skeleton { animation: none !important; }
+  .stat:hover { transform: none; }
+}

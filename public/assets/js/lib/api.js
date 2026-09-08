@@ -84,6 +84,8 @@ export const api = {
   setAiKey: (b) => request("/settings/ai", { method: "PUT", body: b }),
   clearAiKey: () => request("/settings/ai", { method: "DELETE" }),
 
+  getStats: () => request("/stats"),
+
   getProgress: () => request("/progress"),
   setProgress: (b) => request("/progress", { method: "PATCH", body: b }),
 };

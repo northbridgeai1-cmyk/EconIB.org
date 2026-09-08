@@ -1,0 +1,4 @@
+# No marketing landing page. Students arriving at the root want the app; the
+# app redirects to sign-in if there is no session. A 302 rather than 301 so the
+# decision can be changed later without browsers having cached it forever.
+/    /app    302

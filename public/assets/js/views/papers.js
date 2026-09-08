@@ -1,5 +1,6 @@
 import { mount, esc, fmtDate } from "../lib/dom.js";
 import { api, ApiError } from "../lib/api.js";
+import { celebrate } from "../lib/reward.js";
 import { data, state } from "../lib/store.js";
 import { meter, ladder, paintBars, markedByNote } from "./_ui.js";
 
@@ -95,6 +96,7 @@ export default async function papers({ view, parts }) {
     try {
       const res = await api.gradePaper({ rubricId: chosen.id, question: keep.question, answer: keep.answer });
       if (state.usage && res.budget) state.usage.used = res.budget.used;
+      celebrate(res.reward);
       paint(res.result, null, false);
       restore(keep);
       view.querySelector("#result").scrollIntoView({ behavior: "smooth", block: "start" });

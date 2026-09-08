@@ -1,0 +1,35 @@
+- generic [ref=f1e1]:
+  - link "Skip to content" [ref=f1e2] [cursor=pointer]:
+    - /url: "#auth-root"
+  - generic [ref=f1e3]:
+    - complementary [ref=f1e4]:
+      - link "EconIB" [ref=f1e5] [cursor=pointer]:
+        - /url: /
+      - heading "Your IB Economics workspace" [level=2] [ref=f1e6]
+      - paragraph [ref=f1e7]: Your IA portfolio, your marked exam answers and your topic progress, kept together and available on any device you sign in on.
+      - paragraph [ref=f1e8]:
+        - text: By creating an account you agree to the
+        - link "terms and privacy notice" [ref=f1e9] [cursor=pointer]:
+          - /url: /terms
+        - text: .
+      - paragraph [ref=f1e10]: Tell us whether you are in IB1 or IB2 and whether you take SL or HL, and EconIB shows the right syllabus and the right papers. You can change it later.
+    - main [ref=f1e11]:
+      - generic [ref=f1e13]:
+        - heading "Sign in" [level=1] [ref=f1e14]
+        - paragraph [ref=f1e15]: Welcome back.
+        - generic [ref=f1e16]:
+          - generic [ref=f1e17]:
+            - generic [ref=f1e18]: Email
+            - textbox "Email" [active] [ref=f1e19]
+          - generic [ref=f1e20]:
+            - generic [ref=f1e21]: Password
+            - generic [ref=f1e22]:
+              - textbox "Password" [ref=f1e23]
+              - button "Show password" [ref=f1e24] [cursor=pointer]: Show
+            - paragraph
+          - button "Sign in" [ref=f1e25] [cursor=pointer]
+        - paragraph [ref=f1e26]:
+          - text: No account yet?
+          - link "Create one" [ref=f1e27] [cursor=pointer]:
+            - /url: "#"
+          - text: .

@@ -7,6 +7,7 @@ import { structured, selectRuntime } from "../../../shared/llm.js";
 import { paperRubric, paperTool, buildPaperPrompt, validatePaperResult } from "../../../shared/grading.js";
 import { canUseRubric } from "../../../shared/access.js";
 import { countWords } from "../../../public/assets/js/lib/ia-rules.js";
+import { award } from "../../../shared/stats.js";
 
 export const onRequestPost = handler(async (ctx) => {
   const user = await requireUser(ctx);
@@ -67,7 +68,8 @@ export const onRequestPost = handler(async (ctx) => {
     "INSERT INTO paper_attempts (id, user_id, rubric_id, question, answer, result_json, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)"
   ).bind(newId(), user.id, rubric.id, question, answer, JSON.stringify(result), nowIso()).run();
 
-  return json({ result, budget }, { request: ctx.request, env: ctx.env });
+  const reward = await award(db, user.id, "mark_paper", rubric.name);
+  return json({ result, budget, reward }, { request: ctx.request, env: ctx.env });
 });
 
 export const onRequestGet = handler(async (ctx) => {

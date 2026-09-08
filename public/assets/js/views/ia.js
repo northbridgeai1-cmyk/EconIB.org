@@ -1,5 +1,6 @@
 import { mount, esc, toast, emptyState, fmtDate } from "../lib/dom.js";
 import { api, ApiError } from "../lib/api.js";
+import { celebrate } from "../lib/reward.js";
 import { data, state } from "../lib/store.js";
 import {
   wordCountStatus, checkRecency, IA_WORD_LIMIT, WORD_COUNT_EXCLUSIONS,
@@ -287,6 +288,7 @@ async function editor(view, slot, navigate) {
 
       const res = await api.gradeIa({ id: commentary.id });
       commentary.feedback = res.result;
+      celebrate(res.reward);
       commentary.markedAt = res.markedAt;
       if (state.usage && res.budget) state.usage.used = res.budget.used;
       paint();

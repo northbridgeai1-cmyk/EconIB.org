@@ -52,8 +52,9 @@ export async function loadProgress() {
 }
 
 export async function setProgress(topicCode, nextState) {
-  await api.setProgress({ topicCode, state: nextState });
+  const res = await api.setProgress({ topicCode, state: nextState });
   if (state.progress) state.progress[topicCode] = nextState;
+  return res;
 }
 
 /** Topics the signed-in student actually studies. */

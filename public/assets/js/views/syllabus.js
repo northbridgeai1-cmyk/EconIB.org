@@ -1,5 +1,6 @@
 import { mount, esc, toast, emptyState } from "../lib/dom.js";
 import { data, state, loadProgress, setProgress, topicsFor } from "../lib/store.js";
+import { celebrate } from "../lib/reward.js";
 import { renderDiagram } from "../lib/diagram-catalogue.js";
 
 /**
@@ -275,7 +276,8 @@ async function onStateClick(button, view, syl, mine, progress, topic) {
   repaintUnitBars(view, syl, mine, progress);
 
   try {
-    await setProgress(code, next);
+    const res = await setProgress(code, next);
+    celebrate(res?.reward);
   } catch {
     buttons.forEach((b, i) => b.setAttribute("aria-pressed", previous[i]));
     toast("Could not save that. Check your connection.", "error");

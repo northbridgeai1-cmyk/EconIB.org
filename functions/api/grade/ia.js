@@ -6,6 +6,7 @@ import { structured, selectRuntime } from "../../../shared/llm.js";
 import { iaTool, buildIaPrompt, validateIaResult } from "../../../shared/grading.js";
 import { countWords, criterionF, checkKeyConcepts, wordCountStatus } from "../../../public/assets/js/lib/ia-rules.js";
 import { shape, portfolioPayload } from "../ia.js";
+import { award } from "../../../shared/stats.js";
 
 export const onRequestPost = handler(async (ctx) => {
   const user = await requireUser(ctx);
@@ -64,7 +65,10 @@ export const onRequestPost = handler(async (ctx) => {
   const { results } = await db.prepare("SELECT * FROM commentaries WHERE user_id = ? ORDER BY slot").bind(user.id).all();
   const all = (results || []).map(shape);
 
+  const reward = await award(db, user.id, "mark_ia", `Commentary ${commentary.slot}`);
+
   return json({
+    reward,
     result,
     wordCount: wordCountStatus(commentary.body),
     // Criterion F and the key-concept clash are recomputed here from the whole

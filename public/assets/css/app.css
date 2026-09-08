@@ -443,3 +443,29 @@
   color: var(--muted); font-size: var(--t-xs); }
 .tree-unit[open] > summary::after { content: "−"; }
 .tree-unit[open] > summary { margin-bottom: var(--s-1); }
+
+/* ---------------------------------------------------------------- practice */
+.practice-card { display: block; text-decoration: none; color: inherit;
+  transition: transform var(--dur-base) var(--ease), border-color var(--dur-base) var(--ease); }
+.practice-card:hover { transform: translateY(-2px); border-color: var(--unit-colour); }
+.q-stem { font-family: var(--f-serif); font-size: var(--t-lg); line-height: 1.3; }
+
+.options { display: grid; gap: var(--s-2); }
+.option { display: flex; align-items: flex-start; gap: var(--s-3); width: 100%;
+  text-align: left; font: inherit; font-size: var(--t-base); color: var(--ink);
+  background: var(--raised); border: 1px solid var(--rule); border-radius: var(--r-md);
+  padding: var(--s-3); cursor: pointer; min-height: 44px;
+  transition: border-color var(--dur-fast) var(--ease), background-color var(--dur-fast) var(--ease),
+              transform var(--dur-fast) var(--ease); }
+.option:hover { border-color: var(--muted); }
+.option:active { transform: scale(0.99); }
+.option[aria-pressed="true"] { border-color: var(--unit-colour); background: var(--unit-wash); }
+.option-letter { font-family: var(--f-mono); font-size: var(--t-xs); font-weight: 600;
+  color: var(--muted); flex: none; width: 1.4em; padding-top: 2px; }
+.option[aria-pressed="true"] .option-letter { color: var(--unit-colour); }
+
+.option.is-answer { border-color: var(--good); background: var(--good-wash); cursor: default; }
+.option.is-chosen-wrong { border-color: var(--bad); background: var(--bad-wash); cursor: default; }
+.option.is-muted { opacity: 0.55; cursor: default; }
+.criterion-id.is-right { color: var(--good); }
+.criterion-id.is-wrong { color: var(--bad); }

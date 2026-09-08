@@ -1,0 +1,621 @@
+{
+  "note": "Practice questions written by EconIB. Auto-marked, so they cost nothing to run and give instant feedback.",
+  "questions": [
+    {
+      "id": "q001",
+      "unit": 1,
+      "topic": "1.1",
+      "stem": "A country moves production from a point inside its PPC to a point on the curve. What has happened?",
+      "options": [
+        "Economic growth has occurred",
+        "The country has acquired more resources",
+        "Previously unemployed resources are now being used",
+        "Opportunity cost has fallen to zero"
+      ],
+      "answer": 2,
+      "why": "A point inside the curve means resources are unemployed or used inefficiently. Moving onto the curve uses what already exists — it is not growth, which would shift the curve outward."
+    },
+    {
+      "id": "q002",
+      "unit": 1,
+      "topic": "1.1",
+      "stem": "You spend Saturday revising Economics instead of working a shift (£60) or seeing friends (which you value at £40). What is the opportunity cost?",
+      "options": [
+        "£100",
+        "£60",
+        "£40",
+        "£20"
+      ],
+      "answer": 1,
+      "why": "Opportunity cost is the value of the NEXT BEST alternative forgone — singular. The best forgone option was the £60 shift, not the sum of everything given up."
+    },
+    {
+      "id": "q003",
+      "unit": 1,
+      "topic": "1.1",
+      "stem": "Why does the PPC usually bow outward from the origin?",
+      "options": [
+        "Because resources are not equally suited to producing both goods",
+        "Because resources are scarce",
+        "Because consumers prefer variety",
+        "Because technology improves over time"
+      ],
+      "answer": 0,
+      "why": "Transferring resources that specialise in one good to the other gets progressively less productive, so each extra unit costs more of the other good. That is increasing opportunity cost."
+    },
+    {
+      "id": "q004",
+      "unit": 1,
+      "topic": "1.2",
+      "stem": "Which of these is a normative statement?",
+      "options": [
+        "Inflation is measured using the CPI",
+        "Unemployment rose to 5.2% last quarter",
+        "A rise in interest rates reduces investment",
+        "The government should raise the minimum wage"
+      ],
+      "answer": 3,
+      "why": "'Should' signals a value judgment. The others are testable claims about what is, whether or not they turn out to be right."
+    },
+    {
+      "id": "q005",
+      "unit": 1,
+      "topic": "1.2",
+      "stem": "An economist assumes 'ceteris paribus' when analysing a price change. This means:",
+      "options": [
+        "The analysis applies only in the long run",
+        "Consumers behave rationally",
+        "The market is perfectly competitive",
+        "All other influencing variables are held constant"
+      ],
+      "answer": 3,
+      "why": "It isolates the relationship between two variables by freezing everything else, so any change observed can be attributed to the one variable under study."
+    },
+    {
+      "id": "q006",
+      "unit": 2,
+      "topic": "2.1",
+      "stem": "The price of coffee rises and coffee sales fall. This is shown by:",
+      "options": [
+        "A movement up along the demand curve",
+        "A leftward shift of the demand curve",
+        "A rightward shift of the supply curve",
+        "A leftward shift of the supply curve"
+      ],
+      "answer": 0,
+      "why": "A change in the good's OWN price causes a movement along the demand curve, never a shift. Only non-price determinants shift it. This is the single most common error in Unit 2."
+    },
+    {
+      "id": "q007",
+      "unit": 2,
+      "topic": "2.1",
+      "stem": "Tea and coffee are substitutes. The price of tea falls. What happens in the coffee market?",
+      "options": [
+        "Quantity of coffee demanded rises",
+        "Supply of coffee shifts right",
+        "Demand for coffee shifts right",
+        "Demand for coffee shifts left"
+      ],
+      "answer": 3,
+      "why": "Cheaper tea draws consumers away from coffee, so demand for coffee falls — a leftward shift, because the cause is the price of a DIFFERENT good."
+    },
+    {
+      "id": "q008",
+      "unit": 2,
+      "topic": "2.2",
+      "stem": "A specific tax is imposed on producers. The supply curve:",
+      "options": [
+        "Shifts left, parallel to the original",
+        "Pivots and becomes steeper",
+        "Does not move; demand shifts instead",
+        "Shifts right"
+      ],
+      "answer": 0,
+      "why": "A specific tax is a fixed amount per unit, so supply shifts up by the same amount at every quantity — a parallel shift. An ad valorem tax, being a percentage, pivots the curve instead."
+    },
+    {
+      "id": "q009",
+      "unit": 2,
+      "topic": "2.3",
+      "stem": "At a price above equilibrium in a free market, you would expect:",
+      "options": [
+        "Excess demand",
+        "A surplus, and price to fall",
+        "A shortage, and price to rise",
+        "Allocative efficiency"
+      ],
+      "answer": 1,
+      "why": "Above equilibrium, quantity supplied exceeds quantity demanded. Unsold stock pushes producers to cut prices until the market clears."
+    },
+    {
+      "id": "q010",
+      "unit": 2,
+      "topic": "2.3",
+      "stem": "Allocative efficiency in a competitive market occurs where:",
+      "options": [
+        "Price equals average cost",
+        "Producer surplus is maximised",
+        "Total revenue is maximised",
+        "Marginal benefit equals marginal cost"
+      ],
+      "answer": 3,
+      "why": "MB = MC is the condition, and it is where community surplus is maximised. Saying 'where the curves cross' without naming the condition loses the mark."
+    },
+    {
+      "id": "q011",
+      "unit": 2,
+      "topic": "2.5",
+      "stem": "Demand for a good is price inelastic. The firm raises its price. Total revenue will:",
+      "options": [
+        "Fall then rise",
+        "Stay the same",
+        "Fall",
+        "Rise"
+      ],
+      "answer": 3,
+      "why": "With PED < 1 quantity falls proportionately less than price rises, so revenue increases. This is why taxing inelastic goods like fuel raises revenue effectively."
+    },
+    {
+      "id": "q012",
+      "unit": 2,
+      "topic": "2.5",
+      "stem": "Which good is most likely to have the HIGHEST price elasticity of demand?",
+      "options": [
+        "A particular brand of crisps",
+        "Insulin for a diabetic",
+        "Electricity",
+        "Petrol in the short run"
+      ],
+      "answer": 0,
+      "why": "Many close substitutes make demand elastic. The other three are necessities or have few substitutes, so consumers cannot easily respond to a price rise."
+    },
+    {
+      "id": "q013",
+      "unit": 2,
+      "topic": "2.5",
+      "stem": "Income elasticity of demand for a good is −0.8. The good is:",
+      "options": [
+        "A normal good",
+        "An inferior good",
+        "A luxury",
+        "A Giffen good"
+      ],
+      "answer": 1,
+      "why": "A negative YED means demand falls as income rises — the definition of an inferior good. Magnitude below 1 just means the response is weak."
+    },
+    {
+      "id": "q014",
+      "unit": 2,
+      "topic": "2.7",
+      "stem": "A government sets a maximum price ABOVE the equilibrium price. The effect is:",
+      "options": [
+        "Price rises to the ceiling",
+        "A surplus",
+        "No effect on the market",
+        "A shortage"
+      ],
+      "answer": 2,
+      "why": "A price ceiling only binds if it is set BELOW equilibrium. Above it, the market clears below the ceiling and the control is irrelevant. Examiners set this deliberately."
+    },
+    {
+      "id": "q015",
+      "unit": 2,
+      "topic": "2.7",
+      "stem": "An indirect tax is imposed where demand is highly inelastic and supply is elastic. The tax burden falls:",
+      "options": [
+        "Mostly on consumers",
+        "Mostly on producers",
+        "Entirely on the government",
+        "Equally on both"
+      ],
+      "answer": 0,
+      "why": "The burden falls more heavily on whichever side is LESS able to respond. Inelastic demand means consumers cannot easily switch away, so they absorb most of the tax."
+    },
+    {
+      "id": "q016",
+      "unit": 2,
+      "topic": "2.8",
+      "stem": "A factory pollutes a river. In the standard diagram this means:",
+      "options": [
+        "MPC lies above MSC and the market under-produces",
+        "There is no welfare loss",
+        "MSC lies above MPC and the market over-produces",
+        "MSB lies above MPB and the market under-consumes"
+      ],
+      "answer": 2,
+      "why": "A negative production externality adds a cost society bears but the firm does not, so social cost exceeds private cost and the free market produces beyond the social optimum."
+    },
+    {
+      "id": "q017",
+      "unit": 2,
+      "topic": "2.9",
+      "stem": "Which is the defining pair of characteristics of a public good?",
+      "options": [
+        "Merit-worthy and under-consumed",
+        "Provided by government and free at the point of use",
+        "Rivalrous and non-excludable",
+        "Non-rivalrous and non-excludable"
+      ],
+      "answer": 3,
+      "why": "'Public good' is not the same as 'good provided by the government'. Test both properties. Healthcare and education are usually merit goods, not public goods."
+    },
+    {
+      "id": "q018",
+      "unit": 2,
+      "topic": "2.9",
+      "stem": "The free rider problem arises directly from which characteristic?",
+      "options": [
+        "Scarcity",
+        "Inelastic demand",
+        "Non-excludability",
+        "Non-rivalry"
+      ],
+      "answer": 2,
+      "why": "If people who have not paid cannot be excluded, they have no incentive to pay, so the private market cannot capture revenue and under-provides."
+    },
+    {
+      "id": "q019",
+      "unit": 2,
+      "topic": "2.10",
+      "stem": "A driver takes more risks after buying comprehensive insurance. This is:",
+      "options": [
+        "Adverse selection",
+        "Moral hazard",
+        "Asymmetric supply",
+        "A negative externality"
+      ],
+      "answer": 1,
+      "why": "Moral hazard occurs AFTER the transaction, when one party changes behaviour because someone else now bears the risk. Adverse selection happens before it."
+    },
+    {
+      "id": "q020",
+      "unit": 2,
+      "topic": "2.11",
+      "stem": "For a monopolist, the marginal revenue curve:",
+      "options": [
+        "Is identical to the demand curve",
+        "Is horizontal at the market price",
+        "Lies above the demand curve",
+        "Is twice as steep as demand and meets the x-axis halfway along it"
+      ],
+      "answer": 3,
+      "why": "To sell one more unit the monopolist must lower price on all units, so MR falls faster than AR. Drawing MR anywhere else is the fastest way to lose HL diagram marks."
+    },
+    {
+      "id": "q021",
+      "unit": 3,
+      "topic": "3.1",
+      "stem": "Nominal GDP rose 6% while inflation was 4%. Real GDP grew approximately:",
+      "options": [
+        "4%",
+        "2%",
+        "6%",
+        "10%"
+      ],
+      "answer": 1,
+      "why": "Real growth strips out price changes: roughly nominal growth minus inflation. Output rose about 2%; the rest was prices."
+    },
+    {
+      "id": "q022",
+      "unit": 3,
+      "topic": "3.1",
+      "stem": "Which best indicates living standards when comparing two countries?",
+      "options": [
+        "Nominal GDP growth",
+        "Real GDP per capita at purchasing power parity",
+        "Total nominal GDP",
+        "Total GNI"
+      ],
+      "answer": 1,
+      "why": "Per capita adjusts for population, real adjusts for inflation, and PPP adjusts for differing price levels. Quoting total nominal GDP in a development answer is routinely penalised."
+    },
+    {
+      "id": "q023",
+      "unit": 3,
+      "topic": "3.2",
+      "stem": "Which component of aggregate demand does a firm buying new machinery belong to?",
+      "options": [
+        "Consumption",
+        "Government spending",
+        "Investment",
+        "Net exports"
+      ],
+      "answer": 2,
+      "why": "Investment is firms buying physical capital. Buying shares is not investment in the economic sense — that is a transfer of ownership, not new capital."
+    },
+    {
+      "id": "q024",
+      "unit": 3,
+      "topic": "3.2",
+      "stem": "On the horizontal section of the Keynesian AS curve, an increase in AD causes:",
+      "options": [
+        "No change in either",
+        "A fall in real output",
+        "A rise in the price level only",
+        "A rise in real output with little change in the price level"
+      ],
+      "answer": 3,
+      "why": "With large spare capacity, firms can raise output without bidding up costs, so output rises and prices barely move. This is why fiscal stimulus is argued for in deep recessions."
+    },
+    {
+      "id": "q025",
+      "unit": 3,
+      "topic": "3.2",
+      "stem": "The marginal propensity to consume rises. The multiplier:",
+      "options": [
+        "Rises",
+        "Falls",
+        "Becomes negative",
+        "Is unchanged"
+      ],
+      "answer": 0,
+      "why": "More of each extra pound is spent again rather than withdrawn, so an injection circulates further. Leakages — saving, tax, imports — shrink it."
+    },
+    {
+      "id": "q026",
+      "unit": 3,
+      "topic": "3.3",
+      "stem": "Prices are still rising, but more slowly than last year. This is:",
+      "options": [
+        "Deflation",
+        "Disinflation",
+        "Hyperinflation",
+        "Stagflation"
+      ],
+      "answer": 1,
+      "why": "Disinflation is a falling RATE of inflation. Deflation is an actual fall in the price level. Confusing the two reverses your argument."
+    },
+    {
+      "id": "q027",
+      "unit": 3,
+      "topic": "3.3",
+      "stem": "Automation replaces low-skilled factory workers who lack the skills for new jobs. This unemployment is:",
+      "options": [
+        "Seasonal",
+        "Structural",
+        "Cyclical",
+        "Frictional"
+      ],
+      "answer": 1,
+      "why": "Structural unemployment comes from a mismatch between the skills workers have and the jobs available. Cyclical would be caused by a fall in aggregate demand."
+    },
+    {
+      "id": "q028",
+      "unit": 3,
+      "topic": "3.3",
+      "stem": "Oil prices spike, raising costs across the economy. This causes:",
+      "options": [
+        "Demand-pull inflation",
+        "Cost-push inflation",
+        "Disinflation",
+        "Deflation"
+      ],
+      "answer": 1,
+      "why": "Rising production costs shift SRAS left, raising the price level while output falls. Monetary policy cannot fix this without cutting output further — a reliable evaluation point."
+    },
+    {
+      "id": "q029",
+      "unit": 3,
+      "topic": "3.4",
+      "stem": "A country's Gini coefficient rises from 0.32 to 0.41. This means:",
+      "options": [
+        "GDP per capita has risen",
+        "Absolute poverty has been eliminated",
+        "Income inequality has risen",
+        "Income inequality has fallen"
+      ],
+      "answer": 2,
+      "why": "A higher Gini means MORE inequality, and the Lorenz curve bows further from the 45° line. Reversing this reverses your whole argument."
+    },
+    {
+      "id": "q030",
+      "unit": 3,
+      "topic": "3.4",
+      "stem": "A government lowers the official poverty line. Reported poverty:",
+      "options": [
+        "Is unchanged",
+        "Falls, though nobody is better off",
+        "Becomes absolute rather than relative",
+        "Rises"
+      ],
+      "answer": 1,
+      "why": "Moving the threshold changes the count without changing anyone's actual circumstances — a good example of why the measure matters as much as the number."
+    },
+    {
+      "id": "q031",
+      "unit": 3,
+      "topic": "3.5",
+      "stem": "The nominal interest rate is 5% and inflation is 3%. The real interest rate is approximately:",
+      "options": [
+        "2%",
+        "3%",
+        "5%",
+        "8%"
+      ],
+      "answer": 0,
+      "why": "Real rate = nominal rate − inflation. It is what a saver actually gains in purchasing power."
+    },
+    {
+      "id": "q032",
+      "unit": 3,
+      "topic": "3.5",
+      "stem": "The money supply curve is drawn vertical because:",
+      "options": [
+        "Interest rates are always zero",
+        "The central bank fixes the quantity independently of the interest rate",
+        "Money demand is perfectly inelastic",
+        "Banks always lend all their reserves"
+      ],
+      "answer": 1,
+      "why": "The quantity is set by policy, not by the interest rate, so it does not respond to the rate — hence a vertical line."
+    },
+    {
+      "id": "q033",
+      "unit": 3,
+      "topic": "3.5",
+      "stem": "In a deep recession at the zero lower bound, monetary policy is weak mainly because:",
+      "options": [
+        "Inflation is too high",
+        "Banks are nationalised",
+        "Interest rates cannot fall much further to stimulate borrowing",
+        "The exchange rate is fixed"
+      ],
+      "answer": 2,
+      "why": "With rates already near zero there is little room to cut, and low confidence blunts what room remains — which is the standard case for using fiscal policy instead."
+    },
+    {
+      "id": "q034",
+      "unit": 3,
+      "topic": "3.6",
+      "stem": "A government reduces its budget deficit from 6% to 3% of GDP. National debt will:",
+      "options": [
+        "Still rise, but more slowly",
+        "Stay exactly the same",
+        "Fall",
+        "Be eliminated"
+      ],
+      "answer": 0,
+      "why": "A deficit is a yearly flow added to the debt stock. A smaller deficit still adds to debt — it just adds less. Confusing the flow with the stock is a common slip."
+    },
+    {
+      "id": "q035",
+      "unit": 3,
+      "topic": "3.7",
+      "stem": "Which is a market-based supply-side policy?",
+      "options": [
+        "Direct provision of healthcare",
+        "Privatising a state-owned firm",
+        "Building new road infrastructure",
+        "Government investment in vocational training"
+      ],
+      "answer": 1,
+      "why": "Market-based policies increase capacity by reducing government involvement and sharpening incentives. The others are interventionist — government spending to build capacity."
+    },
+    {
+      "id": "q036",
+      "unit": 4,
+      "topic": "4.1",
+      "stem": "A country can produce more of every good than its trading partner. Should it still trade?",
+      "options": [
+        "Only if the other country subsidises exports",
+        "Only in the long run",
+        "Yes, if opportunity costs differ it can still gain",
+        "No, it has absolute advantage in everything"
+      ],
+      "answer": 2,
+      "why": "Comparative advantage rests on opportunity cost, not on who produces more. Both parties gain whenever their opportunity costs differ."
+    },
+    {
+      "id": "q037",
+      "unit": 4,
+      "topic": "4.2",
+      "stem": "On a tariff diagram, how many welfare loss triangles are there?",
+      "options": [
+        "Three",
+        "One",
+        "None",
+        "Two"
+      ],
+      "answer": 3,
+      "why": "Production inefficiency on the left and consumption inefficiency on the right. Shading only one loses the calculation mark."
+    },
+    {
+      "id": "q038",
+      "unit": 4,
+      "topic": "4.2",
+      "stem": "Compared with a tariff, a quota means the extra revenue from the higher domestic price goes to:",
+      "options": [
+        "The government",
+        "Importers, as quota rent",
+        "Domestic consumers",
+        "Nobody"
+      ],
+      "answer": 1,
+      "why": "A tariff raises government revenue; a quota hands that value to whoever holds the right to import — which is a key evaluative difference between them."
+    },
+    {
+      "id": "q039",
+      "unit": 4,
+      "topic": "4.4",
+      "stem": "What distinguishes a customs union from a free trade area?",
+      "options": [
+        "A single currency",
+        "Free movement of capital",
+        "A common external tariff against non-members",
+        "Free movement of labour"
+      ],
+      "answer": 2,
+      "why": "A free trade area removes internal barriers only; a customs union adds a shared external tariff. Getting this ladder in order is an easy mark."
+    },
+    {
+      "id": "q040",
+      "unit": 4,
+      "topic": "4.5",
+      "stem": "A country's currency depreciates. In the short run its current account often worsens before improving. This is:",
+      "options": [
+        "Capital flight",
+        "The Marshall-Lerner condition",
+        "Trade diversion",
+        "The J-curve effect"
+      ],
+      "answer": 3,
+      "why": "Demand takes time to respond, so initially imports simply cost more. Once elasticities rise and the Marshall-Lerner condition is met, the balance improves."
+    },
+    {
+      "id": "q041",
+      "unit": 4,
+      "topic": "4.6",
+      "stem": "A country runs a persistent current account deficit. This must be matched by:",
+      "options": [
+        "A fall in the money supply",
+        "A larger budget deficit",
+        "A rise in tariffs",
+        "A financial account surplus"
+      ],
+      "answer": 3,
+      "why": "The balance of payments must balance overall. A current account deficit is financed by net inflows on the financial account — borrowing or selling assets."
+    },
+    {
+      "id": "q042",
+      "unit": 4,
+      "topic": "4.8",
+      "stem": "A country's GDP per capita rises sharply but its HDI barely moves. The most likely explanation is:",
+      "options": [
+        "GDP per capita is falling in real terms",
+        "Gains in income have not translated into health and education outcomes",
+        "HDI is measured in nominal terms",
+        "HDI ignores income entirely"
+      ],
+      "answer": 1,
+      "why": "HDI combines income, life expectancy and education. Income growth that does not reach health and schooling — or that is very unequally shared — shows up as exactly this gap."
+    },
+    {
+      "id": "q043",
+      "unit": 4,
+      "topic": "4.9",
+      "stem": "Which best explains why corruption is a barrier to development?",
+      "options": [
+        "It always causes inflation",
+        "It is morally wrong",
+        "It reduces the population",
+        "It raises the effective cost of investing, deterring FDI and lowering the capital stock"
+      ],
+      "answer": 3,
+      "why": "Naming the mechanism earns the marks. 'Corruption is bad' is an assertion; showing how it raises costs and deters investment is analysis."
+    },
+    {
+      "id": "q044",
+      "unit": 4,
+      "topic": "4.10",
+      "stem": "Import substitution differs from export promotion mainly because it:",
+      "options": [
+        "Produces for world markets behind open borders",
+        "Depends entirely on foreign aid",
+        "Requires a floating exchange rate",
+        "Replaces imports with domestic production behind protective barriers"
+      ],
+      "answer": 3,
+      "why": "Import substitution turns inward behind protection; export promotion competes outward in world markets. The usual critique of the first is that protected industries stay inefficient."
+    }
+  ]
+}

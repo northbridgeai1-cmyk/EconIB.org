@@ -85,6 +85,8 @@ export const api = {
   clearAiKey: () => request("/settings/ai", { method: "DELETE" }),
 
   getStats: () => request("/stats"),
+  getPractice: (unit) => request(`/practice${unit ? `?unit=${encodeURIComponent(unit)}` : ""}`),
+  submitPractice: (b) => request("/practice", { method: "POST", body: b }),
 
   getProgress: () => request("/progress"),
   setProgress: (b) => request("/progress", { method: "PATCH", body: b }),

@@ -18,6 +18,7 @@ export const XP = {
   mark_paper: 25,      // writing an exam answer and having it marked
   mark_ia: 40,         // the highest-value thing in the whole course
   save_commentary: 8,
+  practice_set: 15,   // a set of questions finished, scaled by how many were right
 };
 
 /**
@@ -80,8 +81,8 @@ export async function getStats(db, userId) {
  * Record something the student did. Returns what changed, so the interface can
  * show the reward rather than silently incrementing a number.
  */
-export async function award(db, userId, kind, detail = "") {
-  const gain = XP[kind] ?? 0;
+export async function award(db, userId, kind, detail = "", explicitGain = null) {
+  const gain = explicitGain ?? XP[kind] ?? 0;
   const today = utcDay();
   const before = await getStats(db, userId);
 

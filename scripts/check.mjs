@@ -214,10 +214,43 @@ for (const file of ["public/assets/css/base.css", "public/assets/css/app.css"]) 
   }
 }
 
+// ------------------------------------------------------------ practice bank
+const practice = read("data/practice.json");
+check("practice questions exist", practice.questions.length >= 40, `got ${practice.questions.length}`);
+check("practice question ids are unique",
+  new Set(practice.questions.map((q) => q.id)).size === practice.questions.length);
+{
+  const spread = {};
+  for (const q of practice.questions) {
+    check(`practice ${q.id} has four options`, q.options?.length === 4);
+    check(`practice ${q.id} has a valid answer index`, Number.isInteger(q.answer) && q.answer >= 0 && q.answer <= 3);
+    check(`practice ${q.id} explains the answer`, (q.why || "").length >= 40,
+      "an explanation is the whole point — being told you were wrong teaches nothing");
+    check(`practice ${q.id} names a real topic`, topicCodes.has(q.topic), q.topic);
+    check(`practice ${q.id} has no duplicate options`, new Set(q.options).size === 4);
+    spread[q.answer] = (spread[q.answer] || 0) + 1;
+  }
+  // If one position holds far more answers than the rest, a student can guess
+  // that letter and score well without knowing anything.
+  const counts = [0, 1, 2, 3].map((i) => spread[i] || 0);
+  const worst = Math.max(...counts) / practice.questions.length;
+  check("no answer position is over-represented", worst <= 0.4,
+    `position spread ${counts.join("/")} — one letter holds ${Math.round(worst * 100)}%`);
+  for (const i of [0, 1, 2, 3]) {
+    check(`answer position ${"ABCD"[i]} is used`, (spread[i] || 0) > 0);
+  }
+}
+const practiceUnits = {};
+for (const q of practice.questions) practiceUnits[q.unit] = (practiceUnits[q.unit] || 0) + 1;
+for (const u of [1, 2, 3, 4]) {
+  check(`unit ${u} has enough practice questions for a set`, (practiceUnits[u] || 0) >= 5,
+    `got ${practiceUnits[u] || 0}`);
+}
+
 // ------------------------------------------------- published data copies
 // data/ is the source of truth; public/assets/data/ is what the browser fetches.
 // Two copies can drift, so drift is a failure rather than a surprise.
-for (const file of ["syllabus.json", "rubrics.json", "command-terms.json", "key-concepts.json", "assessment.json"]) {
+for (const file of ["syllabus.json", "rubrics.json", "command-terms.json", "key-concepts.json", "assessment.json", "practice.json"]) {
   let source, published;
   try { source = text(`data/${file}`); } catch { failures.push(`data/${file} is missing`); continue; }
   try { published = text(`public/assets/data/${file}`); } catch { failures.push(`public/assets/data/${file} is missing — run npm run sync-data`); continue; }

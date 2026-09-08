@@ -343,5 +343,10 @@ function renderResult(result, markedAt) {
         Not an official mark. EconIB is not the IB; your teacher marks your IA and a moderator
         samples it. Use this to find gaps, not to predict a grade.
       </p>
+      <div class="note mt-4">
+        <b>Once your teacher marks this</b>
+        <p>Add what they gave on the <a href="#/accuracy">marking accuracy</a> page.
+        EconIB will show you where it was wrong and take it into account next time.</p>
+      </div>
     </section>`;
 }

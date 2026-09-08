@@ -7,6 +7,8 @@ import { iaTool, buildIaPrompt, validateIaResult } from "../../../shared/grading
 import { countWords, criterionF, checkKeyConcepts, wordCountStatus } from "../../../public/assets/js/lib/ia-rules.js";
 import { shape, portfolioPayload } from "../ia.js";
 import { award } from "../../../shared/stats.js";
+import { markerContext } from "../../../shared/calibration.js";
+import { loadTeacherContext } from "../../../shared/teacher-context.js";
 
 export const onRequestPost = handler(async (ctx) => {
   const user = await requireUser(ctx);
@@ -31,6 +33,7 @@ export const onRequestPost = handler(async (ctx) => {
 
   // Resolve the provider BEFORE reserving budget: a misconfigured key should
   // not cost the student one of their daily markings.
+  const teacherContext = await loadTeacherContext(db, user.id);
   const runtime = await selectRuntime(user, ctx.env);
 
   // A student spending their own key spends their own quota, so the shared
@@ -40,7 +43,7 @@ export const onRequestPost = handler(async (ctx) => {
   let result;
   try {
     const words = countWords(commentary.body);
-    const { system, user: prompt } = buildIaPrompt(commentary, { words });
+    const { system, user: prompt } = buildIaPrompt(commentary, { words }, teacherContext);
     const out = await structured(runtime, { system, user: prompt, tool: iaTool() });
     result = {
       ...validateIaResult(out.data),

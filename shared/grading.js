@@ -100,7 +100,7 @@ export function iaTool() {
   };
 }
 
-export function buildIaPrompt(commentary, context) {
+export function buildIaPrompt(commentary, context, teacherContext = null) {
   const concept = keyConcepts.concepts.find((c) => c.id === commentary.keyConcept);
   const unitName = { 2: "Microeconomics", 3: "Macroeconomics", 4: "The global economy" }[commentary.unit];
 
@@ -122,6 +122,7 @@ export function buildIaPrompt(commentary, context) {
     "",
     "Note on criterion D: a key concept has been declared. Assess how well the",
     "commentary uses it as the lens of its analysis, not whether it is mentioned.",
+    ...(teacherContext ? ["", "WHAT THIS STUDENT'S TEACHER HAS ACTUALLY SAID:", teacherContext] : []),
   ].join("\n");
 
   const meta = [
@@ -224,7 +225,7 @@ export function paperTool(rubric) {
   };
 }
 
-export function buildPaperPrompt(rubric, { question, answer }) {
+export function buildPaperPrompt(rubric, { question, answer }, teacherContext = null) {
   const dims = rubric.dimensions
     .map((d) => `  ${d.label} (${d.id}):\n` + d.rungs.map((r, i) => `    ${i} - ${r}`).join("\n"))
     .join("\n\n");
@@ -247,6 +248,7 @@ export function buildPaperPrompt(rubric, { question, answer }) {
     "",
     "You are reading text only. If the student describes a diagram in words, credit the",
     "explanation; you cannot verify the drawing itself. Say so rather than assuming.",
+    ...(teacherContext ? ["", "WHAT THIS STUDENT'S TEACHER HAS ACTUALLY SAID:", teacherContext] : []),
   ].join("\n");
 
   const user = [

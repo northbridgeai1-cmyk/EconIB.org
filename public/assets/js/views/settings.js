@@ -131,6 +131,8 @@ function privacyPanel(user) {
       <p class="small">Your password is never stored. It is stretched in your browser and only a
       hash of the result reaches the server, so nobody here can read it — including us.</p>
       <p class="small"><a href="/terms">Terms and privacy</a></p>
+      <p class="small">Your teacher's marks, if you have entered any, are on the
+      <a href="#/accuracy">marking accuracy</a> page and can be removed there.</p>
     </section>
 
     <section class="card mt-4">

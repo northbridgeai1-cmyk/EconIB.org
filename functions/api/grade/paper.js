@@ -8,6 +8,8 @@ import { paperRubric, paperTool, buildPaperPrompt, validatePaperResult } from ".
 import { canUseRubric } from "../../../shared/access.js";
 import { countWords } from "../../../public/assets/js/lib/ia-rules.js";
 import { award } from "../../../shared/stats.js";
+import { markerContext } from "../../../shared/calibration.js";
+import { loadTeacherContext } from "../../../shared/teacher-context.js";
 
 export const onRequestPost = handler(async (ctx) => {
   const user = await requireUser(ctx);
@@ -40,12 +42,13 @@ export const onRequestPost = handler(async (ctx) => {
     );
   }
 
+  const teacherContext = await loadTeacherContext(db, user.id);
   const runtime = await selectRuntime(user, ctx.env);
   const budget = runtime.source === "byok" ? null : await reserve(db, user.id, ctx.env);
 
   let result;
   try {
-    const { system, user: prompt } = buildPaperPrompt(rubric, { question, answer });
+    const { system, user: prompt } = buildPaperPrompt(rubric, { question, answer }, teacherContext);
     const out = await structured(runtime, { system, user: prompt, tool: paperTool(rubric) });
     result = {
       ...validatePaperResult(rubric, out.data),

@@ -75,6 +75,9 @@
           "term": "Free market economy",
           "definition": "An economic system in which resources are allocated by the price mechanism with minimal government intervention."
         }
+      ],
+      "diagramIds": [
+        "ppc"
       ]
     },
     {
@@ -157,6 +160,10 @@
           "term": "Inferior good",
           "definition": "A good for which demand falls as consumer income rises."
         }
+      ],
+      "diagramIds": [
+        "demand",
+        "demand-shift"
       ]
     },
     {
@@ -200,6 +207,9 @@
           "term": "Indirect tax",
           "definition": "A tax on expenditure, paid to government by the producer, which raises costs and reduces supply."
         }
+      ],
+      "diagramIds": [
+        "supply"
       ]
     },
     {
@@ -249,6 +259,10 @@
           "term": "Allocative efficiency",
           "definition": "The outcome where resources produce the combination of goods most wanted by society, achieved where marginal benefit equals marginal cost."
         }
+      ],
+      "diagramIds": [
+        "equilibrium",
+        "surplus"
       ]
     },
     {
@@ -407,6 +421,12 @@
           "term": "Welfare loss",
           "definition": "The loss of community surplus that occurs when output is not at the allocatively efficient level."
         }
+      ],
+      "diagramIds": [
+        "indirect-tax",
+        "subsidy",
+        "price-ceiling",
+        "price-floor"
       ]
     },
     {
@@ -460,6 +480,10 @@
           "term": "Tradable permit",
           "definition": "A saleable licence to emit a fixed quantity of pollutant, capping total emissions while letting the market allocate them."
         }
+      ],
+      "diagramIds": [
+        "negative-production-externality",
+        "positive-consumption-externality"
       ]
     },
     {
@@ -600,6 +624,9 @@
           "term": "Productive efficiency",
           "definition": "Producing at the lowest point of the average cost curve, so no output is wasted."
         }
+      ],
+      "diagramIds": [
+        "monopoly"
       ]
     },
     {
@@ -735,6 +762,10 @@
           "term": "Multiplier",
           "definition": "The factor by which an initial change in injections changes national income, determined by the marginal propensity to withdraw."
         }
+      ],
+      "diagramIds": [
+        "ad-as-deflationary-gap",
+        "keynesian-as"
       ]
     },
     {
@@ -862,6 +893,9 @@
           "term": "Transfer payment",
           "definition": "A payment from government to individuals for which no good or service is exchanged, such as a pension or benefit."
         }
+      ],
+      "diagramIds": [
+        "lorenz-curve"
       ]
     },
     {
@@ -1077,6 +1111,9 @@
           "term": "Quota rent",
           "definition": "The extra revenue captured by importers who hold the right to sell within a quota at the raised domestic price."
         }
+      ],
+      "diagramIds": [
+        "tariff"
       ]
     },
     {

@@ -61,10 +61,15 @@ opaque tokens in a `__Host-` prefixed, HttpOnly, SameSite=Strict cookie.
 - **Sign in with Google**, or email and password. A Google sign-in for an email
   that already has a password account links the two rather than making a second
   portfolio.
-- **Passwords are stretched in the browser**, not on the server. The server
-  stores a fast hash of the resulting verifier and never sees the password.
-  Offline-cracking cost is unchanged — an attacker still pays 600,000
-  iterations per guess — and this is what lets it run on the free plan.
+- **Passwords are stretched in the browser**, not on the server. The browser
+  runs 600,000 PBKDF2 iterations and sends a verifier; the server stores
+  HMAC-SHA256(pepper, verifier ‖ salt). The server never sees the password, and
+  the ~1ms server cost is what lets this run on the free plan.
+  The **pepper is load-bearing**: the browser's KDF salt is derived from the
+  email and is therefore publicly guessable, so without a server-side secret an
+  attacker could precompute cracking work for a known address *before* any
+  breach. The pepper is never in the database, so that precomputation is
+  useless without also compromising the environment.
 - **Password reset by email**, single use, expiring in an hour. Requesting a
   reset invalidates any earlier link, and completing one signs out every other
   device — so a reset also evicts anyone who should not be there.

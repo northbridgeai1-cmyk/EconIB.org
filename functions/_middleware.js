@@ -26,7 +26,10 @@ export const onRequest = async (ctx) => {
   if (isApi && !["GET", "HEAD", "OPTIONS"].includes(request.method)) {
     const origin = request.headers.get("origin");
     const allowed = allowedOrigin(env);
-    if (origin && (!allowed || origin.replace(/\/+$/, "") !== allowed)) {
+    // Fail closed: a state-changing request with NO Origin header was
+    // previously waved through. SameSite=Strict already carries the real
+    // defence, but requiring the header is free and removes the gap.
+    if (!origin || !allowed || origin.replace(/\/+$/, "") !== allowed) {
       return new Response(JSON.stringify({ error: "Cross-origin requests are not allowed.", code: "bad_origin" }), {
         status: 403,
         headers: { "content-type": "application/json", ...SECURITY_HEADERS },

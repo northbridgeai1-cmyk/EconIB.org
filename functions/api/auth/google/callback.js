@@ -76,13 +76,17 @@ export const onRequestGet = async (ctx) => {
   let isNew = false;
 
   if (!user) {
-    // Link by email if they already signed up with a password, so one person
-    // does not end up with two portfolios.
     const byEmail = await db.prepare("SELECT * FROM users WHERE email = ?").bind(email).first();
     if (byEmail) {
-      await db.prepare("UPDATE users SET google_sub = ?, updated_at = ? WHERE id = ?")
-        .bind(claims.sub, now, byEmail.id).run();
-      user = await db.prepare("SELECT * FROM users WHERE id = ?").bind(byEmail.id).first();
+      // DO NOT auto-link. There is no email verification at signup, so anyone
+      // can register an address they do not own. Silently attaching a real
+      // Google identity to that row would hand the squatter permanent access
+      // to the victim's work: their password keeps working on the merged
+      // account. Linking must be proven from the existing account instead.
+      return fail(
+        "An account already uses that email address. Sign in with your password first, " +
+        "then connect Google from your account settings."
+      );
     } else {
       const id = newId();
       await db.prepare(

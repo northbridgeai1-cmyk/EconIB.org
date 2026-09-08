@@ -1,5 +1,6 @@
 import { mount, esc, toast, emptyState } from "../lib/dom.js";
 import { data, state, loadProgress, setProgress, topicsFor } from "../lib/store.js";
+import { renderDiagram } from "../lib/diagram-catalogue.js";
 
 /**
  * The syllabus, laid out like a textbook rather than a settings screen: the
@@ -212,13 +213,40 @@ function termsPanel(topic) {
 }
 
 function examPanel(topic) {
+  const drawn = (topic.diagramIds || []).map(renderDiagram).filter(Boolean);
+  // Labels with no drawing yet, so the page never implies a diagram exists
+  // when it does not.
+  const undrawn = topic.diagrams.filter(
+    (d) => !drawn.some((x) => x.title.toLowerCase().startsWith(d.toLowerCase().slice(0, 12)))
+  );
+
   return `
     <section>
-      ${topic.diagrams.length ? `
+      ${drawn.length ? `
         <h2>Diagrams you must be able to draw</h2>
-        <ul class="prose">${topic.diagrams.map((d) => `<li>${esc(d)}</li>`).join("")}</ul>`
-        : `<div class="empty"><h3>No diagram is required for this topic</h3>
-             <p>Not every topic is examined with a diagram. This one is not.</p></div>`}
+        <p class="lede">
+          Redraw each of these by hand until you can do it from memory. In the exam
+          the diagram is worth marks on its own, and the explanation beside it is
+          worth more.
+        </p>
+        ${drawn.map((d) => `
+          <div class="dg-card">
+            <div class="dg-figure">${d.svg}</div>
+            <h3>${esc(d.title)}</h3>
+            <p class="dg-what">${esc(d.what)}</p>
+            <p class="dg-technique"><b>Exam technique</b>${esc(d.technique)}</p>
+          </div>`).join("")}` : ""}
+
+      ${undrawn.length ? `
+        <section class="${drawn.length ? "mt-4" : ""}">
+          <h2>${drawn.length ? "Also required" : "Diagrams you must be able to draw"}</h2>
+          <p class="small">Not yet drawn in EconIB — use your textbook or your teacher's notes for these.</p>
+          <ul class="prose">${undrawn.map((d) => `<li>${esc(d)}</li>`).join("")}</ul>
+        </section>` : ""}
+
+      ${!drawn.length && !undrawn.length ? `
+        <div class="empty"><h3>No diagram is required for this topic</h3>
+          <p>Not every topic is examined with a diagram. This one is not.</p></div>` : ""}
 
       <div class="note note-warn mt-4">
         <b>Where marks go missing</b>

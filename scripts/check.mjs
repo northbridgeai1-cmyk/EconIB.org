@@ -146,7 +146,11 @@ for (const file of ["public/assets/css/base.css", "public/assets/css/app.css"]) 
   // rule exists to stop the SCREEN scale accumulating, not to ban print CSS.
   const printBlocks = [...css.matchAll(/@media print\s*\{[\s\S]*?\n\}/g)].map((m) => m[0]).join("\n");
   const screenCss = printBlocks ? css.replace(printBlocks, "") : css;
-  const literalSizes = [...screenCss.matchAll(/font-size:\s*([^;]+);/g)]
+  // Inline-SVG rules (.dg-*) are exempt: their font-size is in viewBox user
+  // units that scale with the drawing, not CSS pixels, so the page type scale
+  // does not apply and forcing a token there would be actively wrong.
+  const scaleCss = screenCss.replace(/\.dg-[^{]*\{[^}]*\}/g, "");
+  const literalSizes = [...scaleCss.matchAll(/font-size:\s*([^;]+);/g)]
     .map((m) => m[1].trim())
     .filter((v) => !v.startsWith("var(") && v !== "inherit" && !v.endsWith("em"));
   check(`${path.basename(file)} uses only token font sizes`, literalSizes.length === 0, [...new Set(literalSizes)].join(", "));
@@ -166,6 +170,32 @@ for (const file of ["public/assets/css/base.css", "public/assets/css/app.css"]) 
     check(`provider base URL "${u}" is HTTPS`, u.startsWith("https://"));
     check(`provider base URL "${u}" is not a local test server`,
       !/localhost|127\.0\.0\.1|0\.0\.0\.0|:\d{4}/.test(u));
+  }
+}
+
+// ----------------------------------------------------- credential call sites
+// hashVerifier(verifier, salt, env). Passing env as the SECOND argument makes
+// it the salt, leaves env undefined, and every signup then fails closed with
+// "missing VERIFIER_PEPPER" — which is exactly what happened once.
+{
+  for (const f of ["functions/api/auth/signup.js", "functions/api/auth/reset.js",
+                   "functions/api/auth/password.js", "functions/api/health.js"]) {
+    let src;
+    try { src = text(f); } catch { continue; }
+    let i = -1;
+    while ((i = src.indexOf("hashVerifier(", i + 1)) !== -1) {
+      if (/[.\w]/.test(src[i - 1] || "")) continue;           // skip the definition
+      let depth = 0, args = 1, j = i + "hashVerifier(".length;
+      for (; j < src.length; j++) {
+        const c = src[j];
+        if (c === "(" || c === "[") depth++;
+        else if (c === ")" && depth === 0) break;
+        else if (c === ")" || c === "]") depth--;
+        else if (c === "," && depth === 0) args++;
+      }
+      check(`${path.basename(f)}: hashVerifier call passes salt and env`, args === 3,
+        `got ${args} argument(s) — the signature is (verifier, salt, env)`);
+    }
   }
 }
 

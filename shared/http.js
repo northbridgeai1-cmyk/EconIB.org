@@ -6,6 +6,10 @@ export const SECURITY_HEADERS = {
   "referrer-policy": "strict-origin-when-cross-origin",
   "permissions-policy": "camera=(), microphone=(), geolocation=(), payment=()",
   "cross-origin-opener-policy": "same-origin",
+  // Set here as well as in public/_headers: whether Pages applies static
+  // headers to Function responses is platform behaviour, and this one is too
+  // important to depend on it.
+  "strict-transport-security": "max-age=31536000; includeSubDomains",
   "cache-control": "no-store",
 };
 

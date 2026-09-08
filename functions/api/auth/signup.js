@@ -22,7 +22,7 @@ export const onRequestPost = handler(async (ctx) => {
     throw new HttpError(409, "There is already an account with that email. Sign in instead.", "email_taken", { field: "email" });
   }
 
-  const { hash, salt, iterations } = await hashVerifier(pw);
+  const { hash, salt, iterations } = await hashVerifier(pw, null, env);
   const id = newId();
   const now = nowIso();
 

@@ -51,7 +51,7 @@ export const onRequestGet = handler(async ({ env }) => {
   checks.passwordHashing = await (async () => {
     try {
       const started = Date.now();
-      await hashVerifier("A".repeat(43) + "=");
+      await hashVerifier("A".repeat(43) + "=", null, env);
       const ms = Date.now() - started;
       return {
         ok: ms <= 10,
@@ -60,16 +60,20 @@ export const onRequestGet = handler(async ({ env }) => {
           ? "Exceeds the Workers Free plan CPU limit of 10ms — something has moved the key derivation back onto the server."
           : null,
       };
-    } catch {
-      return { ok: false, detail: "verifier hashing failed" };
+    } catch (err) {
+      return { ok: false, detail: err?.code === "no_pepper"
+        ? "VERIFIER_PEPPER is missing or too short - passwords cannot be stored"
+        : "verifier hashing failed" };
     }
   })();
 
+  // Google sign-in is optional: a deployment that only uses email and password
+  // is correctly configured, so this must not fail the overall health check.
+  const googleOn = Boolean(env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET);
   checks.googleSignIn = {
-    ok: Boolean(env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET),
-    detail: env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET
-      ? "configured"
-      : "not configured - the Google button will not appear",
+    ok: true,
+    optional: true,
+    detail: googleOn ? "configured" : "not configured - the Google button is hidden (optional)",
   };
 
   const ok = Object.values(checks).every((c) => c.ok);

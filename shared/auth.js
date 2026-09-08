@@ -40,14 +40,53 @@ export function isVerifier(value) {
   return typeof value === "string" && /^[A-Za-z0-9+/]{43}=$/.test(value);
 }
 
-export async function hashVerifier(verifier, saltB64) {
+/**
+ * Stored credential = HMAC-SHA256(pepper, verifier || salt).
+ *
+ * The pepper matters more than it looks. The client's KDF salt is derived from
+ * the email, which anyone can guess, so without a pepper a targeted attacker
+ * could precompute 600,000-iteration verifiers for a known address BEFORE any
+ * breach, and a later database leak would reduce to one cheap hash per guess.
+ * Salting is supposed to force that expensive work to happen after the breach,
+ * not before it. The pepper restores that: it is never in the database, so no
+ * useful precomputation is possible without also compromising the environment.
+ *
+ * It is an HMAC rather than a hash of a concatenation so that length-extension
+ * and ambiguous-encoding tricks are not even in scope. Cost is microseconds,
+ * which keeps this inside the free plan's 10ms budget.
+ */
+// The pepper never changes within a deployment, so the imported key is cached
+// per isolate. Re-importing it on every call is pure overhead — measurable in
+// Node, and wasted CPU against a 10ms budget in a Worker.
+let pepperKeyCache = null;
+
+async function pepperKey(pepper) {
+  if (pepperKeyCache?.pepper === pepper) return pepperKeyCache.key;
+  const key = await crypto.subtle.importKey(
+    "raw", enc.encode(pepper), { name: "HMAC", hash: "SHA-256" }, false, ["sign"]
+  );
+  pepperKeyCache = { pepper, key };
+  return key;
+}
+
+export async function hashVerifier(verifier, saltB64, env) {
+  const pepper = env?.VERIFIER_PEPPER;
+  if (!pepper || pepper.length < 32) {
+    // Fail closed. A quietly unpeppered hash looks identical and is weaker.
+    throw new HttpError(
+      503,
+      "This deployment is missing VERIFIER_PEPPER, so passwords cannot be stored safely.",
+      "no_pepper"
+    );
+  }
   const salt = saltB64 ? unb64(saltB64) : crypto.getRandomValues(new Uint8Array(16));
   const raw = unb64(verifier);
   const material = new Uint8Array(raw.length + salt.length);
   material.set(raw, 0);
   material.set(salt, raw.length);
-  const digest = await crypto.subtle.digest("SHA-256", material);
-  return { hash: b64(digest), salt: b64(salt), iterations: CLIENT_KDF_ITERATIONS };
+
+  const mac = await crypto.subtle.sign("HMAC", await pepperKey(pepper), material);
+  return { hash: b64(mac), salt: b64(salt), iterations: CLIENT_KDF_ITERATIONS };
 }
 
 /** Length-independent, value-independent comparison. */
@@ -61,9 +100,9 @@ export function timingSafeEqual(a, b) {
   return diff === 0;
 }
 
-export async function verifyPassword(verifier, user) {
+export async function verifyPassword(verifier, user, env) {
   if (!isVerifier(verifier)) return false;
-  const derived = await hashVerifier(verifier, user.pw_salt);
+  const derived = await hashVerifier(verifier, user.pw_salt, env);
   return timingSafeEqual(derived.hash, user.pw_hash);
 }
 
@@ -71,9 +110,9 @@ export async function verifyPassword(verifier, user) {
  * Do equivalent work when the email is unknown, so the code paths stay
  * symmetrical and response time reveals nothing about which accounts exist.
  */
-export async function dummyVerify(verifier) {
+export async function dummyVerify(verifier, env) {
   const salt = b64(new Uint8Array(16));
-  await hashVerifier(isVerifier(verifier) ? verifier : b64(new Uint8Array(32)), salt);
+  await hashVerifier(isVerifier(verifier) ? verifier : b64(new Uint8Array(32)), salt, env);
   return false;
 }
 

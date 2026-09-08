@@ -34,7 +34,7 @@ export const onRequestPost = handler(async (ctx) => {
     );
   }
 
-  const { hash, salt, iterations } = await hashVerifier(pw);
+  const { hash, salt, iterations } = await hashVerifier(pw, null, env);
   const now = nowIso();
 
   await db.batch([

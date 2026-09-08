@@ -352,3 +352,91 @@ now `no-cache, no-store, must-revalidate`.
 
 Zero overflow and no horizontal scroll across ten views at 375px. Definition
 blocks render, tabs switch, unit colours apply in both themes.
+
+---
+
+# Round seven: independent security review
+
+An independent reviewer was pointed at the auth code. It found a critical bug
+in code that had already been written, tested and manually verified — which is
+the whole argument for having someone else look.
+
+## Critical: Google account-linking pre-hijack
+
+There is no email verification at signup, so anyone can register an address
+they do not own. The Google callback then linked by email:
+
+1. Attacker signs up as `victim@school.edu` with a password of their choosing.
+2. The victim later clicks "Continue with Google" with their real account.
+3. The callback found the existing row by email and silently attached the
+   victim's Google identity to it.
+4. The attacker's password still worked — permanent access to the victim's
+   coursework and any API key they later saved.
+
+**Fixed** by refusing to auto-link. A Google sign-in for an email that already
+has an account is now turned away with instructions to sign in by password
+first and connect Google from account settings. Linking must be proven from the
+account that already exists.
+
+## High: a claim in this repository was wrong
+
+The code, the README and the notes above all said browser-side stretching left
+offline-cracking cost **"unchanged"**. That was overstated.
+
+Cost *per guess* was unchanged. **When** that cost must be paid was not. The
+client KDF salt is `econib-kdf-v1:<email>` — publicly derivable — so a targeted
+attacker could precompute 600,000-iteration verifiers for a known address at any
+time, with nothing touching EconIB's servers and no possibility of detection. A
+later database leak would then reduce to one cheap hash per guess. Salting is
+supposed to force that expensive work to happen *after* a breach; that property
+had been given away.
+
+**Fixed** with a server-side pepper: the stored value is now
+`HMAC-SHA256(VERIFIER_PEPPER, verifier ‖ salt)`. The pepper is never in the
+database, so no useful precomputation is possible without also compromising the
+environment. Measured cost in the Worker: ~0-1ms, well inside the 10ms budget.
+Two tests now assert that a database leak without the pepper cannot
+authenticate, and that a missing or short pepper fails closed.
+
+## Medium: the AI spend cap had a real race
+
+`reserve()` read the count, decided in JavaScript, then wrote — so concurrent
+requests could all read the same pre-increment value and all pass. The rate
+limiter did not have this bug (it increments atomically first, then reads).
+
+**Fixed** with a conditional `UPDATE ... WHERE calls < ?`, branching on rows
+affected, so the decision and the write are one act. Five tests cover it,
+including ten concurrent reservations against a cap of three.
+
+## Low: fixed
+
+- The origin check skipped entirely when the `Origin` header was absent.
+  Now fails closed on state-changing requests.
+- HSTS was only in `public/_headers`, which may not apply to Function
+  responses. Now set directly in the API security headers too.
+
+## Accepted, not fixed
+
+**Signup reveals whether an email is registered** (409 `email_taken`), while
+login and password reset are careful not to. Signup returns a session on
+success, so a generic response is not possible without building full email
+verification. With auto-linking removed, the exploitation path this fed is
+closed, and the residual risk is an information leak, rate-limited to 5/hour
+per IP. Recorded here rather than quietly left.
+
+## A bug introduced while fixing these
+
+Threading the pepper through produced `hashVerifier(pw, env)` where the
+signature is `(verifier, salt, env)` — so `env` became the salt, the pepper went
+undefined, and **every signup failed closed with 503**. Caught by running it,
+not by reading it. `scripts/check.mjs` now counts the arguments at every call
+site, with paren-depth tracking so `"A".repeat(43)` is not miscounted, and that
+guard was confirmed to fire on the exact mistake.
+
+## A test that was quietly unreliable
+
+The CPU-budget test asserted under 5ms per call. It passed on its own and failed
+under load — a wall-clock test tight enough to flake. The threshold is now 50ms,
+which still catches the regression it exists for (a KDF costs ~400-730ms per
+call, confirmed by mutation) with an order of magnitude to spare. A test that
+fails at random is worse than no test, because it teaches everyone to ignore it.

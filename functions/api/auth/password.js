@@ -18,14 +18,14 @@ export const onRequestPost = handler(async (ctx) => {
 
   // Requiring the current password stops someone who walks up to an unlocked
   // laptop from locking the owner out of their own account.
-  if (!(await verifyPassword(current, user))) {
+  if (!(await verifyPassword(current, user, ctx.env))) {
     throw new HttpError(401, "That is not your current password.", "bad_credentials", { field: "currentPassword" });
   }
   if (current === next) {
     throw new HttpError(400, "That is the password you already have.", "same_password", { field: "newPassword" });
   }
 
-  const { hash, salt, iterations } = await hashVerifier(next);
+  const { hash, salt, iterations } = await hashVerifier(next, null, ctx.env);
   const now = nowIso();
   const keep = await hashToken(readSessionToken(ctx.request) || "");
 

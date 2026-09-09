@@ -68,7 +68,13 @@ export const onRequestPost = handler(async (ctx) => {
   const { results } = await db.prepare("SELECT * FROM commentaries WHERE user_id = ? ORDER BY slot").bind(user.id).all();
   const all = (results || []).map(shape);
 
-  const reward = await award(db, user.id, "mark_ia", `Commentary ${commentary.slot}`);
+  // XP for getting a commentary marked is earned once. Re-marking after a
+  // revision is a good thing to do and stays free, but pressing the button
+  // again must not print XP — a currency you can mint by clicking is worthless,
+  // and it would reward the student who clicks over the one who writes.
+  const reward = row.marked_at
+    ? null
+    : await award(db, user.id, "mark_ia", `Commentary ${commentary.slot}`);
 
   return json({
     reward,

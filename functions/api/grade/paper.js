@@ -67,13 +67,33 @@ export const onRequestPost = handler(async (ctx) => {
     throw err;
   }
 
+  // Each attempt is its own row, so resubmitting identical text would earn XP
+  // every time. Reward the work, not the button: only a genuinely different
+  // answer for this part counts.
+  //
+  // This must run BEFORE the insert below. Checking afterwards compares the
+  // attempt against itself, which silently withheld XP from every first
+  // submission — caught by running it, not by reading it.
+  const previous = await db.prepare(
+    "SELECT answer FROM paper_attempts WHERE user_id = ? AND rubric_id = ? ORDER BY created_at DESC LIMIT 5"
+  ).bind(user.id, rubric.id).all();
+  const seenBefore = (previous.results || []).some(
+    (r) => normaliseAnswer(r.answer) === normaliseAnswer(answer)
+  );
+
   await db.prepare(
     "INSERT INTO paper_attempts (id, user_id, rubric_id, question, answer, result_json, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)"
   ).bind(newId(), user.id, rubric.id, question, answer, JSON.stringify(result), nowIso()).run();
 
-  const reward = await award(db, user.id, "mark_paper", rubric.name);
+  const reward = seenBefore ? null : await award(db, user.id, "mark_paper", rubric.name);
+
   return json({ result, budget, reward }, { request: ctx.request, env: ctx.env });
 });
+
+/** Whitespace and case are not a different answer. */
+function normaliseAnswer(text) {
+  return String(text || "").trim().toLowerCase().replace(/\s+/g, " ");
+}
 
 export const onRequestGet = handler(async (ctx) => {
   const user = await requireUser(ctx);

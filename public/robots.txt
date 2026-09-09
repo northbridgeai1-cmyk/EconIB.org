@@ -1,0 +1,13 @@
+# Googlebot-Image must be able to reach the favicon, or it cannot appear in
+# search results. Nothing under /assets/ is private.
+User-agent: *
+Allow: /assets/
+Allow: /favicon.ico
+
+# The app itself needs a session, so there is nothing there for a crawler to
+# read. Keeping it out of the index avoids a results page full of sign-in
+# screens.
+Disallow: /app
+Disallow: /api/
+
+Sitemap: https://econib.org/sitemap.xml

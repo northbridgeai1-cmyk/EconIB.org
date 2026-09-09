@@ -40,3 +40,17 @@ test("XP rewards the work that actually raises a grade", () => {
     assert.ok(Number.isInteger(v) && v > 0, `${k} must be a positive whole number`);
   }
 });
+
+
+test("variable rewards are passed explicitly, not faked as constants", async () => {
+  const { XP } = await import("../shared/stats.js");
+  // A streak milestone and a practice set both vary, so neither may sit in the
+  // constants table pretending to be fixed. practice_set is the FLOOR value the
+  // route scales from; streak_milestone has no business being there at all.
+  assert.equal(XP.streak_milestone, undefined,
+    "milestone XP comes from the milestone, not from a constant");
+  const { MILESTONES } = await import("../shared/rewards.js");
+  for (const m of MILESTONES) {
+    assert.ok(m.xp > 0, `${m.days}-day milestone must actually pay something`);
+  }
+});

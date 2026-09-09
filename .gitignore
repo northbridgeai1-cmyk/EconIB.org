@@ -8,3 +8,8 @@ node_modules/
 .wrangler/
 .DS_Store
 dist/
+
+# Playwright MCP writes throwaway console logs and page dumps here.
+.playwright-mcp/
+*.png
+!public/**/*.png

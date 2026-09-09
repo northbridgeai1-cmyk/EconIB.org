@@ -283,6 +283,15 @@
    allowed to overflow. The icon and the toggle remain, so nothing is lost —
    only the words that were restating them. */
 @media (max-width: 700px) {
+  /* Eight destinations cannot share a row with the brand, the streak, search,
+     the theme toggle and the account on a 375px screen. Sharing it anyway, the
+     nav shrinks to a few pixels wide and every link becomes unreachable, which
+     is what was happening. Below 700px it takes its own scrolling row. */
+  .masthead-inner { flex-wrap: wrap; row-gap: 0; }
+  .nav { order: 3; flex-basis: 100%; padding-bottom: var(--s-2); }
+  /* Two rows now, so anything sticking below the masthead has to clear both. */
+  :root { --masthead-h: 88px; }
+
   .masthead-inner { gap: var(--s-3); }
   .masthead-meta #user-chip { display: none; }
   .search-btn .search-label,
@@ -473,3 +482,237 @@
 /* Lesson prose is for reading, so it gets reading measure and rhythm. */
 .lesson p { max-width: 66ch; margin-bottom: var(--s-4); }
 .lesson p:first-child { font-size: var(--t-md); }
+
+/* ── The path ────────────────────────────────────────────────────────────────
+   One vertical spine per unit, in that unit's colour, with nodes riding a
+   gentle wave off the centre line. The wave is what makes it read as a route
+   rather than a list; the colour is what makes a student know which unit they
+   are looking at before reading the banner. */
+
+.path { margin-top: var(--s-5); }
+
+.path-unit { position: relative; padding-bottom: var(--s-6); }
+
+.path-banner {
+  position: sticky;
+  /* Below the masthead, which is also sticky. At top:0 it would park behind it
+     and vanish exactly when it is needed. */
+  top: var(--masthead-h);
+  z-index: 2;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-3);
+  padding: var(--s-2) var(--s-3);
+  margin-bottom: var(--s-5);
+  background: var(--unit-wash);
+  border-left: 3px solid var(--unit);
+  border-radius: var(--r-sm);
+}
+.path-unit-name { font-weight: 600; font-size: var(--t-sm); color: var(--ink); }
+.path-unit-count { font-size: var(--t-xs); color: var(--muted); }
+
+.path-nodes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+/* The spine sits behind the nodes and stops short of the last one, so the
+   route ends at the goal instead of trailing off. */
+.path-nodes::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 28px;
+  bottom: 28px;
+  width: 4px;
+  margin-left: -2px;
+  background: var(--unit-wash);
+  border-radius: var(--r-full);
+}
+
+/* base.css caps every li at a 68ch reading measure, which is right for prose
+   and wrong here: a node that is narrower than its list cannot sit on the
+   centre line, so the spine and the nodes drift apart. */
+.path-node {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: none;
+  margin-bottom: 0;
+}
+.path-node + .path-node { margin-top: var(--s-4); }
+
+.path-node > a {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-2);
+  width: 168px;
+  max-width: 100%;
+  padding: 0;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  transform: translateX(var(--offset, 0));
+  transition: transform var(--dur-base) var(--ease);
+}
+.path-node > a:hover { transform: translateX(var(--offset, 0)) translateY(-2px); }
+.path-node > a:active { transform: translateX(var(--offset, 0)) translateY(1px); }
+
+.node-dot {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--r-full);
+  font-family: var(--f-mono);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  background: var(--raised);
+  border: 2px solid var(--rule);
+  color: var(--muted);
+  box-shadow: var(--e-1);
+  transition: background var(--dur-base) var(--ease),
+              border-color var(--dur-base) var(--ease),
+              color var(--dur-base) var(--ease);
+}
+.node-label {
+  font-size: var(--t-xs);
+  line-height: 1.35;
+  color: var(--muted);
+}
+.path-node > a:hover .node-label { color: var(--ink); }
+
+.path-node.is-shaky .node-dot {
+  background: var(--unit-wash);
+  border-color: var(--unit);
+  color: var(--unit);
+}
+.path-node.is-done .node-dot {
+  background: var(--unit);
+  border-color: var(--unit);
+  color: var(--on-accent);
+  font-size: var(--t-md);
+}
+.path-node.is-done .node-label { color: var(--ink); }
+
+/* Where you are now. The ring is drawn with a shadow rather than an extra
+   element so it cannot shift the node off the spine. */
+.path-node.is-next .node-dot {
+  border-color: var(--unit);
+  color: var(--unit);
+  box-shadow: 0 0 0 4px var(--unit-wash), var(--e-1);
+  animation: node-pulse 2.4s var(--ease) infinite;
+}
+@keyframes node-pulse {
+  0%, 100% { box-shadow: 0 0 0 4px var(--unit-wash), var(--e-1); }
+  50%      { box-shadow: 0 0 0 9px var(--unit-wash), var(--e-1); }
+}
+
+.path-node.is-goal > a { width: 180px; }
+.path-node.is-goal .node-dot {
+  background: var(--unit-wash);
+  border-style: dashed;
+  border-color: var(--unit);
+  color: var(--unit);
+  font-size: var(--t-lg);
+}
+.path-node.is-goal .node-label { color: var(--ink); font-weight: 600; }
+
+/* ── Streak milestones ─────────────────────────────────────────────────────── */
+
+.claims { margin-top: var(--s-4); display: grid; gap: var(--s-2); }
+.claim {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  flex-wrap: wrap;
+  padding: var(--s-3);
+  background: var(--good-wash);
+  border-radius: var(--r-md);
+}
+.claim-days {
+  flex: none;
+  font-size: var(--t-sm);
+  font-weight: 600;
+  color: var(--good);
+}
+.claim-text { flex: 1 1 12rem; min-width: 0; font-size: var(--t-sm); }
+
+.pips {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s-2);
+  margin: var(--s-5) 0 0;
+  padding: 0;
+  position: relative;
+}
+.pips::before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  top: 6px;
+  height: 2px;
+  background: var(--rule);
+}
+.pip {
+  position: relative;
+  max-width: none;
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-1);
+  min-width: 0;
+}
+.pip-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--r-full);
+  background: var(--sunken);
+  border: 2px solid var(--rule);
+}
+.pip-days { font-size: var(--t-xs); color: var(--muted); }
+.pip.is-ready .pip-dot {
+  background: var(--good);
+  border-color: var(--good);
+  animation: node-pulse 2.4s var(--ease) infinite;
+}
+.pip.is-ready .pip-days { color: var(--good); font-weight: 600; }
+.pip.is-claimed .pip-dot { background: var(--good); border-color: var(--good); }
+.pip.is-claimed .pip-days { color: var(--ink); }
+
+/* ── XP market ─────────────────────────────────────────────────────────────── */
+
+.shop-grid {
+  margin-top: var(--s-4);
+  display: grid;
+  gap: var(--s-3);
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+.shop-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--s-2);
+  padding: var(--s-3);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-md);
+  background: var(--raised);
+}
+.shop-item.is-owned { background: var(--sunken); border-style: dashed; }
+.shop-name { font-weight: 600; font-size: var(--t-sm); }
+.shop-blurb { color: var(--muted); flex: 1; }
+.shop-reason { color: var(--muted); }
+
+@media (prefers-reduced-motion: reduce) {
+  .path-node.is-next .node-dot,
+  .pip.is-ready .pip-dot { animation: none; }
+  .path-node > a { transition: none; }
+}

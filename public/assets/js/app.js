@@ -8,6 +8,7 @@ import { mountSearch } from "./lib/search.js";
 import dashboard from "./views/dashboard.js";
 import lessons from "./views/lessons.js";
 import practice from "./views/practice.js";
+import path from "./views/path.js";
 import accuracy from "./views/accuracy.js";
 import ia from "./views/ia.js";
 import papers from "./views/papers.js";
@@ -16,7 +17,7 @@ import grades from "./views/grades.js";
 import settings from "./views/settings.js";
 
 // "syllabus" is kept as an alias of "lessons" so older links do not break.
-const routes = { "": dashboard, lessons, syllabus: lessons, practice, accuracy, ia, papers, reference, grades, settings, account: settings };
+const routes = { "": dashboard, path, lessons, syllabus: lessons, practice, accuracy, ia, papers, reference, grades, settings, account: settings };
 const view = $("#view");
 
 /** "#/syllabus/2.3" -> { name: "syllabus", parts: ["2.3"] } */

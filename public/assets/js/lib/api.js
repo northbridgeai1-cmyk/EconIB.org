@@ -85,6 +85,10 @@ export const api = {
   clearAiKey: () => request("/settings/ai", { method: "DELETE" }),
 
   getStats: () => request("/stats"),
+  getRewards: () => request("/rewards"),
+  claimMilestone: (milestone) => request("/rewards", { method: "POST", body: { milestone } }),
+  getShop: () => request("/shop"),
+  buyItem: (itemId) => request("/shop", { method: "POST", body: { itemId } }),
   getFeedback: () => request("/feedback"),
   addFeedback: (b) => request("/feedback", { method: "POST", body: b }),
   deleteFeedback: (id) => request(`/feedback?id=${encodeURIComponent(id)}`, { method: "DELETE" }),

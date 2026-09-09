@@ -81,6 +81,12 @@ export async function getStats(db, userId) {
  * Record something the student did. Returns what changed, so the interface can
  * show the reward rather than silently incrementing a number.
  */
+/**
+ * @param explicitGain  for rewards whose size is not fixed by the action —
+ *   a streak milestone, or a practice set scaled by how much was right. Those
+ *   deliberately have no entry in XP, because a table of constants is the wrong
+ *   place for a number that varies.
+ */
 export async function award(db, userId, kind, detail = "", explicitGain = null) {
   const gain = explicitGain ?? XP[kind] ?? 0;
   const today = utcDay();

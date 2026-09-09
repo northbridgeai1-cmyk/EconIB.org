@@ -36,6 +36,10 @@
   --ease: cubic-bezier(0.2, 0, 0.2, 1);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 
+  /* Masthead height: min-height 56px plus its 1px rule. Anything that sticks
+     below it has to clear this or it parks underneath and disappears. */
+  --masthead-h: 57px;
+
   /* --- elevation: 2 --- */
   --e-1: 0 1px 2px rgb(20 25 30 / 0.06);
   --e-2: 0 4px 16px rgb(20 25 30 / 0.10);

@@ -46,7 +46,7 @@ export default async function dashboard({ view }) {
           : stats.streak > 0 ? "Do one thing today to keep it." : "Do anything today to start one."}</span>
       </div>
 
-      <div class="stat">
+      <a class="stat stat-link" href="#/path">
         <div class="row">
           ${ring(stats.percent, stats.level)}
           <div>
@@ -57,7 +57,7 @@ export default async function dashboard({ view }) {
               : "Top level reached"}</span>
           </div>
         </div>
-      </div>
+      </a>
 
       <div class="stat">
         <span class="stat-value"><span data-count="${solid}">0</span><span class="meter-max"> / ${esc(mine.length)}</span></span>
@@ -116,7 +116,11 @@ function describe(kind) {
     mark_paper: "Exam answer marked",
     mark_ia: "Commentary marked",
     save_commentary: "Saved a commentary",
-  }[kind] || kind;
+    practice_set: "Practice set finished",
+    streak_milestone: "Streak milestone",
+    // A kind with no label used to print its internal key straight into the
+    // feed — "streak_milestone" sat on the dashboard until this was noticed.
+  }[kind] || String(kind).replace(/_/g, " ").replace(/^./, (c) => c.toUpperCase());
 }
 
 /**

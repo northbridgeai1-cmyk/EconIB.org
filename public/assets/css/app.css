@@ -226,7 +226,7 @@
 .tree-unit + .tree-unit { margin-top: var(--s-3); border-top: 1px solid var(--rule-soft); padding-top: var(--s-3); }
 .tree-unit-head { display: flex; align-items: center; gap: var(--s-2); padding: var(--s-1) var(--s-2);
   font-family: var(--f-mono); font-size: var(--t-xs); letter-spacing: 0.1em; text-transform: uppercase; }
-.tree-dot { width: 8px; height: 8px; border-radius: var(--r-circle); flex: none; background: var(--unit-colour); }
+.tree-dot { width: 8px; height: 8px; border-radius: var(--r-full); flex: none; background: var(--unit-colour); }
 .tree-unit-name { color: var(--unit-colour); font-weight: 600; }
 .tree-unit-count { margin-left: auto; color: var(--muted); font-weight: 400; }
 
@@ -237,7 +237,7 @@
 .tree a[aria-current="page"] { background: var(--unit-wash); color: var(--unit-colour);
   border-left-color: var(--unit-colour); font-weight: 600; }
 .tree-code { font-family: var(--f-mono); font-size: var(--t-xs); flex: none; min-width: 2.6em; }
-.tree-state { margin-left: auto; width: 7px; height: 7px; border-radius: var(--r-circle); flex: none;
+.tree-state { margin-left: auto; width: 7px; height: 7px; border-radius: var(--r-full); flex: none;
   background: var(--rule); }
 .tree-state[data-state="1"] { background: var(--warn); }
 .tree-state[data-state="2"] { background: var(--good); }
@@ -373,6 +373,11 @@
   transition: transform var(--dur-base) var(--ease), border-color var(--dur-base) var(--ease);
 }
 .stat:hover { transform: translateY(-2px); border-color: var(--muted); }
+/* The XP tile goes to the path, where XP is spent. It has to look like it does
+   something, or it reads as a number that happens to move when hovered. */
+.stat-link { display: block; color: inherit; text-decoration: none; }
+.stat-link:hover { border-color: var(--accent); }
+.stat-link:hover .stat-label { color: var(--ink); }
 .stat-value { font-family: var(--f-mono); font-size: var(--t-xl); font-weight: 600;
   line-height: 1; font-variant-numeric: tabular-nums; display: block; }
 .stat-label { font-size: var(--t-sm); color: var(--muted); margin-top: var(--s-1); display: block; }
@@ -422,23 +427,30 @@
 /* Account sits at the far right, past everything else, because it is the one
    control that is never part of the task at hand. */
 .account-link { flex: none; margin-left: var(--s-3); display: inline-flex;
-  border-radius: var(--r-circle); line-height: 0;
+  border-radius: var(--r-full); line-height: 0;
   transition: transform var(--dur-fast) var(--ease); }
 .account-link:hover { transform: scale(1.06); }
 .account-link:active { transform: scale(0.96); }
-.avatar { display: block; border-radius: var(--r-circle); }
+.avatar { display: block; border-radius: var(--r-full); }
 
 .streak-chip { display: inline-flex; align-items: center; gap: 5px;
+  text-decoration: none;
   font-family: var(--f-mono); font-size: var(--t-xs); font-weight: 600;
   padding: 3px 9px; border-radius: var(--r-md);
   background: var(--warn-wash); color: var(--warn); white-space: nowrap; }
 .streak-chip.is-cold { background: var(--sunken); color: var(--muted); }
+.streak-chip:hover { filter: brightness(0.96); }
+.streak-chip:hover .chip-xp { text-decoration: underline; }
+/* A hairline between the streak and the XP: they are two numbers, not one. */
+.chip-rule { width: 1px; height: 11px; background: currentColor; opacity: 0.35; }
+.chip-xp { color: var(--ink); }
+.streak-chip.is-cold .chip-xp { color: var(--muted); }
 @media (max-width: 560px) { .streak-chip .streak-word { display: none; } }
 
 /* ------------------------------------------------------------ avatar picker */
 .avatar-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: var(--s-3); max-width: 360px; }
 @media (max-width: 520px) { .avatar-grid { grid-template-columns: repeat(4, 1fr); } }
-.avatar-option { background: none; border: 2px solid transparent; border-radius: var(--r-circle);
+.avatar-option { background: none; border: 2px solid transparent; border-radius: var(--r-full);
   padding: 2px; cursor: pointer; line-height: 0;
   transition: transform var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease); }
 .avatar-option:hover { transform: scale(1.08); }

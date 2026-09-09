@@ -95,8 +95,10 @@ async function paintIdentity() {
   if (state.user && holder) {
     holder.innerHTML = avatarSvg(state.user.name, state.user.avatar, 30);
   }
-  // The streak lives in the header so it is visible on every screen, not only
-  // on the dashboard — that is the whole point of a streak.
+  // The streak and the XP live in the header so they are visible on every
+  // screen, not only on the dashboard — that is the whole point of a streak.
+  // The chip links to the path, which is where both of them mean something:
+  // the milestones the streak is earning and the market the XP spends in.
   const chip = $("#streak-chip");
   if (!chip) return;
   try {
@@ -104,10 +106,14 @@ async function paintIdentity() {
     state.stats = stats;
     chip.hidden = false;
     chip.className = `streak-chip${stats.streak > 0 ? "" : " is-cold"}`;
-    chip.innerHTML = `${stats.streak > 0 ? "▲" : "·"} ${esc(stats.streak)} <span class="streak-word">day${stats.streak === 1 ? "" : "s"}</span>`;
-    chip.title = stats.activeToday
+    chip.innerHTML = `${stats.streak > 0 ? "▲" : "·"} ${esc(stats.streak)}`
+      + `<span class="sr-only"> day streak,</span>`
+      + `<span class="chip-rule" aria-hidden="true"></span>`
+      + `<span class="chip-xp">${esc(stats.xp)} XP</span>`;
+    chip.title = (stats.activeToday
       ? `${stats.streak} day streak, counted for today`
-      : "Do one thing today to keep your streak";
+      : "Do one thing today to keep your streak")
+      + ` — ${stats.xp} XP. Open your path.`;
   } catch (err) {
     // Hide rather than show a stale number — but say why. A bare catch here
     // silently swallowed a ReferenceError once, and the streak simply never

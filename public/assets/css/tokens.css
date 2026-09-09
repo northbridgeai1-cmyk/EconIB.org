@@ -36,8 +36,10 @@
   --ease: cubic-bezier(0.2, 0, 0.2, 1);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 
-  /* Masthead height: min-height 56px plus its 1px rule. Anything that sticks
-     below it has to clear this or it parks underneath and disappears. */
+  /* Masthead height. Anything sticking below the masthead has to clear this or
+     it parks underneath and disappears. This is only the one-row starting
+     value: app.js measures the real height and overwrites it, because the
+     masthead takes a second row when the nav cannot fit on one. */
   --masthead-h: 57px;
 
   /* --- elevation: 2 --- */

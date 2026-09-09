@@ -39,8 +39,13 @@ export function mountThemeToggle(host) {
 
   const paint = () => {
     const mode = readTheme();
-    button.textContent = mode === "system" ? "Auto" : mode === "dark" ? "Dark" : "Light";
-    button.setAttribute("aria-label", `Colour theme: ${button.textContent}. Click to change.`);
+    const word = mode === "system" ? "Auto" : mode === "dark" ? "Dark" : "Light";
+    const glyph = mode === "system" ? "◐" : mode === "dark" ? "●" : "○";
+    button.replaceChildren(
+      el("span", { class: "theme-glyph", "aria-hidden": "true" }, glyph),
+      el("span", { class: "theme-word" }, word)
+    );
+    button.setAttribute("aria-label", `Colour theme: ${word}. Click to change.`);
   };
 
   button.addEventListener("click", () => {

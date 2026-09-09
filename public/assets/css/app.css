@@ -10,7 +10,7 @@
 .nav { display: flex; gap: var(--s-1); flex: 1; overflow-x: auto; scrollbar-width: none; }
 .nav::-webkit-scrollbar { display: none; }
 .nav a { font-size: var(--t-sm); color: var(--muted); text-decoration: none;
-  padding: var(--s-2) var(--s-3); border-radius: var(--r-md); white-space: nowrap; }
+  padding: var(--s-2); border-radius: var(--r-md); white-space: nowrap; }
 .nav a:hover { background: var(--sunken); color: var(--ink); }
 .nav a[aria-current="page"] { color: var(--ink); font-weight: 500; background: var(--sunken); }
 .masthead-meta { display: flex; align-items: center; gap: var(--s-2); flex: none;
@@ -168,6 +168,7 @@
 @media (pointer: coarse) { .pw-toggle { min-height: 34px; } }
 
 /* ------------------------------------------------------------- theme toggle */
+.theme-glyph { display: none; }
 .theme-toggle { font-family: var(--f-mono); font-size: var(--t-xs); letter-spacing: 0.06em;
   text-transform: uppercase; min-width: 56px; }
 
@@ -282,22 +283,35 @@
    Below 700px the search label and the year/level chip are dropped rather than
    allowed to overflow. The icon and the toggle remain, so nothing is lost —
    only the words that were restating them. */
-@media (max-width: 700px) {
-  /* Eight destinations cannot share a row with the brand, the streak, search,
-     the theme toggle and the account on a 375px screen. Sharing it anyway, the
-     nav shrinks to a few pixels wide and every link becomes unreachable, which
-     is what was happening. Below 700px it takes its own scrolling row. */
+/* Eight destinations need 566px, and the row can only spare that above 1180px.
+   Squeezed in below that they were not merely tight but unreachable: at 375px
+   the nav was 9px wide holding 727px of links, and on a 1280px desktop the last
+   two were cut off with nothing to show they were there. Below 1180px the nav
+   takes its own scrolling row instead. Measured, not guessed — see the widths
+   in the commit that added this. */
+@media (max-width: 1180px) {
   .masthead-inner { flex-wrap: wrap; row-gap: 0; }
   .nav { order: 3; flex-basis: 100%; padding-bottom: var(--s-2); }
-  /* Two rows now, so anything sticking below the masthead has to clear both. */
-  :root { --masthead-h: 88px; }
+  /* With the nav on its own row nothing stretches the first one, so the
+     account stops being pushed right and drifts in beside the brand. */
+  .masthead-meta { margin-left: auto; }
+  /* Two rows now. The height is measured at runtime rather than written down
+     here — see trackMastheadHeight() in app.js. */
+}
 
-  .masthead-inner { gap: var(--s-3); }
+/* On a phone the first row has to hold the brand, the streak and XP, search,
+   the theme toggle and the account. It does not fit while everything spells
+   itself out, and when it overflows the account avatar drops onto a line of
+   its own — so the words go and the glyphs stay. */
+@media (max-width: 700px) {
+  .masthead-inner { gap: var(--s-2); padding: 0 var(--s-4); }
   .masthead-meta #user-chip { display: none; }
   .search-btn .search-label,
   .search-btn kbd { display: none; }
   .search-btn { padding: var(--s-1) var(--s-2); min-width: 0; }
   .theme-toggle { min-width: 0; padding: var(--s-1) var(--s-2); }
+  .theme-word { display: none; }
+  .theme-glyph { display: inline; }
 }
 @media (max-width: 460px) {
   .masthead-meta .btn-quiet[href="#/account"] { padding: var(--s-1) var(--s-2); }

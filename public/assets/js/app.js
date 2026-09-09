@@ -125,6 +125,26 @@ async function paintIdentity() {
 const paintUserChip = paintIdentity;
 
 /**
+ * Keep --masthead-h equal to the masthead's real height.
+ *
+ * The sticky unit banners on the path park directly below the masthead, so
+ * they need its height. Writing that number into the CSS meant maintaining it
+ * by hand across a breakpoint where the masthead grows a second row, and it
+ * was already wrong: 88px written against an actual 76px. Measuring removes
+ * the class of bug rather than this one instance of it.
+ */
+function trackMastheadHeight() {
+  const masthead = document.querySelector(".masthead");
+  if (!masthead || typeof ResizeObserver === "undefined") return;
+  const apply = () => {
+    const h = Math.round(masthead.getBoundingClientRect().height);
+    if (h > 0) document.documentElement.style.setProperty("--masthead-h", `${h}px`);
+  };
+  new ResizeObserver(apply).observe(masthead);
+  apply();
+}
+
+/**
  * Offline is named, not implied. Losing signal otherwise looks like a hanging
  * button and silently stale data.
  */
@@ -140,6 +160,7 @@ let backToTop = null;
 
 async function start() {
   watchConnection();
+  trackMastheadHeight();
   registerServiceWorker();
 
   const meta = $("#masthead-meta");
